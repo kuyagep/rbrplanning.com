@@ -15,3 +15,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+});
