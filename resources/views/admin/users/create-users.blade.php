@@ -24,7 +24,6 @@
                     <div class="card-body">
                         <form method="post" class="needs-validation" action="{{ route('store.user') }}" novalidate=""
                             enctype="multipart/form-data">
-
                             @csrf
                             <div class="form-group row">
                                 <label for="first_name" class="col-sm-3 col-form-label">FirstName</label>

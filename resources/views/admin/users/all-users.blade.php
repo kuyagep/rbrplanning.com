@@ -13,11 +13,26 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
+
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <h5 class="alert-heading mb-0 "><strong>{{ session('message') }}</strong></h5>
+                        <hr>
+                        <h6 class="mb-0">
+                            Email: {{ session('email') }} <br>
+                            Temporary Password: {{ session('temp_password') }} <br>
+                        </h6>
+
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+
                 <a href="{{ route('create.user') }}" class="btn btn-danger mb-3 float-right">Add User</a>
                 <div class="card">
                     <div class="card-header">
@@ -25,7 +40,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="" class="table table-striped table-bordered nowrap">
+                            <table id="dataTableajax" class="table table-striped table-bordered nowrap">
                                 <thead>
                                     <tr>
                                         <th width="1px">
@@ -75,7 +90,8 @@
                                                     <a href="{{ route('user.edit', $user->id) }}"><i
                                                             class="ik ik-edit-2"></i></a>
 
-                                                    <a href=""><i class="ik ik-trash-2"></i></a>
+                                                    <a href="javascript:void(0)" id="deleteButton"><i
+                                                            class="ik ik-trash-2"></i></a>
 
                                                 </div>
                                             </td>
@@ -93,5 +109,67 @@
     </div>
 @endsection
 @section('script')
-    {{-- script --}}
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            // token header
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+
+
+            // Delete Function
+            $('body').on('click', '#deleteButton', function() {
+
+                var id = $(this).data('id');
+                var route = "{{ route('destroy.user', ':id') }}";
+                route = route.replace(':id', id);
+
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You want delete this user?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Confirm!'
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "DELETE",
+                            url: route,
+                            data: {
+                                id: id
+                            },
+                            dataType: 'json',
+                            success: function(response) {
+                                console.log(response);
+                                var oTable = $('#dataTableajax').dataTable();
+                                oTable.fnDraw(false);
+                                //Sweet Alert
+                                Swal.fire({
+                                    icon: response.icon,
+                                    title: response.title,
+                                    text: response.message,
+                                    timer: 2000
+                                });
+
+                            },
+                            error: function(response) {
+                                console.log('Error : ', response);
+                            }
+                        });
+
+                    }
+                });
+            });
+
+
+        });
+    </script>
 @endsection

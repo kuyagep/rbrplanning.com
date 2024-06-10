@@ -45,7 +45,14 @@ class UserController extends Controller
         $user->password = Hash::make($temp_password);
         $user->save();
 
-        return redirect()->route('all.user', compact(['temp_password', 'user']));
+        return redirect('users')->with([
+            'status' => 'Success',
+            'message' => 'User created successfully!',
+            'email' => $user->email,
+            'temp_password' => $temp_password],
+
+        );
+        // return redirect('all.user')->route('all.user', compact(['temp_password', 'user']));
     }
 
     /**

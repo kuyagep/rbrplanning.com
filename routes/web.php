@@ -5,15 +5,6 @@ use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified',
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
 Route::get('/', [RedirectController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -27,5 +18,3 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/users/{id}/update', [UserController::class, 'update'])->name('user.update');
     Route::post('/users/{id}/destroy', [UserController::class, 'destroy'])->name('destroy.user');
 });
-
-// Route::get('/users', ListUsers::class)->name('users.index');
