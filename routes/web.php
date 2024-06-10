@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Dashboard;
+use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,12 +14,9 @@ use Illuminate\Support\Facades\Route;
 //         return view('dashboard');
 //     })->name('dashboard');
 // });
+Route::get('/', [RedirectController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
-
     Route::get('/dashboard', [Dashboard::class, 'index']);
 
     Route::get('/users', [UserController::class, 'index'])->name('all.user');
