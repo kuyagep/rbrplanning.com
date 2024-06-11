@@ -39,7 +39,9 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <a onclick="history.back()" class="btn btn-light">Back</a>
+                        <a onclick="history.back()" class="btn btn-secondary"><i class="ik ik-chevron-left"></i> Back</a>
+                        <a class="btn btn-danger"><i class="ik ik-rotate-ccw"></i>
+                            Reset Password</a>
                     </div>
                 </div>
             </div>

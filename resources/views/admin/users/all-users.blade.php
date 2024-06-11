@@ -36,15 +36,17 @@
 
 
                 <div class="card">
-                    <div class="card-header">
-                        <h3>All Users</h3>
-                    </div>
                     <div class="card-body">
 
                         <div class="row">
                             <div class="col-lg-6 col-xs-12">
-                                <a href="{{ route('create.user') }}" class="btn btn-primary mb-2 ">Add User</a>
-                                <a href="#" class="btn btn-danger mb-2" id="deleteSelected">Delete All Select</a>
+                                <a href="{{ route('create.user') }}" class="btn btn-primary mb-2 ">
+
+                                    <i class="ik ik-user-plus"></i>
+                                    Add User</a>
+                                <a href="#" class="btn btn-danger mb-2" id="deleteSelected"><i
+                                        class="ik ik-trash "></i>
+                                    Delete All Select</a>
                             </div>
                             <div class="col-lg-6 col-xs-12">
                                 <form action="{{ route('all.user') }}" method="GET" class="form-inline float-right">
@@ -53,7 +55,8 @@
                                         class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
                                         placeholder="Search users...">
 
-                                    <button type="submit" class="btn btn-primary mb-2">Search</button>
+                                    <button type="submit" class="btn btn-primary mb-2">
+                                        <i class="ik ik-search"></i> Search</button>
                                 </form>
                             </div>
                         </div>
