@@ -12,10 +12,21 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
-        return view('admin.users.all-users', compact('users'));
+        $search = $request->input('search');
+
+        $query = User::query();
+
+        if ($search) {
+            $query->where('first_name', 'like', '%' . $search . '%')
+                ->orWhere('last_name', 'like', '%' . $search . '%')
+                ->orWhere('email', 'like', '%' . $search . '%');
+        }
+        $paginatedUsers = $query->orderBy('created_at', 'desc')->paginate(10);
+
+        // $users = User::latest()->paginate(10);
+        return view('admin.users.all-users', compact('paginatedUsers', 'search'));
     }
 
     /**
@@ -98,11 +109,39 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, $id)
     {
+        if ($request->ajax()) {
+            $user = User::findOrFail($id);
 
-        $data = User::findOrFail($id)->delete();
-
+            if (!is_null($user)) {
+                $user->delete();
+            }
+            return response()->json(['icon' => 'success', 'title' => 'Success!', 'message' => 'User deleted successfully!']);
+        }
         return redirect()->route('all.user');
+    }
+
+    public function search(Request $request)
+    {
+        // dd($request->get('search'));
+        $users = User::where('first_name', 'like', "%{$request->search}%")
+            ->orWhere('last_name', 'like', "%{$request->search}%")
+            ->orWhere('email', 'like', "%{$request->search}%")
+            ->get();
+        return view('admin.users.all-users', ['users' => $users->paginate(10)]);
+    }
+
+    public function deleteMultiple(Request $request)
+    {
+        $userIds = $request->input('user_ids');
+
+        if (!empty($userIds)) {
+            User::whereIn('id', $userIds)->delete();
+            // return response()->json(['message' => 'Selected users have been deleted.']);
+            return response()->json(['icon' => 'success', 'title' => 'Success!', 'message' => 'Selected users have been deleted!']);
+        }
+
+        return response()->json(['error' => 'No users selected for deletion.'], 400);
     }
 }

@@ -1,6 +1,7 @@
 @extends('layouts.dashboard.main')
 @section('style')
     {{-- style --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.css">
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -33,75 +34,102 @@
                     </div>
                 @endif
 
-                <a href="{{ route('create.user') }}" class="btn btn-danger mb-3 float-right">Add User</a>
+
                 <div class="card">
                     <div class="card-header">
                         <h3>All Users</h3>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="dataTableajax" class="table table-striped table-bordered nowrap">
-                                <thead>
-                                    <tr>
-                                        <th width="1px">
-                                            <div class="custom-control custom-checkbox ml-2">
-                                                <input type="checkbox" class="custom-control-input" id="check_box">
-                                                <label class="custom-control-label" for="check_box">
-                                                </label>
-                                            </div>
 
-                                        </th>
-                                        <th>Id</th>
-                                        <th class="nosort">Avatar</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th class="text-center">Status</th>
-                                        <th class="nosort">&nbsp;</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($users as $user)
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox ml-2">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="check_box_{{ $user->id }}">
-                                                    <label class="custom-control-label" for="check_box_{{ $user->id }}">
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>{{ $user->id }}</td>
-                                            <td><img src="assets/img/users/1.jpg" class="table-user-thumb" alt="">
-                                            </td>
-                                            <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <th>
-                                                <div class="badge badge-primary">
-                                                    admin
-                                                </div>
-                                            </th>
-                                            <th class="text-center">
-                                                <div class="badge badge-success">Active</div>
-                                            </th>
-                                            <td class="text-center ">
-                                                <div class="table-actions ">
-                                                    <a href="{{ url('/users', $user->id) }}"><i class="ik ik-eye"></i></a>
-                                                    <a href="{{ route('user.edit', $user->id) }}"><i
-                                                            class="ik ik-edit-2"></i></a>
+                        <div class="row">
+                            <div class="col-lg-6 col-xs-12">
+                                <a href="{{ route('create.user') }}" class="btn btn-primary mb-2 ">Add User</a>
+                                <a href="#" class="btn btn-danger mb-2" id="deleteSelected">Delete All Select</a>
+                            </div>
+                            <div class="col-lg-6 col-xs-12">
+                                <form action="{{ route('all.user') }}" method="GET" class="form-inline float-right">
+                                    @csrf
+                                    <input type="text" name="search" value="{{ request('search') }}" id="search"
+                                        class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
+                                        placeholder="Search users...">
 
-                                                    <a href="javascript:void(0)" id="deleteButton"><i
-                                                            class="ik ik-trash-2"></i></a>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
+                                    <button type="submit" class="btn btn-primary mb-2">Search</button>
+                                </form>
+                            </div>
                         </div>
 
+
+                        <div class="table-data">
+                            <div class="table-responsive">
+                                <table id="dataTableajax" class="table table-striped table-bordered nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th width="1px">
+                                                <div class="custom-control custom-checkbox ml-2">
+                                                    <input type="checkbox" class="custom-control-input" id="select_all_id">
+                                                    <label class="custom-control-label" for="select_all_id">
+                                                    </label>
+                                                </div>
+                                            </th>
+                                            <th>Id</th>
+                                            <th class="nosort">Avatar</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th class="text-center">Role</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="nosort">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($paginatedUsers as  $user)
+                                            <tr>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox ml-2">
+                                                        <input type="checkbox" class="custom-control-input check_box_id"
+                                                            id="check_box_{{ $user->id }}" name="user_ids[]"
+                                                            value="{{ $user->id }}">
+                                                        <label class="custom-control-label"
+                                                            for="check_box_{{ $user->id }}">
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>{{ $user->id }}</td>
+                                                <td><img src="assets/img/users/1.jpg" class="table-user-thumb"
+                                                        alt="">
+                                                </td>
+                                                <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td class="text-center">
+                                                    <span class="badge badge-pill badge-dark mb-1">Admin</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="badge badge-pill badge-success mb-1">Active</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="table-actions ">
+                                                        <a href="{{ url('/users', $user->id) }}"><i
+                                                                class="ik ik-eye"></i></a>
+                                                        <a href="{{ route('user.edit', $user->id) }}"><i
+                                                                class="ik ik-edit-2"></i></a>
+
+                                                        <a href="#" data-id="{{ $user->id }}"
+                                                            id="deleteButton"><i class="ik ik-trash-2"></i></a>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="8" class="text-center">No data found!</td>
+                                            </tr>
+                                        @endforelse
+
+                                    </tbody>
+
+                                </table>
+                                {{ $paginatedUsers->appends(['search' => request('search')])->links() }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,6 +137,7 @@
     </div>
 @endsection
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.all.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function($) {
             // token header
@@ -118,16 +147,13 @@
                 }
             });
 
-
-
-
             // Delete Function
-            $('body').on('click', '#deleteButton', function() {
+            $('table').on('click', '#deleteButton', function(e) {
+                e.preventDefault();
 
                 var id = $(this).data('id');
                 var route = "{{ route('destroy.user', ':id') }}";
                 route = route.replace(':id', id);
-
 
                 Swal.fire({
                     title: 'Are you sure?',
@@ -138,10 +164,10 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Confirm!'
                 }).then((result) => {
-
                     if (result.isConfirmed) {
+
                         $.ajax({
-                            type: "DELETE",
+                            type: "POST",
                             url: route,
                             data: {
                                 id: id
@@ -149,8 +175,7 @@
                             dataType: 'json',
                             success: function(response) {
                                 console.log(response);
-                                var oTable = $('#dataTableajax').dataTable();
-                                oTable.fnDraw(false);
+                                $('.table').load(location.href + ' .table');
                                 //Sweet Alert
                                 Swal.fire({
                                     icon: response.icon,
@@ -158,7 +183,6 @@
                                     text: response.message,
                                     timer: 2000
                                 });
-
                             },
                             error: function(response) {
                                 console.log('Error : ', response);
@@ -168,6 +192,71 @@
                     }
                 });
             });
+
+            document.getElementById('select_all_id').addEventListener('click', function(event) {
+                var checkboxes = document.querySelectorAll('input[name="user_ids[]"]');
+                for (var checkbox of checkboxes) {
+                    checkbox.checked = event.target.checked;
+                }
+            });
+
+            $('#deleteSelected').click(function() {
+                var selected = [];
+                $('input[name="user_ids[]"]:checked').each(function() {
+                    selected.push($(this).val());
+                });
+
+                if (selected.length > 0) {
+
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You want delete this users?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Confirm!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+
+                            $.ajax({
+                                url: '{{ route('users.deleteMultiple') }}',
+                                type: 'DELETE',
+                                data: {
+                                    _token: '{{ csrf_token() }}',
+                                    user_ids: selected
+                                },
+                                success: function(response) {
+                                    // location.reload();
+                                    $('.table').load(location.href + ' .table');
+                                    //Sweet Alert
+                                    Swal.fire({
+                                        icon: response.icon,
+                                        title: response.title,
+                                        text: response.message,
+                                        timer: 2000
+                                    });
+                                },
+                                error: function(xhr) {
+                                    alert('An error occurred.');
+                                }
+                            });
+                        }
+                    });
+
+
+
+                } else {
+                    // alert('No users selected.');
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Information',
+                        text: 'No users selected',
+                        timer: 2000
+                    });
+                }
+            });
+
 
 
         });

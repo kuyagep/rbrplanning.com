@@ -47,7 +47,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary mr-2">Create User</button>
+                            <button type="submit" id="btn-save" class="btn btn-primary mr-2">Create User</button>
                             <a onclick="history.back()" class="btn btn-light">Back</a>
                         </form>
                     </div>
@@ -57,5 +57,60 @@
     </div>
 @endsection
 @section('script')
-    {{-- script --}}
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            // token header
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+
+
+            // Delete Function
+            $('#form').submit(function(e) {
+                e.preventDefault();
+
+                $('#btn-save').html('Sending...');
+
+                // Serialize the form data using FormData
+                let formData = new FormData($('#modal-form')[0]);
+
+                // Send the form data via AJAX using jQuery store function
+                $.ajax({
+                    // Replace with your route URL
+                    type: 'POST',
+                    url: "{{ route('store.user') }}",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: (response) => {
+                        // Handle the response from the server (if needed)
+                        $('#btn-save').html('Submitted');
+                        $('#form').trigger("reset");
+
+                        // Display the message on the page
+                        Swal.fire({
+                            icon: response.icon,
+                            title: response.title,
+                            text: response.message,
+                            timer: 2000
+                        });
+                    },
+                    error: (response) => {
+                        // Handle the error (if needed)
+                        $('#error').html("<div class='alert alert-danger'>" + response[
+                                'responseJSON']['message'] +
+                            "</div>");
+                        $('#btn-save').html('Save');
+                    }
+                });
+            });
+
+
+        });
+    </script>
 @endsection

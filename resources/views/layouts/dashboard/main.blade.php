@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="{{ asset('/') }}assets/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('/') }}assets/node_modules/icon-kit/dist/css/iconkit.min.css">
     <link rel="stylesheet" href="{{ asset('/') }}assets/node_modules/ionicons/dist/css/ionicons.min.css">
-    <link rel="stylesheet" href="{{ asset('/') }}assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css">
     <link rel="stylesheet"
         href="{{ asset('/') }}assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('/') }}assets/node_modules/jvectormap/jquery-jvectormap.css">
@@ -26,7 +25,6 @@
         href="{{ asset('/') }}assets/node_modules/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
     <link rel="stylesheet" href="{{ asset('/') }}assets/node_modules/weather-icons/css/weather-icons.min.css">
     <link rel="stylesheet" href="{{ asset('/') }}assets/node_modules/c3/c3.min.css">
-    <link rel="stylesheet" href="{{ asset('/') }}assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css">
     <link rel="stylesheet" href="{{ asset('/') }}assets/node_modules/owl.carousel/dist/assets/owl.carousel.css">
     <link rel="stylesheet"
         href="{{ asset('/') }}assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
@@ -96,9 +94,8 @@
     <script src="{{ asset('/') }}assets/js/widgets.js"></script>
     <script src="{{ asset('/') }}assets/js/charts.js"></script>
     <script src="{{ asset('/') }}assets/dist/js/theme.min.js"></script>
-    <script src="{{ asset('assets/custom/js/realtime.js') }}"></script>
-    <script src="{{ asset('assets/custom/js/toastr.min.js') }}"></script>
-    <script src="{{ asset('/') }}assets/custom/js/toastr.min.js"></script>
+    {{-- <script src="{{ asset('assets/custom/js/realtime.js') }}"></script>
+    <script src="{{ asset('assets/custom/js/toastr.min.js') }}"></script> --}}
     <script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}"

@@ -39,6 +39,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <a onclick="history.back()" class="btn btn-light">Back</a>
                     </div>
                 </div>
             </div>
