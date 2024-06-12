@@ -16,7 +16,8 @@
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"><img class="avatar"
-                            src="{{ asset('/') }}assets/img/user.jpg" alt=""></a>
+                            src="{{ Gravatar::avatar(Auth::user()->email)->defaultImage('identicon') }}"
+                            alt=""></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="pages/profile.html"><i class="ik ik-user dropdown-icon"></i>
                             Profile</a>

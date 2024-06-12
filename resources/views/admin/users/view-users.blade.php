@@ -27,7 +27,7 @@
                             <tbody>
                                 <tr>
                                     <td>ID</td>
-                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $user->id ?? '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Name</td>
@@ -40,8 +40,7 @@
                             </tbody>
                         </table>
                         <a onclick="history.back()" class="btn btn-secondary"><i class="ik ik-chevron-left"></i> Back</a>
-                        <a class="btn btn-danger"><i class="ik ik-rotate-ccw"></i>
-                            Reset Password</a>
+
                     </div>
                 </div>
             </div>

@@ -41,12 +41,14 @@
                         <div class="row">
                             <div class="col-lg-6 col-xs-12">
                                 <a href="{{ route('create.user') }}" class="btn btn-primary mb-2 ">
-
                                     <i class="ik ik-user-plus"></i>
                                     Add User</a>
-                                <a href="#" class="btn btn-danger mb-2" id="deleteSelected"><i
-                                        class="ik ik-trash "></i>
-                                    Delete All Select</a>
+                                <a href="#" class="btn btn-danger mb-2" id="deleteSelected">
+                                    <i class="ik ik-trash "></i>
+                                    Delete Selected</a>
+                                <a href="{{ url('/export/users') }}" class="btn btn-success mb-2" id="exportSelected">
+                                    <i class="fa fa-regular fa-file-excel"></i>
+                                    Export Selected</a>
                             </div>
                             <div class="col-lg-6 col-xs-12">
                                 <form action="{{ route('all.user') }}" method="GET" class="form-inline float-right">
@@ -97,8 +99,8 @@
                                                     </div>
                                                 </td>
                                                 <td>{{ $user->id }}</td>
-                                                <td><img src="assets/img/users/1.jpg" class="table-user-thumb"
-                                                        alt="">
+                                                <td><img src="{{ Gravatar::avatar($user->email)->defaultImage('identicon') }}"
+                                                        class="table-user-thumb" alt="">
                                                 </td>
                                                 <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
                                                 <td>{{ $user->email }}</td>
@@ -260,7 +262,62 @@
                 }
             });
 
+            $('#exportSelecteds').click(function() {
+                var selected = [];
+                $('input[name="user_ids[]"]:checked').each(function() {
+                    selected.push($(this).val());
+                });
 
+                if (selected.length > 0) {
+
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You want delete this users?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Confirm!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+
+                            $.ajax({
+                                url: '{{ route('export.user') }}',
+                                type: 'GET',
+                                data: {
+                                    _token: '{{ csrf_token() }}',
+                                    user_ids: selected
+                                },
+                                success: function(response) {
+                                    // location.reload();
+                                    $('.table').load(location.href + ' .table');
+                                    //Sweet Alert
+                                    Swal.fire({
+                                        icon: response.icon,
+                                        title: response.title,
+                                        text: response.message,
+                                        timer: 2000
+                                    });
+                                },
+                                error: function(xhr) {
+                                    alert('An error occurred.');
+                                }
+                            });
+                        }
+                    });
+
+
+
+                } else {
+                    // alert('No users selected.');
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Information',
+                        text: 'No users selected',
+                        timer: 2000
+                    });
+                }
+            });
 
         });
     </script>

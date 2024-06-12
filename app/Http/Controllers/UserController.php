@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UserExport;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -143,5 +144,28 @@ class UserController extends Controller
         }
 
         return response()->json(['error' => 'No users selected for deletion.'], 400);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        // dd($request->id);
+
+        $temp_password = Str::random(6);
+
+        $user = User::findOrFail($request->id);
+        $user->password = Hash::make($temp_password);
+        $user->save();
+
+        return redirect()->back()->with([
+            'status' => 'Info',
+            'message' => 'User password resetted successfully!',
+            'email' => $user->email,
+            'temp_password' => $temp_password],
+        );
+    }
+
+    public function exportUser()
+    {
+        return \Maatwebsite\Excel\Facades\Excel::download(new UserExport, time() . "-users.xlsx");
     }
 }
