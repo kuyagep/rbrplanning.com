@@ -1,0 +1,116 @@
+To define the relationships between these models,
+we can infer typical associations based on common school
+management systems. Below is an outline of the
+relationships that might exist between these models:
+
+1. **Attendance.php**
+   - Belongs to `RegisteredLearner.php`
+   - Belongs to `SchoolYear.php`
+   - Belongs to `Section.php`
+
+2. **District.php**
+   - Has many `School.php`
+
+3. **Division.php**
+   - Has many `District.php`
+
+4. **DroppedOut.php**
+   - Belongs to `RegisteredLearner.php`
+   - Belongs to `SchoolYear.php`
+
+5. **EmploymentStatus.php**
+   - Belongs to `Personnel.php`
+
+6. **ExtensionSchool.php**
+   - Belongs to `School.php`
+
+7. **FundingSource.php**
+   - Has many `School.php`
+
+8. **GradeLevel.php**
+   - Belongs to `GradeLevelCategory.php`
+   - Has many `RegisteredLearner.php`
+
+9. **GradeLevelCategory.php**
+   - Has many `GradeLevel.php`
+
+10. **InventoryOfClassroom.php**
+    - Belongs to `School.php`
+    - Belongs to `Section.php`
+
+11. **InventoryOfSchoolBuilding.php**
+    - Belongs to `School.php`
+
+12. **MakeShift.php**
+    - Belongs to `Section.php`
+
+13. **Personnel.php**
+    - Belongs to `Position.php`
+    - Belongs to `School.php`
+    - Belongs to `EmploymentStatus.php`
+
+14. **PersonnelCategory.php**
+    - Has many `Personnel.php`
+
+15. **Position.php**
+    - Has many `Personnel.php`
+
+16. **Region.php**
+    - Has many `Division.php`
+
+17. **RegisteredLearner.php**
+    - Belongs to `School.php`
+    - Belongs to `Section.php`
+    - Belongs to `GradeLevel.php`
+    - Belongs to `SchoolYear.php`
+
+18. **School.php**
+    - Belongs to `District.php`
+    - Has many `RegisteredLearner.php`
+    - Has many `Personnel.php`
+    - Has many `InventoryOfSchoolBuilding.php`
+    - Has many `InventoryOfClassroom.php`
+
+19. **SchoolYear.php**
+    - Has many `RegisteredLearner.php`
+    - Has many `Attendance.php`
+
+20. **Section.php**
+    - Belongs to `School.php`
+    - Belongs to `GradeLevel.php`
+    - Has many `RegisteredLearner.php`
+    - Has many `Attendance.php`
+
+21. **SpecialPrograms.php**
+    - Belongs to `School.php`
+
+22. **Strand.php**
+    - Belongs to `GradeLevel.php`
+    - Has many `Section.php`
+
+23. **TLS.php**
+    - Belongs to `School.php`
+
+24. **Track.php**
+    - Belongs to `GradeLevel.php`
+    - Has many `Section.php`
+
+25. **TransferredIn.php**
+    - Belongs to `RegisteredLearner.php`
+    - Belongs to `School.php`
+
+26. **TransferredOut.php**
+    - Belongs to `RegisteredLearner.php`
+    - Belongs to `School.php`
+
+27. **User.php**
+    - Belongs to `Personnel.php`
+
+28. **YearLevel.php**
+    - Belongs to `GradeLevel.php`
+    - Has many `RegisteredLearner.php`
+
+These inferred relationships are based on typical structures in
+school management systems and may vary depending on the specific
+ requirements and design of your system. If you have specific
+ details or requirements, the relationships can be adjusted accordingly.
