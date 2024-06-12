@@ -1,16 +1,23 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en-PH">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title ?? config('app.name') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Division Planning Management System">
+    <meta name="keywords" content="DPMS, Planning Management System">
+    <meta name="author" content="Project DAVAOSUR">
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    {{-- <link rel="icon" href="favicon.ico" type="image/x-icon" /> --}}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/') }}assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/') }}assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/') }}assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="{{ asset('/') }}assets/favicon//site.webmanifest">
 
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
 

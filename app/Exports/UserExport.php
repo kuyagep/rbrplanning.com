@@ -3,26 +3,20 @@
 namespace App\Exports;
 
 use App\Models\User;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class UserExport implements FromCollection, WithHeadings
+class UserExport implements FromView, ShouldAutoSize
 {
-    /**
-     * @return \Illuminate\Support\Collection
-     */
+    use Exportable;
 
-    public function headings(): array
+    public function view(): View
     {
-        return [
-            '#',
-            'First name',
-            'Last name',
-            'Email',
-        ];
-    }
-    public function collection()
-    {
-        return User::select('id', 'first_name', 'last_name', 'email')->get();
+
+        return view('admin.users.export-users', [
+            'users' => User::all(),
+        ]);
     }
 }

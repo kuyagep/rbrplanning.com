@@ -60,7 +60,14 @@
                             </div>
                         </form>
                     </div>
+                    <div class="text-center">
+                        <span class="mt-1 mt-sm-0 text-center">Secured with
+                            <i class="ik ik-shield"></i>
+                            <a href="https://cloudflare.com/" target="_blank"><b>Cloudflare</b></a></span>
+                    </div>
+
                 </div>
+
             </div>
         </div>
     </div>

@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class UserController extends Controller
 {
@@ -164,8 +167,17 @@ class UserController extends Controller
         );
     }
 
-    public function exportUser()
+    public function exportExcelUser()
     {
-        return \Maatwebsite\Excel\Facades\Excel::download(new UserExport, time() . "-users.xlsx");
+        return Excel::download(new UserExport, time() . '-users.xlsx');
+    }
+
+
+    public function exportPdfUser()
+    {
+        $users = User::all();
+        $pdf = Pdf::loadView('admin.users.export-users', ['users' => $users]);
+        return $pdf->stream('user-details.pdf');
+
     }
 }

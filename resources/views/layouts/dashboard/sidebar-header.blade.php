@@ -4,7 +4,7 @@
             <img src="{{ asset('/') }}assets/src/img/deped-logo.svg" width="30px" class="header-brand-img"
                 alt="lavalite">
         </div>
-        <span class="text">Planning</span>
+        <span class="text h6">PLANNING PORTAL</span>
     </a>
     <button type="button" class="nav-toggle">
         <i data-toggle="expanded" class="ik ik-menu toggle-icon"></i></button>

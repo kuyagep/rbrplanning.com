@@ -19,5 +19,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/users/{id}/destroy', [UserController::class, 'destroy'])->name('destroy.user');
     Route::delete('/users/delete', [UserController::class, 'deleteMultiple'])->name('users.deleteMultiple');
     Route::post('/users/reset/password', [UserController::class, 'resetPassword'])->name('reset.password.user');
-    Route::get('/export/users', [UserController::class, 'exportUser'])->name('export.user');
+    Route::get('/export/users/excel', [UserController::class, 'exportExcelUser'])->name('export.excel.user');
+    Route::get('/export/users/pdf', [UserController::class, 'exportPdfUser'])->name('export.pdf.user');
 });

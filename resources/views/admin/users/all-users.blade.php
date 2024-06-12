@@ -24,7 +24,7 @@
                         <h5 class="alert-heading mb-0 "><strong>{{ session('message') }}</strong></h5>
                         <hr>
                         <h6 class="mb-0">
-                            Email: {{ session('email') }} <br>
+                            Email Address: {{ session('email') }} <br>
                             Temporary Password: {{ session('temp_password') }} <br>
                         </h6>
 
@@ -39,16 +39,14 @@
                     <div class="card-body">
 
                         <div class="row">
-                            <div class="col-lg-6 col-xs-12">
-                                <a href="{{ route('create.user') }}" class="btn btn-primary mb-2 ">
+                            <div class="col-lg-6 col-xs-12 pull-right">
+                                <a href="{{ route('create.user') }}" class="btn btn-dark mb-2 ">
                                     <i class="ik ik-user-plus"></i>
                                     Add User</a>
-                                <a href="#" class="btn btn-danger mb-2" id="deleteSelected">
+                                <a href="#" class="btn btn-dark mb-2" id="deleteSelected">
                                     <i class="ik ik-trash "></i>
                                     Delete Selected</a>
-                                <a href="{{ url('/export/users') }}" class="btn btn-success mb-2" id="exportSelected">
-                                    <i class="fa fa-regular fa-file-excel"></i>
-                                    Export Selected</a>
+
                             </div>
                             <div class="col-lg-6 col-xs-12">
                                 <form action="{{ route('all.user') }}" method="GET" class="form-inline float-right">
@@ -60,7 +58,9 @@
                                     <button type="submit" class="btn btn-primary mb-2">
                                         <i class="ik ik-search"></i> Search</button>
                                 </form>
+
                             </div>
+
                         </div>
 
 
@@ -133,6 +133,16 @@
 
                                 </table>
                                 {{ $paginatedUsers->appends(['search' => request('search')])->links() }}
+                            </div>
+                        </div>
+
+                        <div class="row no-print">
+                            <div class="col-12">
+                                <a href="{{ url('/export/users/excel') }}" class="btn btn-success pull-right">
+                                    <i class="fa fa-regular fa-file-excel"></i>
+                                    Export as Excel</a>
+                                <a href="{{ url('/export/users/pdf') }}" target="_blank" class="btn btn-primary pull-right"
+                                    style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</a>
                             </div>
                         </div>
                     </div>
@@ -262,62 +272,6 @@
                 }
             });
 
-            $('#exportSelecteds').click(function() {
-                var selected = [];
-                $('input[name="user_ids[]"]:checked').each(function() {
-                    selected.push($(this).val());
-                });
-
-                if (selected.length > 0) {
-
-                    Swal.fire({
-                        title: 'Are you sure?',
-                        text: "You want delete this users?",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Confirm!'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-
-                            $.ajax({
-                                url: '{{ route('export.user') }}',
-                                type: 'GET',
-                                data: {
-                                    _token: '{{ csrf_token() }}',
-                                    user_ids: selected
-                                },
-                                success: function(response) {
-                                    // location.reload();
-                                    $('.table').load(location.href + ' .table');
-                                    //Sweet Alert
-                                    Swal.fire({
-                                        icon: response.icon,
-                                        title: response.title,
-                                        text: response.message,
-                                        timer: 2000
-                                    });
-                                },
-                                error: function(xhr) {
-                                    alert('An error occurred.');
-                                }
-                            });
-                        }
-                    });
-
-
-
-                } else {
-                    // alert('No users selected.');
-                    Swal.fire({
-                        icon: 'info',
-                        title: 'Information',
-                        text: 'No users selected',
-                        timer: 2000
-                    });
-                }
-            });
 
         });
     </script>
