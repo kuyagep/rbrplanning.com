@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('district_id')->constrained()->cascadeOnDelete();
+            $table->string('school_id');
+            $table->string('school_name');
+            $table->string('address');
+            $table->string('mobile_number');
+            $table->string('school_email');
             $table->timestamps();
         });
     }

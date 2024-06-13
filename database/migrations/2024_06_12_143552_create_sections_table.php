@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('grade_level_id')->constrained()->cascadeOnDelete();
+            $table->string('section_name');
             $table->timestamps();
         });
     }
