@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('employment_status_id')->constrained()->cascadeOnDelete();
             $table->foreignId('position_id')->constrained()->cascadeOnDelete();
             $table->foreignId('school_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('funding_source_id')->constrained()->cascadeOnDelete();
             $table->string('remarks')->nullable();
             $table->timestamps();
         });

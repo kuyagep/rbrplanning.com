@@ -15,7 +15,9 @@ class RedirectController extends Controller
         if (!Auth::check()) { //checking if it is authenticated
             return Redirect::to('/login');
         } else {
-            return Redirect::to('/dashboard');
+            if (auth()->user()->isAdmin) {
+                return Redirect::to('/dashboard');
+            }
         }
     }
 }

@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('t_l_s', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('school_id')->constrained()->cascadeOnDelete();
+            $table->integer('no_of_tls');
+            $table->integer('no_of_classes_in_tls');
             $table->timestamps();
         });
     }

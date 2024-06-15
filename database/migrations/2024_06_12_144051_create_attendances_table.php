@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
+            $table->integer('daily_ave_male');
+            $table->integer('daily_ave_female');
+            $table->integer('percentage_for_the_month_male');
+            $table->integer('percentage_for_the_month_female');
             $table->timestamps();
         });
     }

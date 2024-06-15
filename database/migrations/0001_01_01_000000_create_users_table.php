@@ -19,11 +19,13 @@ return new class extends Migration
             $table->string('middle_initial')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('email')->unique();
+            $table->enum('role', ['super_admin', 'admin', 'user'])->default('user');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->enum('status', ['1', '0'])->default('1');
             $table->timestamps();
         });
 

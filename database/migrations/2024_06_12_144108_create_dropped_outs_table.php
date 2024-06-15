@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('dropped_outs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
+            $table->integer('previous_month_male');
+            $table->integer('previous_month_female');
+            $table->integer('end_of_month_male');
+            $table->integer('end_of_month_female');
             $table->timestamps();
         });
     }

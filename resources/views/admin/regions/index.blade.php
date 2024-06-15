@@ -10,7 +10,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>User</h5>
+                            <h5>Region</h5>
                         </div>
                     </div>
                 </div>
@@ -21,12 +21,8 @@
 
                 @if (session('status'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <h5 class="alert-heading mb-0 "><strong>{{ session('message') }}</strong></h5>
-                        <hr>
-                        <h6 class="mb-0">
-                            Email Address: {{ session('email') }} <br>
-                            Temporary Password: {{ session('temp_password') }} <br>
-                        </h6>
+                        <h6 class="alert-heading mb-0 "><strong>{{ session('message') }}</strong></h6>
+
 
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -40,20 +36,19 @@
 
                         <div class="row">
                             <div class="col-lg-6 col-xs-12 pull-right">
-                                <a href="{{ route('create.user') }}" class="btn btn-dark mb-2 ">
+                                <a href="{{ route('regions.create') }}" class="btn btn-dark mb-2 ">
                                     <i class="ik ik-user-plus"></i>
-                                    Add User</a>
+                                    Add Region</a>
                                 <a href="#" class="btn btn-dark mb-2" id="deleteSelected">
                                     <i class="ik ik-trash "></i>
                                     Delete Selected</a>
 
                             </div>
                             <div class="col-lg-6 col-xs-12">
-                                <form action="{{ route('all.user') }}" method="GET" class="form-inline float-right">
+                                <form action="{{ route('regions.index') }}" method="GET" class="form-inline float-right">
                                     @csrf
                                     <input type="text" name="search" value="{{ request('search') }}" id="search"
-                                        class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
-                                        placeholder="Search users...">
+                                        class="form-control mb-2 mr-sm-2" placeholder="Search regions...">
 
                                     <button type="submit" class="btn btn-primary mb-2">
                                         <i class="ik ik-search"></i> Search</button>
@@ -76,61 +71,34 @@
                                                     </label>
                                                 </div>
                                             </th>
-                                            <th>Id</th>
-                                            <th class="nosort">Avatar</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th class="text-center">Role</th>
-                                            <th class="text-center">Status</th>
+                                            <th>Region Name</th>
                                             <th class="nosort">&nbsp;</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($paginatedUsers as  $user)
+                                        @forelse ($paginatedRegions as  $region)
                                             <tr>
                                                 <td>
                                                     <div class="custom-control custom-checkbox ml-2">
                                                         <input type="checkbox" class="custom-control-input check_box_id"
-                                                            id="check_box_{{ $user->id }}" name="user_ids[]"
-                                                            value="{{ $user->id }}">
+                                                            id="check_box_{{ $region->id }}" name="region_ids[]"
+                                                            value="{{ $region->id }}">
                                                         <label class="custom-control-label"
-                                                            for="check_box_{{ $user->id }}">
+                                                            for="check_box_{{ $region->id }}">
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>{{ $user->id }}</td>
-                                                <td><img src="{{ Gravatar::avatar($user->email)->defaultImage('identicon') }}"
-                                                        class="table-user-thumb" alt="">
-                                                </td>
-                                                <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td class="text-center">
-                                                    @if ($user->role == 'super_admin')
-                                                        <span
-                                                            class="badge badge-pill badge-success">{{ ucfirst($user->role) }}</span>
-                                                    @elseif ($user->role == 'admin')
-                                                        <span
-                                                            class="badge badge-pill badge-primary">{{ ucfirst($user->role) }}</span>
-                                                    @else
-                                                        <span
-                                                            class="badge badge-pill badge-dark">{{ ucfirst($user->role) }}</span>
-                                                    @endif
 
-                                                </td>
-                                                <td class="text-center">
-                                                    @if ($user->status)
-                                                        <span class="badge badge-pill badge-success mb-1">Active</span>
-                                                    @else
-                                                        <span class="badge badge-pill badge-danger mb-1">Inactive</span>
-                                                    @endif
-                                                </td>
+
+                                                <td>{{ $region->name }}</td>
+
                                                 <td class="text-center">
                                                     <div class="table-actions ">
-                                                        <a href="{{ url('/users', $user->id) }}"><i
+                                                        <a href="{{ url('/regions', $region->id) }}"><i
                                                                 class="ik ik-eye"></i></a>
-                                                        <a href="{{ route('user.edit', $user->id) }}"><i
+                                                        <a href="{{ route('regions.edit', $region->id) }}"><i
                                                                 class="ik ik-edit-2"></i></a>
-                                                        <a href="#" data-id="{{ $user->id }}"
+                                                        <a href="#" data-id="{{ $region->id }}"
                                                             id="deleteButton"><i class="ik ik-trash-2"></i></a>
 
                                                     </div>
@@ -145,19 +113,11 @@
                                     </tbody>
 
                                 </table>
-                                {{ $paginatedUsers->appends(['search' => request('search')])->links() }}
+                                {{ $paginatedRegions->appends(['search' => request('search')])->links() }}
                             </div>
                         </div>
 
-                        <div class="row no-print">
-                            <div class="col-12">
-                                <a href="{{ url('/export/users/excel') }}" class="btn btn-success pull-right">
-                                    <i class="fa fa-regular fa-file-excel"></i>
-                                    Export as Excel</a>
-                                <a href="{{ url('/export/users/pdf') }}" target="_blank" class="btn btn-primary pull-right"
-                                    style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</a>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -180,12 +140,12 @@
                 e.preventDefault();
 
                 var id = $(this).data('id');
-                var route = "{{ route('destroy.user', ':id') }}";
+                var route = "{{ route('regions.destroy', ':id') }}";
                 route = route.replace(':id', id);
 
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "You want delete this user?",
+                    text: "You want delete this region?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -195,7 +155,7 @@
                     if (result.isConfirmed) {
 
                         $.ajax({
-                            type: "POST",
+                            type: "DELETE",
                             url: route,
                             data: {
                                 id: id
@@ -222,7 +182,7 @@
             });
 
             document.getElementById('select_all_id').addEventListener('click', function(event) {
-                var checkboxes = document.querySelectorAll('input[name="user_ids[]"]');
+                var checkboxes = document.querySelectorAll('input[name="region_ids[]"]');
                 for (var checkbox of checkboxes) {
                     checkbox.checked = event.target.checked;
                 }
@@ -230,7 +190,7 @@
 
             $('#deleteSelected').click(function() {
                 var selected = [];
-                $('input[name="user_ids[]"]:checked').each(function() {
+                $('input[name="region_ids[]"]:checked').each(function() {
                     selected.push($(this).val());
                 });
 
@@ -238,7 +198,7 @@
 
                     Swal.fire({
                         title: 'Are you sure?',
-                        text: "You want delete this users?",
+                        text: "You want delete this regions?",
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -248,11 +208,11 @@
                         if (result.isConfirmed) {
 
                             $.ajax({
-                                url: '{{ route('users.deleteMultiple') }}',
+                                url: '{{ route('regions.deleteMultiple') }}',
                                 type: 'DELETE',
                                 data: {
                                     _token: '{{ csrf_token() }}',
-                                    user_ids: selected
+                                    region_ids: selected
                                 },
                                 success: function(response) {
                                     // location.reload();
@@ -266,7 +226,7 @@
                                     });
                                 },
                                 error: function(xhr) {
-                                    alert('An error occurred.');
+                                    alert('Try again later.');
                                 }
                             });
                         }
@@ -279,7 +239,7 @@
                     Swal.fire({
                         icon: 'info',
                         title: 'Information',
-                        text: 'No users selected',
+                        text: 'No regions selected',
                         timer: 2000
                     });
                 }

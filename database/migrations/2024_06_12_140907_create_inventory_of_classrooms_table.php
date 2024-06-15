@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('inventory_of_classrooms', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('school_id')->constrained()->cascadeOnDelete();
+            $table->integer('good_condition');
+            $table->integer('minor_repair');
+            $table->integer('major_repair');
+            $table->integer('comdemnation_demolition');
+            $table->integer('on_going_construction');
+            $table->integer('for_completion');
             $table->timestamps();
         });
     }

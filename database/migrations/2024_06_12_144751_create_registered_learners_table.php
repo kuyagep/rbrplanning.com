@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('registered_learners', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
+            $table->integer('no_of_male');
+            $table->integer('no_of_female');
             $table->timestamps();
         });
     }

@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('inventory_of_school_buildings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('school_id')->constrained()->cascadeOnDelete();
-            $table->string('good_condition');
-            $table->string('minor_repair');
-            $table->string('major_repair');
-            $table->string('condemnation_demolition');
-            $table->string('on_going_contruction');
-            $table->string('for_completion');
+            $table->integer('good_condition')->nullable();
+            $table->integer('minor_repair')->nullable();
+            $table->integer('major_repair')->nullable();
+            $table->integer('condemnation_demolition')->nullable();
+            $table->integer('on_going_contruction')->nullable();
+            $table->integer('for_completion')->nullable();
             $table->timestamps();
         });
     }
