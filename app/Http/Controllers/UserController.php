@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Exports\UserExport;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
-use Barryvdh\DomPDF\Facade\Pdf;
-
 
 class UserController extends Controller
 {
@@ -171,7 +170,6 @@ class UserController extends Controller
     {
         return Excel::download(new UserExport, time() . '-users.xlsx');
     }
-
 
     public function exportPdfUser()
     {

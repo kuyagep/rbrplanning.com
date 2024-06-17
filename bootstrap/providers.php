@@ -4,5 +4,6 @@ return [
     App\Providers\AppServiceProvider::class,
     App\Providers\FortifyServiceProvider::class,
     App\Providers\JetstreamServiceProvider::class,
-    Barryvdh\DomPDF\ServiceProvider::class
+    Barryvdh\DomPDF\ServiceProvider::class,
+    Spatie\Permission\PermissionServiceProvider::class,
 ];

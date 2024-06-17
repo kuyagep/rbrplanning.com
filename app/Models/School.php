@@ -9,6 +9,16 @@ class School extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'school_id',
+        'code',
+        'name',
+        'address',
+        'mobile_number',
+        'school_email',
+        'logo',
+        'description',
+    ];
     public function district()
     {
         return $this->belongsTo(District::class);

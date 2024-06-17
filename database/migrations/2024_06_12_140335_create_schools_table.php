@@ -14,11 +14,14 @@ return new class extends Migration
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
             $table->foreignId('district_id')->constrained()->cascadeOnDelete();
-            $table->string('school_id');
-            $table->string('school_name');
-            $table->string('address');
-            $table->string('mobile_number');
-            $table->string('school_email');
+            $table->string('school_id')->nullable();
+            $table->string('code')->nullable();
+            $table->string('name');
+            $table->string('address')->nullable();
+            $table->string('mobile_number')->nullable();
+            $table->string('school_email')->unique()->nullable();
+            $table->string('logo')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
