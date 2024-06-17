@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class GradeLevel extends Model
 {
     use HasFactory;
+
+    public function gradeLevelCategory()
+    {
+        return $this->belongsTo(GradeLevelCategory::class);
+    }
 }

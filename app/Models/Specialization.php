@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Specialization extends Model
 {
     use HasFactory;
+
+    public function strand()
+    {
+        return $this->belongsTo(Strand::class);
+    }
 }

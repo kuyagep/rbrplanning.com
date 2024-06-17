@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class GradeLevelCategory extends Model
 {
     use HasFactory;
+
+    public function gradeLevel()
+    {
+        return $this->hasMany(GradeLevel::class);
+    }
 }
