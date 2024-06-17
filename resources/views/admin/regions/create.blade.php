@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.main')
+@extends('admin.layouts.master')
 @section('style')
     {{-- style --}}
 @endsection
@@ -28,14 +28,17 @@
                             <div class="form-group row">
                                 <label for="name" class="col-sm-3 col-form-label">Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        value="{{ old('name') }}">
+                                    <input type="text" class="form-control " id="name" name="name"
+                                        value="{{ old('name') }}" required>
+                                    @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
 
                             <button type="submit" id="btn-save" class="btn btn-primary mr-2">Create Region</button>
-                            <a onclick="history.back()" class="btn btn-light">Back</a>
+                            <a href="{{ route('regions.index') }}" class="btn btn-light">Back</a>
                         </form>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.main')
+@extends('admin.layouts.master')
 @section('style')
     {{-- style --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.css">

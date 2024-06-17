@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.main')
+@extends('admin.layouts.master')
 @section('style')
     {{-- style --}}
 @endsection

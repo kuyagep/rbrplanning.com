@@ -9,7 +9,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Add User</h5>
+                            <h5>Add School</h5>
                         </div>
                     </div>
                 </div>
@@ -19,35 +19,22 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Add User</h3>
+                        <h3>Add School</h3>
                     </div>
                     <div class="card-body">
-                        <form method="post" class="needs-validation" action="{{ route('store.user') }}" novalidate=""
+                        <form method="post" class="needs-validation" action="{{ route('regions.store') }}" novalidate=""
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
-                                <label for="first_name" class="col-sm-3 col-form-label">FirstName</label>
+                                <label for="name" class="col-sm-3 col-form-label">Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="first_name" name="first_name"
-                                        value="{{ old('first_name') }}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="last_name" class="col-sm-3 col-form-label">LastName</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="last_name" name="last_name"
-                                        value="{{ old('last_name') }}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="email" class="col-sm-3 col-form-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input type="email" class="form-control" id="email" name="email"
-                                        value="{{ old('email') }}">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        value="{{ old('name') }}">
                                 </div>
                             </div>
 
-                            <button type="submit" id="btn-save" class="btn btn-primary mr-2">Create User</button>
+
+                            <button type="submit" id="btn-save" class="btn btn-primary mr-2">Create Region</button>
                             <a onclick="history.back()" class="btn btn-light">Back</a>
                         </form>
                     </div>
@@ -65,9 +52,6 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
-
-
 
             // Delete Function
             $('#form').submit(function(e) {
