@@ -80,7 +80,8 @@
     {{-- Scripts --}}
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
-        window.jQuery || document.write('<script src="{{ asset('assets/src/js/vendor/jquery-3.3.1.min.js') }}"><\/script>')
+        window.jQuery || document.write(
+            '<script src="{{ asset('assets\/src\/js\/vendor\/jquery-3.3.1.min.js') }}"><\/script>')
     </script>
     <script src="{{ asset('assets/node_modules/popper.js/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('assets/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
