@@ -83,635 +83,510 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col-lg-8 col-md-12">
-                                <h3 class="card-title">Visitors By Countries</h3>
-                                <div id="visitfromworld" style="width:100%; height:350px"></div>
+        <div class="row clearfix">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="widget">
+                    <div class="widget-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="state">
+                                <h6>Teaching</h6>
+                                <h2>62%</h2>
                             </div>
-                            <div class="col-lg-4 col-md-12">
-                                <div class="row mb-15">
-                                    <div class="col-9">India</div>
-                                    <div class="col-3 text-right">28%</div>
-                                    <div class="col-12">
-                                        <div class="progress progress-sm mt-5">
-                                            <div class="progress-bar bg-green" role="progressbar" style="width: 48%"
-                                                aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-15">
-                                    <div class="col-9"> UK</div>
-                                    <div class="col-3 text-right">21%</div>
-                                    <div class="col-12">
-                                        <div class="progress progress-sm mt-5">
-                                            <div class="progress-bar bg-aqua" role="progressbar" style="width: 33%"
-                                                aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-15">
-                                    <div class="col-9"> USA</div>
-                                    <div class="col-3 text-right">18%</div>
-                                    <div class="col-12">
-                                        <div class="progress progress-sm mt-5">
-                                            <div class="progress-bar bg-purple" role="progressbar" style="width: 40%"
-                                                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-9">China</div>
-                                    <div class="col-3 text-right">12%</div>
-                                    <div class="col-12">
-                                        <div class="progress progress-sm mt-5">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 15%"
-                                                aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="icon">
+                                <i class="ik ik-server"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card" style="min-height: 422px;">
-                    <div class="card-header">
-                        <h3>Donut chart</h3>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="widget">
+                    <div class="widget-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="state">
+                                <h6>Non-Teaching</h6>
+                                <h2>45%</h2>
+                            </div>
+                            <div class="icon">
+                                <i class="ik ik-trending-up"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div id="c3-donut-chart"></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="widget">
+                    <div class="widget-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="state">
+                                <h6>No. of Learner</h6>
+                                <h2>32</h2>
+                            </div>
+                            <div class="icon">
+                                <i class="ik ik-mail"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="widget">
+                    <div class="widget-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="state">
+                                <h6>No. of Classrooms</h6>
+                                <h2>11</h2>
+                            </div>
+                            <div class="icon">
+                                <i class="ik ik-zap"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-4">
-                <div class="card">
+            <div class="col-md-12 col-xl-8">
+                <div class="card sale-card">
                     <div class="card-header">
-                        <h3>Recent Chat</h3>
-                        <div class="card-header-right">
-                            <ul class="list-unstyled card-option">
-                                <li><i class="ik ik-chevron-left action-toggle"></i></li>
-                                <li><i class="ik ik-minus minimize-card"></i></li>
-                                <li><i class="ik ik-x close-card"></i></li>
-                            </ul>
-                        </div>
+                        <h3>Deals Analytics</h3>
                     </div>
-                    <div class="card-body chat-box scrollable" style="height:300px;">
-                        <ul class="chat-list">
-                            <li class="chat-item">
-                                <div class="chat-img"><img src="assets/img/users/1.jpg" alt="user">
+                    <div class="card-block">
+                        <div id="deal-analytic-chart" class="chart-shadow"
+                            style="height: 300px; overflow: hidden; text-align: left;">
+                            <div class="amcharts-main-div" style="position: relative; width: 100%; height: 100%;">
+                                <div class="amChartsLegend amcharts-legend-div"
+                                    style="overflow: hidden; position: relative; text-align: left; width: 811px; height: 48px; cursor: default;">
+                                    <svg version="1.1" style="position: absolute; width: 811px; height: 48px;">
+                                        <desc>JavaScript chart by amCharts 3.21.14</desc>
+                                        <g transform="translate(48,10)">
+                                            <path cs="100,100" d="M0.5,0.5 L742.5,0.5 L742.5,37.5 L0.5,37.5 Z"
+                                                fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="1"
+                                                stroke-opacity="0"></path>
+                                            <g transform="translate(0,11)">
+                                                <g cursor="pointer" aria-label="Market Days" transform="translate(0,0)">
+                                                    <g>
+                                                        <path cs="100,100" d="M0.5,8.5 L32.5,8.5" fill="none"
+                                                            stroke-width="3" stroke-opacity="0.9" stroke="#2ed8b6">
+                                                        </path>
+                                                        <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                            stroke="#2ed8b6" fill-opacity="1" stroke-width="2"
+                                                            stroke-opacity="1" transform="translate(17,8)"></circle>
+                                                    </g><text y="6" fill="#000000" font-family="Verdana" font-size="11px"
+                                                        opacity="1" text-anchor="start" transform="translate(37,7)">
+                                                        <tspan y="6" x="0">Market Days</tspan>
+                                                    </text><text y="6" fill="#000000" font-family="Verdana"
+                                                        font-size="11px" opacity="1" text-anchor="end"
+                                                        transform="translate(185,7)"> </text>
+                                                    <rect x="32" y="0" width="153.474609375" height="18"
+                                                        rx="0" ry="0" stroke-width="0" stroke="none"
+                                                        fill="#fff" fill-opacity="0.005"></rect>
+                                                </g>
+                                                <g cursor="pointer" aria-label="Market Days ALL"
+                                                    transform="translate(200,0)">
+                                                    <g>
+                                                        <path cs="100,100" d="M0.5,8.5 L32.5,8.5" fill="none"
+                                                            stroke-width="3" stroke-opacity="0.9" stroke="#e95753">
+                                                        </path>
+                                                        <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                            stroke="#e95753" fill-opacity="1" stroke-width="2"
+                                                            stroke-opacity="1" transform="translate(17,8)"></circle>
+                                                    </g><text y="6" fill="#000000" font-family="Verdana" font-size="11px"
+                                                        opacity="1" text-anchor="start" transform="translate(37,7)">
+                                                        <tspan y="6" x="0">Market Days ALL</tspan>
+                                                    </text><text y="6" fill="#000000" font-family="Verdana"
+                                                        font-size="11px" opacity="1" text-anchor="end"
+                                                        transform="translate(185,7)"> </text>
+                                                    <rect x="32" y="0" width="153.474609375" height="18"
+                                                        rx="0" ry="0" stroke-width="0" stroke="none"
+                                                        fill="#fff" fill-opacity="0.005"></rect>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
                                 </div>
-                                <div class="chat-content">
-                                    <h6 class="font-medium">James Anderson</h6>
-                                    <div class="box bg-light-info">Lorem Ipsum is simply dummy text of the
-                                        printing &amp; type setting industry.</div>
+                                <div class="amcharts-chart-div"
+                                    style="overflow: hidden; position: relative; text-align: left; width: 811px; height: 252px; padding: 0px; touch-action: auto; cursor: default;">
+                                    <svg version="1.1"
+                                        style="position: absolute; width: 811px; height: 252px; top: -0.5px; left: 0px;">
+                                        <desc>JavaScript chart by amCharts 3.21.14</desc>
+                                        <g>
+                                            <path cs="100,100" d="M0.5,0.5 L810.5,0.5 L810.5,251.5 L0.5,251.5 Z"
+                                                fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="1"
+                                                stroke-opacity="0"></path>
+                                            <path cs="100,100" d="M0.5,0.5 L742.5,0.5 L742.5,201.5 L0.5,201.5 L0.5,0.5 Z"
+                                                fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="1"
+                                                stroke-opacity="0" transform="translate(48,20)"></path>
+                                        </g>
+                                        <g>
+                                            <g transform="translate(48,20)">
+                                                <g>
+                                                    <path cs="100,100" d="M0.5,0.5 L0.5,5.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(0,201)"></path>
+                                                    <path cs="100,100" d="M0.5,201.5 L0.5,201.5 L0.5,0.5" fill="none"
+                                                        stroke-width="1" stroke-dasharray="1" stroke-opacity="0.1"
+                                                        stroke="#000000"></path>
+                                                </g>
+                                                <g>
+                                                    <path cs="100,100" d="M82.5,0.5 L82.5,5.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(0,201)"></path>
+                                                    <path cs="100,100" d="M82.5,201.5 L82.5,201.5 L82.5,0.5"
+                                                        fill="none" stroke-width="1" stroke-dasharray="1"
+                                                        stroke-opacity="0.1" stroke="#000000"></path>
+                                                </g>
+                                                <g>
+                                                    <path cs="100,100" d="M165.5,0.5 L165.5,5.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(0,201)"></path>
+                                                    <path cs="100,100" d="M165.5,201.5 L165.5,201.5 L165.5,0.5"
+                                                        fill="none" stroke-width="1" stroke-dasharray="1"
+                                                        stroke-opacity="0.1" stroke="#000000"></path>
+                                                </g>
+                                                <g>
+                                                    <path cs="100,100" d="M247.5,0.5 L247.5,5.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(0,201)"></path>
+                                                    <path cs="100,100" d="M247.5,201.5 L247.5,201.5 L247.5,0.5"
+                                                        fill="none" stroke-width="1" stroke-dasharray="1"
+                                                        stroke-opacity="0.1" stroke="#000000"></path>
+                                                </g>
+                                                <g>
+                                                    <path cs="100,100" d="M330.5,0.5 L330.5,5.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(0,201)"></path>
+                                                    <path cs="100,100" d="M330.5,201.5 L330.5,201.5 L330.5,0.5"
+                                                        fill="none" stroke-width="1" stroke-dasharray="1"
+                                                        stroke-opacity="0.1" stroke="#000000"></path>
+                                                </g>
+                                                <g>
+                                                    <path cs="100,100" d="M412.5,0.5 L412.5,5.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(0,201)"></path>
+                                                    <path cs="100,100" d="M412.5,201.5 L412.5,201.5 L412.5,0.5"
+                                                        fill="none" stroke-width="1" stroke-dasharray="1"
+                                                        stroke-opacity="0.1" stroke="#000000"></path>
+                                                </g>
+                                                <g>
+                                                    <path cs="100,100" d="M495.5,0.5 L495.5,5.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(0,201)"></path>
+                                                    <path cs="100,100" d="M495.5,201.5 L495.5,201.5 L495.5,0.5"
+                                                        fill="none" stroke-width="1" stroke-dasharray="1"
+                                                        stroke-opacity="0.1" stroke="#000000"></path>
+                                                </g>
+                                                <g>
+                                                    <path cs="100,100" d="M577.5,0.5 L577.5,5.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(0,201)"></path>
+                                                    <path cs="100,100" d="M577.5,201.5 L577.5,201.5 L577.5,0.5"
+                                                        fill="none" stroke-width="1" stroke-dasharray="1"
+                                                        stroke-opacity="0.1" stroke="#000000"></path>
+                                                </g>
+                                                <g>
+                                                    <path cs="100,100" d="M660.5,0.5 L660.5,5.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(0,201)"></path>
+                                                    <path cs="100,100" d="M660.5,201.5 L660.5,201.5 L660.5,0.5"
+                                                        fill="none" stroke-width="1" stroke-dasharray="1"
+                                                        stroke-opacity="0.1" stroke="#000000"></path>
+                                                </g>
+                                                <g>
+                                                    <path cs="100,100" d="M742.5,0.5 L742.5,5.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(0,201)"></path>
+                                                    <path cs="100,100" d="M742.5,201.5 L742.5,201.5 L742.5,0.5"
+                                                        fill="none" stroke-width="1" stroke-dasharray="1"
+                                                        stroke-opacity="0.1" stroke="#000000"></path>
+                                                </g>
+                                            </g>
+                                            <g transform="translate(48,20)" visibility="hidden"></g>
+                                            <g transform="translate(48,20)" visibility="visible">
+                                                <g>
+                                                    <path cs="100,100" d="M0.5,201.5 L6.5,201.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(-6,0)"></path>
+                                                </g>
+                                                <g>
+                                                    <path cs="100,100" d="M0.5,134.5 L6.5,134.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(-6,0)"></path>
+                                                </g>
+                                                <g>
+                                                    <path cs="100,100" d="M0.5,67.5 L6.5,67.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(-6,0)"></path>
+                                                </g>
+                                                <g>
+                                                    <path cs="100,100" d="M0.5,0.5 L6.5,0.5" fill="none"
+                                                        stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                        transform="translate(-6,0)"></path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                        <g transform="translate(48,20)" clip-path="url(#AmChartsEl-7)">
+                                            <g visibility="hidden"></g>
+                                        </g>
+                                        <g></g>
+                                        <g></g>
+                                        <g></g>
+                                        <g>
+                                            <g transform="translate(48,20)">
+                                                <g></g>
+                                                <g clip-path="url(#AmChartsEl-9)">
+                                                    <path cs="100,100"
+                                                        d="M41.5,194.8 L124.5,134.5 L206.5,147.9 L289.5,101 L371.5,87.6 L453.5,20.6 L536.5,47.4 L618.5,101 L701.5,67.5"
+                                                        fill="none" stroke-width="3" stroke-opacity="0.9"
+                                                        stroke="#2ed8b6" stroke-linejoin="round"></path>
+                                                </g>
+                                                <clipPath id="AmChartsEl-9">
+                                                    <rect x="0" y="0" width="742" height="201" rx="0"
+                                                        ry="0" stroke-width="0"></rect>
+                                                </clipPath>
+                                                <g></g>
+                                            </g>
+                                            <g transform="translate(48,20)">
+                                                <g></g>
+                                                <g clip-path="url(#AmChartsEl-10)">
+                                                    <path cs="100,100"
+                                                        d="M41.5,168 L124.5,107.7 L206.5,114.4 L289.5,80.9 L371.5,101 L453.5,80.9 L536.5,80.9 L618.5,134.5 L701.5,101"
+                                                        fill="none" stroke-width="3" stroke-opacity="0.9"
+                                                        stroke="#e95753" stroke-linejoin="round"></path>
+                                                </g>
+                                                <clipPath id="AmChartsEl-10">
+                                                    <rect x="0" y="0" width="742" height="201" rx="0"
+                                                        ry="0" stroke-width="0"></rect>
+                                                </clipPath>
+                                                <g></g>
+                                            </g>
+                                        </g>
+                                        <g></g>
+                                        <g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,0.5 L742.5,0.5" fill="none"
+                                                    stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                    transform="translate(48,221)"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,0.5 L0.5,201.5" fill="none"
+                                                    stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                    transform="translate(48,20)" visibility="hidden"></path>
+                                            </g>
+                                            <g>
+                                                <path cs="100,100" d="M0.5,0.5 L0.5,201.5" fill="none"
+                                                    stroke-width="1" stroke-opacity="0.3" stroke="#000000"
+                                                    transform="translate(48,20)" visibility="visible"></path>
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <g transform="translate(48,20)" clip-path="url(#AmChartsEl-8)"
+                                                style="pointer-events: none;">
+                                                <path cs="100,100" d="M0.5,0.5 L0.5,0.5 L0.5,201.5" fill="none"
+                                                    stroke-width="1" stroke-opacity="0" stroke="#000000"
+                                                    visibility="hidden" transform="translate(701,0)"></path>
+                                                <path cs="100,100" d="M0.5,0.5 L742.5,0.5 L742.5,0.5" fill="none"
+                                                    stroke-width="1" stroke-opacity="0.2" stroke="#000000"
+                                                    visibility="hidden" transform="translate(0,3)"></path>
+                                            </g>
+                                            <clipPath id="AmChartsEl-8">
+                                                <rect x="0" y="0" width="742" height="201" rx="0"
+                                                    ry="0" stroke-width="0"></rect>
+                                            </clipPath>
+                                        </g>
+                                        <g></g>
+                                        <g>
+                                            <g transform="translate(48,20)">
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#2ed8b6" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(41,194)"
+                                                    aria-label="Market Days Jan 16, 2013 71.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#2ed8b6" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(124,134)"
+                                                    aria-label="Market Days Jan 17, 2013 80.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#2ed8b6" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(206,147)"
+                                                    aria-label="Market Days Jan 18, 2013 78.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#2ed8b6" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(289,101)"
+                                                    aria-label="Market Days Jan 19, 2013 85.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#2ed8b6" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(371,87)"
+                                                    aria-label="Market Days Jan 20, 2013 87.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#2ed8b6" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(453,20)"
+                                                    aria-label="Market Days Jan 21, 2013 97.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#2ed8b6" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(536,47)"
+                                                    aria-label="Market Days Jan 22, 2013 93.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#2ed8b6" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(618,101) scale(1)"
+                                                    aria-label="Market Days Jan 23, 2013 85.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#2ed8b6" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(701,67) scale(1)"
+                                                    aria-label="Market Days Jan 24, 2013 90.00"></circle>
+                                            </g>
+                                            <g transform="translate(48,20)">
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#e95753" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(41,168)"
+                                                    aria-label="Market Days ALL Jan 16, 2013 75.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#e95753" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(124,107)"
+                                                    aria-label="Market Days ALL Jan 17, 2013 84.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#e95753" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(206,114)"
+                                                    aria-label="Market Days ALL Jan 18, 2013 83.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#e95753" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(289,80)"
+                                                    aria-label="Market Days ALL Jan 19, 2013 88.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#e95753" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(371,101)"
+                                                    aria-label="Market Days ALL Jan 20, 2013 85.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#e95753" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(453,80)"
+                                                    aria-label="Market Days ALL Jan 21, 2013 88.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#e95753" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(536,80)"
+                                                    aria-label="Market Days ALL Jan 22, 2013 88.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#e95753" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(618,134) scale(1)"
+                                                    aria-label="Market Days ALL Jan 23, 2013 80.00"></circle>
+                                                <circle r="4" cx="0" cy="0" fill="#FFFFFF"
+                                                    stroke="#e95753" fill-opacity="1" stroke-width="2"
+                                                    stroke-opacity="1" transform="translate(701,101) scale(1)"
+                                                    aria-label="Market Days ALL Jan 24, 2013 85.00"></circle>
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <g></g>
+                                        </g>
+                                        <g>
+                                            <g transform="translate(48,20)" visibility="visible"><text y="6"
+                                                    fill="#000000" font-family="Verdana" font-size="11px" opacity="1"
+                                                    text-anchor="middle" transform="translate(41.222222275234344,213.5)">
+                                                    <tspan y="6" x="0">Jan 16</tspan>
+                                                </text><text y="6" fill="#000000" font-family="Verdana" font-size="11px"
+                                                    opacity="1" text-anchor="middle"
+                                                    transform="translate(123.22222227523434,213.5)">
+                                                    <tspan y="6" x="0">Jan 17</tspan>
+                                                </text><text y="6" fill="#000000" font-family="Verdana" font-size="11px"
+                                                    opacity="1" text-anchor="middle"
+                                                    transform="translate(206.22222227523434,213.5)">
+                                                    <tspan y="6" x="0">Jan 18</tspan>
+                                                </text><text y="6" fill="#000000" font-family="Verdana" font-size="11px"
+                                                    opacity="1" text-anchor="middle"
+                                                    transform="translate(288.22222227523434,213.5)">
+                                                    <tspan y="6" x="0">Jan 19</tspan>
+                                                </text><text y="6" fill="#000000" font-family="Verdana" font-size="11px"
+                                                    opacity="1" text-anchor="middle"
+                                                    transform="translate(371.22222227523434,213.5)">
+                                                    <tspan y="6" x="0">Jan 20</tspan>
+                                                </text><text y="6" fill="#000000" font-family="Verdana" font-size="11px"
+                                                    opacity="1" text-anchor="middle"
+                                                    transform="translate(453.22222227523434,213.5)">
+                                                    <tspan y="6" x="0">Jan 21</tspan>
+                                                </text><text y="6" fill="#000000" font-family="Verdana" font-size="11px"
+                                                    opacity="1" text-anchor="middle"
+                                                    transform="translate(536.2222222752343,213.5)">
+                                                    <tspan y="6" x="0">Jan 22</tspan>
+                                                </text><text y="6" fill="#000000" font-family="Verdana" font-size="11px"
+                                                    opacity="1" text-anchor="middle"
+                                                    transform="translate(618.2222222752343,213.5)">
+                                                    <tspan y="6" x="0">Jan 23</tspan>
+                                                </text><text y="6" fill="#000000" font-family="Verdana" font-size="11px"
+                                                    opacity="1" text-anchor="middle"
+                                                    transform="translate(701.2222222752343,213.5)">
+                                                    <tspan y="6" x="0">Jan 24</tspan>
+                                                </text></g>
+                                            <g transform="translate(48,20)" visibility="hidden"></g>
+                                            <g transform="translate(48,20)" visibility="visible"><text y="6"
+                                                    fill="#000000" font-family="Verdana" font-size="11px" opacity="1"
+                                                    text-anchor="end" transform="translate(-12,200)">
+                                                    <tspan y="6" x="0">70</tspan>
+                                                </text><text y="6" fill="#000000" font-family="Verdana" font-size="11px"
+                                                    opacity="1" text-anchor="end" transform="translate(-12,133)">
+                                                    <tspan y="6" x="0">80</tspan>
+                                                </text><text y="6" fill="#000000" font-family="Verdana" font-size="11px"
+                                                    opacity="1" text-anchor="end" transform="translate(-12,66)">
+                                                    <tspan y="6" x="0">90</tspan>
+                                                </text><text y="6" fill="#000000" font-family="Verdana" font-size="11px"
+                                                    opacity="1" text-anchor="end" transform="translate(-12,-1)">
+                                                    <tspan y="6" x="0">100</tspan>
+                                                </text></g>
+                                        </g>
+                                        <g></g>
+                                        <g transform="translate(48,20)"></g>
+                                        <g></g>
+                                        <g></g>
+                                        <clipPath id="AmChartsEl-7">
+                                            <rect x="-1" y="-1" width="744" height="203" rx="0"
+                                                ry="0" stroke-width="0"></rect>
+                                        </clipPath>
+                                    </svg><a href="http://www.amcharts.com" title="JavaScript charts"
+                                        style="position: absolute; text-decoration: none; color: rgb(0, 0, 0); font-family: Verdana; font-size: 11px; opacity: 0.7; display: block; left: 53px; top: 25px;">JS
+                                        chart by amCharts</a>
                                 </div>
-                                <div class="chat-time">10:56 am</div>
-                            </li>
-                            <li class="chat-item">
-                                <div class="chat-img"><img src="assets/img/users/2.jpg" alt="user">
-                                </div>
-                                <div class="chat-content">
-                                    <h6 class="font-medium">Bianca Doe</h6>
-                                    <div class="box bg-light-info">It’s Great opportunity to work.</div>
-                                </div>
-                                <div class="chat-time">10:57 am</div>
-                            </li>
-                            <li class="odd chat-item">
-                                <div class="chat-content">
-                                    <div class="box bg-light-inverse">I would love to join the team.</div>
-                                    <br>
-                                </div>
-                            </li>
-                            <li class="odd chat-item">
-                                <div class="chat-content">
-                                    <div class="box bg-light-inverse">Whats budget of the new project.
-                                    </div>
-                                    <br>
-                                </div>
-                                <div class="chat-time">10:59 am</div>
-                            </li>
-                            <li class="chat-item">
-                                <div class="chat-img"><img src="assets/img/users/3.jpg" alt="user">
-                                </div>
-                                <div class="chat-content">
-                                    <h6 class="font-medium">Angelina Rhodes</h6>
-                                    <div class="box bg-light-info">Well we have good budget for the project
-                                    </div>
-                                </div>
-                                <div class="chat-time">11:00 am</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-footer chat-footer">
-                        <div class="input-wrap">
-                            <input type="text" placeholder="Type and enter" class="form-control">
+                            </div>
                         </div>
-                        <button type="button" class="btn btn-icon btn-theme"><i class="fa fa-paper-plane"></i></button>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex">
-                            <h4 class="card-title">Weather Report</h4>
-                            <select class="form-control w-25 ml-auto">
-                                <option selected="">Today</option>
-                                <option value="1">Weekly</option>
-                            </select>
-                        </div>
-                        <div class="d-flex align-items-center flex-row mt-30">
-                            <div class="p-2 f-50 text-info"><i class="wi wi-day-showers"></i>
-                                <span>23<sup>°</sup></span>
-                            </div>
-                            <div class="p-2">
-                                <h3 class="mb-0">Saturday</h3><small>Banglore, India</small>
-                            </div>
-                        </div>
-                        <table class="table table-borderless">
-                            <tbody>
-                                <tr>
-                                    <td>Wind</td>
-                                    <td class="font-medium">ESE 17 mph</td>
-                                </tr>
-                                <tr>
-                                    <td>Humidity</td>
-                                    <td class="font-medium">83%</td>
-                                </tr>
-                                <tr>
-                                    <td>Pressure</td>
-                                    <td class="font-medium">28.56 in</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <hr>
-                        <ul class="list-unstyled row text-center city-weather-days mb-0 mt-20">
-                            <li class="col"><i class="wi wi-day-sunny mr-5"></i><span>09:30</span>
-                                <h3>20<sup>°</sup></h3>
-                            </li>
-                            <li class="col"><i class="wi wi-day-cloudy mr-5"></i><span>11:30</span>
-                                <h3>22<sup>°</sup></h3>
-                            </li>
-                            <li class="col"><i class="wi wi-day-hail mr-5"></i><span>13:30</span>
-                                <h3>25<sup>°</sup></h3>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card" style="min-height: 422px;">
+            <div class="col-md-12 col-xl-4">
+                <div class="card sale-card">
                     <div class="card-header">
-                        <h3>Timeline</h3>
-                        <div class="card-header-right">
-                            <ul class="list-unstyled card-option">
-                                <li><i class="ik ik-chevron-left action-toggle"></i></li>
-                                <li><i class="ik ik-minus minimize-card"></i></li>
-                                <li><i class="ik ik-x close-card"></i></li>
-                            </ul>
-                        </div>
+                        <h3>Total Revenue</h3>
                     </div>
-                    <div class="card-body timeline">
-                        <div class="header bg-theme"
-                            style="background-image: url('img/placeholder/placeimg_400_200_nature.jpg')">
-                            <div class="color-overlay d-flex align-items-center">
-                                <div class="day-number">8</div>
-                                <div class="date-right">
-                                    <div class="day-name">Monday</div>
-                                    <div class="month">February 2018</div>
-                                </div>
+                    <div class="card-block text-center">
+                        <div id="tot-rev-chart" class="tot-rev-chart chart-shadow st-cir-chart"
+                            style="width:100px;height:100px">
+                            <h3>120</h3>
+                            <svg xmlns:ct="http://gionkunz.github.com/chartist-js/ct" width="100%" height="100%"
+                                class="ct-chart-donut" style="width: 100%; height: 100%;">
+                                <g class="ct-series ct-series-a">
+                                    <path d="M43.666,92.025A42.5,42.5,0,1,0,50,7.5" class="ct-slice-donut" ct:value="11"
+                                        style="stroke-width: 5px;"></path>
+                                </g>
+                                <g class="ct-series ct-series-b">
+                                    <path d="M50,7.5A42.5,42.5,0,0,0,43.812,92.047" class="ct-slice-donut" ct:value="10"
+                                        style="stroke-width: 5px;"></path>
+                                </g>
+                            </svg>
+                        </div>
+                        <h6 class="mt-40">Today’s Total Sales</h6>
+                        <h3 class="fw-700 mb-40">100</h3>
+                        <div class="row">
+                            <div class="col-4">
+                                <p class="mb-5">Target</p>
+                                <h3 class="fw-700 text-yellow">$1253</h3>
                             </div>
-                        </div>
-                        <ul>
-                            <li>
-                                <div class="bullet bg-pink"></div>
-                                <div class="time">11am</div>
-                                <div class="desc">
-                                    <h3>Attendance</h3>
-                                    <h4>Computer Class</h4>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="bullet bg-green"></div>
-                                <div class="time">12pm</div>
-                                <div class="desc">
-                                    <h3>Design Team</h3>
-                                    <h4>Hangouts</h4>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="bullet bg-orange"></div>
-                                <div class="time">2pm</div>
-                                <div class="desc">
-                                    <h3>Finish</h3>
-                                    <h4>Go to Home</h4>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="card">
-            <div class="card-header row">
-                <div class="col col-sm-3">
-                    <div class="dropdown d-inline-block">
-                        <a class="btn-icon checkbox-dropdown dropdown-toggle" href="#" id="moreDropdown"
-                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-                        <div class="dropdown-menu" aria-labelledby="moreDropdown">
-                            <a class="dropdown-item" id="checkbox_select_all" href="javascript:void(0);">Select All</a>
-                            <a class="dropdown-item" id="checkbox_deselect_all" href="javascript:void(0);">Deselect
-                                All</a>
-                        </div>
-                    </div>
-                    <div class="card-options d-inline-block">
-                        <a href="#"><i class="ik ik-inbox"></i></a>
-                        <a href="#"><i class="ik ik-plus"></i></a>
-                        <a href="#"><i class="ik ik-rotate-cw"></i></a>
-                        <div class="dropdown d-inline-block">
-                            <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="ik ik-more-horizontal"></i></a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="moreDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">More Action</a>
+                            <div class="col-4">
+                                <p class="mb-5">Last Week</p>
+                                <h3 class="fw-700 text-yellow">$795</h3>
+                            </div>
+                            <div class="col-4">
+                                <p class="mb-5">Last Month</p>
+                                <h3 class="fw-700 text-yellow">$978</h3>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col col-sm-6">
-                    <div class="card-search with-adv-search dropdown">
-                        <form action="">
-                            <input type="text" class="form-control" placeholder="Search.." required>
-                            <button type="submit" class="btn btn-icon"><i class="ik ik-search"></i></button>
-                            <button type="button" id="adv_wrap_toggler"
-                                class="adv-btn ik ik-chevron-down dropdown-toggle" data-toggle="dropdown"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                            <div class="adv-search-wrap dropdown-menu dropdown-menu-right"
-                                aria-labelledby="adv_wrap_toggler">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Full Name">
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email">
-                                </div>
-                                <button class="btn btn-theme">Search</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col col-sm-3">
-                    <div class="card-options text-right">
-                        <span class="mr-5">1 - 50 of 2,500</span>
-                        <a href="#"><i class="ik ik-chevron-left"></i></a>
-                        <a href="#"><i class="ik ik-chevron-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body p-0">
-                <div class="list-item-wrap">
-                    <div class="list-item">
-                        <div class="item-inner">
-                            <label class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="item_checkbox"
-                                    name="item_checkbox" value="option1">
-                                <span class="custom-control-label">&nbsp;</span>
-                            </label>
-                            <div class="list-title"><a href="javascript:void(0)">Lorem Ipsum is simply
-                                    dumm dummy text of the printing and typesetting industry.</a></div>
-                            <div class="list-actions">
-                                <a href="#"><i class="ik ik-eye"></i></a>
-                                <a href="#"><i class="ik ik-inbox"></i></a>
-                                <a href="#"><i class="ik ik-edit-2"></i></a>
-                                <a href="#"><i class="ik ik-trash-2"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="qickview-wrap">
-                            <div class="desc">
-                                <p>Fusce suscipit turpis a dolor posuere ornare at a ante. Quisque nec
-                                    libero facilisis, egestas tortor eget, mattis dui. Curabitur viverra
-                                    laoreet ligula at hendrerit. Nullam sollicitudin maximus leo, vel
-                                    pulvinar orci semper id. Donec vehicula tempus enim a facilisis. Proin
-                                    dignissim porttitor sem, sed pulvinar tortor gravida vitae.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-item">
-                        <div class="item-inner">
-                            <label class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="item_checkbox"
-                                    name="item_checkbox" value="option2">
-                                <span class="custom-control-label">&nbsp;</span>
-                            </label>
-                            <div class="list-title"><a href="javascript:void(0)">Aenean eu pharetra arcu,
-                                    vitae elementum sem. Sed non ligula molestie, finibus lacus at, suscipit
-                                    mi. Nunc luctus lacus vel felis blandit, eu finibus augue tincidunt.</a>
-                            </div>
-                            <div class="list-actions">
-                                <a href="#"><i class="ik ik-eye"></i></a>
-                                <a href="#"><i class="ik ik-inbox"></i></a>
-                                <a href="#"><i class="ik ik-edit-2"></i></a>
-                                <a href="#"><i class="ik ik-trash-2"></i></a>
-                            </div>
-                        </div>
-                        <div class="qickview-wrap">
-                            <div class="desc">
-                                <p>Fusce suscipit turpis a dolor posuere ornare at a ante. Quisque nec
-                                    libero facilisis, egestas tortor eget, mattis dui. Curabitur viverra
-                                    laoreet ligula at hendrerit. Nullam sollicitudin maximus leo, vel
-                                    pulvinar orci semper id. Donec vehicula tempus enim a facilisis. Proin
-                                    dignissim porttitor sem, sed pulvinar tortor gravida vitae.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-item">
-                        <div class="item-inner">
-                            <label class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="item_checkbox"
-                                    name="item_checkbox" value="option3">
-                                <span class="custom-control-label">&nbsp;</span>
-                            </label>
-                            <div class="list-title"><a href="javascript:void(0)">Donec lectus augue,
-                                    suscipit in sodales sit amet, semper sit amet enim. Duis pretium, nisi
-                                    id pretium ornare, tortor nibh sodales tellus.</a></div>
-                            <div class="list-actions">
-                                <a href="#"><i class="ik ik-eye"></i></a>
-                                <a href="#"><i class="ik ik-inbox"></i></a>
-                                <a href="#"><i class="ik ik-edit-2"></i></a>
-                                <a href="#"><i class="ik ik-trash-2"></i></a>
-                            </div>
-                        </div>
-                        <div class="qickview-wrap">
-                            <div class="desc">
-                                <p>Fusce suscipit turpis a dolor posuere ornare at a ante. Quisque nec
-                                    libero facilisis, egestas tortor eget, mattis dui. Curabitur viverra
-                                    laoreet ligula at hendrerit. Nullam sollicitudin maximus leo, vel
-                                    pulvinar orci semper id. Donec vehicula tempus enim a facilisis. Proin
-                                    dignissim porttitor sem, sed pulvinar tortor gravida vitae.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header row">
-                <div class="col col-sm-3">
-                    <div class="card-options d-inline-block">
-                        <a href="#"><i class="ik ik-inbox"></i></a>
-                        <a href="#"><i class="ik ik-plus"></i></a>
-                        <a href="#"><i class="ik ik-rotate-cw"></i></a>
-                        <div class="dropdown d-inline-block">
-                            <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="ik ik-more-horizontal"></i></a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="moreDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">More Action</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-sm-6">
-                    <div class="card-search with-adv-search dropdown">
-                        <form action="">
-                            <input type="text" class="form-control global_filter" id="global_filter"
-                                placeholder="Search.." required>
-                            <button type="submit" class="btn btn-icon"><i class="ik ik-search"></i></button>
-                            <button type="button" id="adv_wrap_toggler"
-                                class="adv-btn ik ik-chevron-down dropdown-toggle" data-toggle="dropdown"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                            <div class="adv-search-wrap dropdown-menu dropdown-menu-right"
-                                aria-labelledby="adv_wrap_toggler">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control column_filter" id="col0_filter"
-                                                placeholder="Name" data-column="0">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control column_filter" id="col1_filter"
-                                                placeholder="Position" data-column="1">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control column_filter" id="col2_filter"
-                                                placeholder="Office" data-column="2">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control column_filter" id="col3_filter"
-                                                placeholder="Age" data-column="3">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control column_filter" id="col4_filter"
-                                                placeholder="Start date" data-column="4">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control column_filter" id="col5_filter"
-                                                placeholder="Salary" data-column="5">
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="btn btn-theme">Search</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col col-sm-3">
-                    <div class="card-options text-right">
-                        <span class="mr-5" id="top">1 - 50 of 2,500</span>
-                        <a href="#"><i class="ik ik-chevron-left"></i></a>
-                        <a href="#"><i class="ik ik-chevron-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <table id="advanced_table" class="table">
-                    <thead>
-                        <tr>
-                            <th class="nosort" width="10">
-                                <label class="custom-control custom-checkbox m-0">
-                                    <input type="checkbox" class="custom-control-input" id="selectall" name=""
-                                        value="option2">
-                                    <span class="custom-control-label">&nbsp;</span>
-                                </label>
-                            </th>
-                            <th class="nosort">Avatar</th>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input select_all_child" id=""
-                                        name="" value="option2">
-                                    <span class="custom-control-label">&nbsp;</span>
-                                </label>
-                            </td>
-                            <td><img src="assets/img/users/1.jpg" class="table-user-thumb" alt=""></td>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input select_all_child" id=""
-                                        name="" value="option2">
-                                    <span class="custom-control-label">&nbsp;</span>
-                                </label>
-                            </td>
-                            <td><img src="assets/img/users/2.jpg" class="table-user-thumb" alt=""></td>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-                            <td>$170,750</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input select_all_child" id=""
-                                        name="" value="option2">
-                                    <span class="custom-control-label">&nbsp;</span>
-                                </label>
-                            </td>
-                            <td><img src="assets/img/users/3.jpg" class="table-user-thumb" alt=""></td>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>66</td>
-                            <td>2009/01/12</td>
-                            <td>$86,000</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input select_all_child" id=""
-                                        name="" value="option2">
-                                    <span class="custom-control-label">&nbsp;</span>
-                                </label>
-                            </td>
-                            <td><img src="assets/img/users/4.jpg" class="table-user-thumb" alt=""></td>
-                            <td>Cedric Kelly</td>
-                            <td>Senior Javascript Developer</td>
-                            <td>Edinburgh</td>
-                            <td>22</td>
-                            <td>2012/03/29</td>
-                            <td>$433,060</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input select_all_child" id=""
-                                        name="" value="option2">
-                                    <span class="custom-control-label">&nbsp;</span>
-                                </label>
-                            </td>
-                            <td><img src="assets/img/users/5.jpg" class="table-user-thumb" alt=""></td>
-                            <td>Airi Satou</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>33</td>
-                            <td>2008/11/28</td>
-                            <td>$162,700</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input select_all_child" id=""
-                                        name="" value="option2">
-                                    <span class="custom-control-label">&nbsp;</span>
-                                </label>
-                            </td>
-                            <td><img src="assets/img/users/1.jpg" class="table-user-thumb" alt=""></td>
-                            <td>Brielle Williamson</td>
-                            <td>Integration Specialist</td>
-                            <td>New York</td>
-                            <td>61</td>
-                            <td>2012/12/02</td>
-                            <td>$372,000</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input select_all_child" id=""
-                                        name="" value="option2">
-                                    <span class="custom-control-label">&nbsp;</span>
-                                </label>
-                            </td>
-                            <td><img src="assets/img/users/2.jpg" class="table-user-thumb" alt=""></td>
-                            <td>Herrod Chandler</td>
-                            <td>Sales Assistant</td>
-                            <td>San Francisco</td>
-                            <td>59</td>
-                            <td>2012/08/06</td>
-                            <td>$137,500</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input select_all_child" id=""
-                                        name="" value="option2">
-                                    <span class="custom-control-label">&nbsp;</span>
-                                </label>
-                            </td>
-                            <td><img src="assets/img/users/3.jpg" class="table-user-thumb" alt=""></td>
-                            <td>Rhona Davidson</td>
-                            <td>Integration Specialist</td>
-                            <td>Tokyo</td>
-                            <td>55</td>
-                            <td>2010/10/14</td>
-                            <td>$327,900</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input select_all_child" id=""
-                                        name="" value="option2">
-                                    <span class="custom-control-label">&nbsp;</span>
-                                </label>
-                            </td>
-                            <td><img src="assets/img/users/4.jpg" class="table-user-thumb" alt=""></td>
-                            <td>Colleen Hurst</td>
-                            <td>Javascript Developer</td>
-                            <td>San Francisco</td>
-                            <td>39</td>
-                            <td>2009/09/15</td>
-                            <td>$205,500</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
