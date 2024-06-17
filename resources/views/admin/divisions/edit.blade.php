@@ -39,20 +39,37 @@
 
                             <div class="col-12">
                                 <form method="post" class="needs-validation"
-                                    action="{{ route('regions.update', $region->id) }}" novalidate=""
+                                    action="{{ route('divisions.update', $division->id) }}" novalidate=""
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
-                                    <input type="hidden" name="id" id="id" value="{{ $region->id }}">
+
+                                    <input type="hidden" name="id" id="id" value="{{ $division->id }}">
+
                                     <div class="form-group row">
-                                        <label for="name" class="col-sm-3 col-form-label">Region Name</label>
+                                        <label for="region_id" class="col-sm-3 col-form-label">Region</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="name" name="name"
-                                                value="{{ old('name', $region->name) }}">
+                                            <select class="form-control" id="region_id" name="region_id">
+                                                <option>Choose...</option>
+                                                @foreach ($regions as $region)
+                                                    <option value="{{ $region->id }}"
+                                                        {{ $region->id == $division->region_id ? 'selected' : '' }}>
+                                                        {{ $region->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="division_name" class="col-sm-3 col-form-label">Division</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="division_name"
+                                                name="division_name"
+                                                value="{{ old('division_name', $division->division_name) }}">
                                         </div>
                                     </div>
 
-                                    <a href="{{ route('regions.index') }}" class="btn btn-secondary float-right"><i
+                                    <a href="{{ route('divisions.index') }}" class="btn btn-secondary float-right"><i
                                             class="ik ik-chevron-left"></i>Back</a>
                                     <button type="submit" class="btn btn-primary mr-2 float-right"><i
                                             class="ik ik-save"></i>

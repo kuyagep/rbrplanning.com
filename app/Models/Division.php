@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Division extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'region_id',
+        'divison_name',
+    ];
+
+    public function regions()
+    {
+        return $this->belongsTo(Region::class, 'region_id');
+    }
 }

@@ -128,7 +128,7 @@
                                                     <div class="table-actions ">
                                                         <a href="{{ url('/users', $user->id) }}"><i
                                                                 class="ik ik-eye"></i></a>
-                                                        <a href="{{ route('user.edit', $user->id) }}"><i
+                                                        <a href="{{ route('edit.user', $user->id) }}"><i
                                                                 class="ik ik-edit-2"></i></a>
                                                         <a href="#" data-id="{{ $user->id }}"
                                                             id="deleteButton"><i class="ik ik-trash-2"></i></a>
@@ -248,7 +248,7 @@
                         if (result.isConfirmed) {
 
                             $.ajax({
-                                url: '{{ route('users.deleteMultiple') }}',
+                                url: '{{ route('delete.multiple.users') }}',
                                 type: 'DELETE',
                                 data: {
                                     _token: '{{ csrf_token() }}',

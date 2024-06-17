@@ -2,63 +2,91 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Division;
+use App\Models\Region;
 use Illuminate\Http\Request;
 
 class DivisionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request->input('search');
+
+        $query = Division::query();
+
+        if ($search) {
+            $query->where('division_name', 'like', '%' . $search . '%');
+        }
+        $paginatedDivisions = $query->orderBy('created_at', 'desc')->paginate(15);
+
+        return view('admin.divisions.index', compact('paginatedDivisions', 'search'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $regions = Region::select('id', 'name')->get();
+        return view('admin.divisions.create', compact('regions'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        try {
+            $request->validate([
+                'division_name' => 'required|unique:divisions,division_name|max:255',
+                'region_id' => 'required',
+            ]);
+
+            $division = new Division();
+            $division->division_name = $request->division_name;
+            $division->region_id = $request->region_id;
+            $division->save();
+
+            return redirect('divisions')->with([
+                'status' => 'Success',
+                'message' => 'Division created successfully!',
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors([
+                'status' => 'Error',
+                'message' => 'An error occurred: ' . $e->getMessage(),
+            ])->withInput();
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Request $request, $id)
     {
-        //
+        $division = Division::where('id', $id)->first();
+
+        return view('admin.divisions.view', compact('division'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Division $division)
     {
-        //
+        $regions = Region::select('id', 'name')->get();
+        return view('admin.divisions.edit', compact('division', 'regions'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Division $division)
     {
-        //
+        $request->validate([
+            'division_name' => 'required|unique:divisions,division_name,' . $division->id . '|max:255',
+        ]);
+
+        $division->update($request->all());
+
+        return redirect()->route('divisions.index')->with('success', 'Division updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $division = Division::findOrFail($id);
+
+            if (!is_null($division)) {
+                $division->delete();
+            }
+            return response()->json(['icon' => 'success', 'title' => 'Success!', 'message' => 'Division deleted successfully!']);
+        }
+        return redirect()->route('divisions.index');
     }
 }
