@@ -9,7 +9,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Region Details</h5>
+                            <h5>Extension School Details</h5>
                         </div>
                     </div>
                 </div>
@@ -19,26 +19,34 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Region Details</h3>
+                        School ID: {{ $ex_school->id }}
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive"></div>
-                        <table id="" class="table table-striped table-bordered nowrap">
-                            <tbody>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>{{ $region->id ?? '' }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>{{ $region->name }}</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                        <a onclick="history.back()" class="btn btn-secondary"><i class="ik ik-chevron-left"></i> Back</a>
-
+                        <h5 class="card-title">{{ $ex_school->name }}</h5>
+                        <p class="card-text"><strong>Region:</strong>
+                            {{ $ex_school->school->district->division->region->name }}</p>
+                        <p class="card-text"><strong>Division:</strong>
+                            {{ $ex_school->school->district->division->division_name }}
+                        </p>
+                        <p class="card-text"><strong>District:</strong> {{ $ex_school->school->district->name }}</p>
+                        <p class="card-text"><strong>Address:</strong> {{ $ex_school->address }}</p>
+                        <p class="card-text"><strong>Mobile Number:</strong> {{ $ex_school->mobile_number }}</p>
+                        <p class="card-text"><strong>Email:</strong> {{ $ex_school->school_email }}</p>
+                        <p class="card-text"><strong>Ext. School ID:</strong> {{ $ex_school->schoolid }}</p>
+                        <p class="card-text"><strong>Ext. School Name:</strong> {{ $ex_school->school_name }}</p>
+                        @if ($ex_school->logo)
+                            <p class="card-text"><strong>Logo:</strong></p>
+                            <img src="{{ asset('uploads/logos/' . $ex_school->logo) }}" alt="School Logo"
+                                style="max-width: 200px;">
+                        @endif
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="{{ route('extension-schools.index') }}" class="btn btn-primary mt-3">Back to
+                                    List</a>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>

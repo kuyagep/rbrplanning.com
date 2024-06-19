@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DatabaseBackupController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\DroppedOutController;
 use App\Http\Controllers\EmploymentStatusController;
@@ -55,10 +56,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/export/users/pdf', [UserController::class, 'exportPdfUser'])->name('export.pdf.user');
 
 // Location Management Routes
+
     Route::resource('regions', RegionController::class);
     Route::resource('divisions', DivisionController::class);
+    Route::post('/fetch-divisions', [DistrictController::class, 'fetchDivisions'])->name('fetch.divisions');
+    Route::resource('districts', DistrictController::class);
+    Route::post('/fetch-districts', [SchoolController::class, 'fetchDistricts'])->name('fetch.districts');
     Route::resource('schools', SchoolController::class);
     Route::resource('sections', SectionController::class);
+    Route::post('/fetch-schools', [ExtensionSchoolController::class, 'fetchsSchool'])->name('fetch.schools');
     Route::resource('extension-schools', ExtensionSchoolController::class);
 
 // Grade and Level Management Routes

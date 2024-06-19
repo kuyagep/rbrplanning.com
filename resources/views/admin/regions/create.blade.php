@@ -35,8 +35,6 @@
                                     @enderror
                                 </div>
                             </div>
-
-
                             <button type="submit" id="btn-save" class="btn btn-primary mr-2">Create Region</button>
                             <a href="{{ route('regions.index') }}" class="btn btn-light">Back</a>
                         </form>

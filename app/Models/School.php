@@ -10,6 +10,7 @@ class School extends Model
     use HasFactory;
 
     protected $fillable = [
+        'district_id',
         'school_id',
         'code',
         'name',

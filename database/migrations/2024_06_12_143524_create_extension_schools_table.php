@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('extension_schools', function (Blueprint $table) {
             $table->id();
             $table->foreignId('school_id')->constrained()->cascadeOnDelete();
-            $table->string('schoolid');
+            $table->string('schoolid')->unique()->nullable();
             $table->string('school_name');
-            $table->string('address');
-            $table->string('mobile_number');
-            $table->string('school_email');
+            $table->string('address')->nullable();
+            $table->string('mobile_number')->nullable();
+            $table->string('school_email')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

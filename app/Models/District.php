@@ -21,4 +21,5 @@ class District extends Model
     {
         return $this->hasMany(School::class);
     }
+
 }

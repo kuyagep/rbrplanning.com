@@ -111,6 +111,9 @@
             <div class="nav-item {{ Request::is('divisions*') ? 'active' : '' }}">
                 <a href="{{ url('/divisions') }}"><i class="ik ik-map-pin"></i><span>Divisions</span></a>
             </div>
+            <div class="nav-item {{ Request::is('districts*') ? 'active' : '' }}">
+                <a href="{{ url('/districts') }}"><i class="ik ik-map-pin"></i><span>Districts</span></a>
+            </div>
 
             <!-- Funding Management -->
             <div class="nav-lavel">Funding Management</div>
