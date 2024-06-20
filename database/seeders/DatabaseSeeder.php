@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RegionSeeder::class,
             DivisionSeeder::class,
+            EmploymentStatusSeeder::class,
         ]);
     }
 }

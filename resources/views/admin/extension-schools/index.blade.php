@@ -10,7 +10,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>School</h5>
+                            <h5>Extension Schools</h5>
                         </div>
                     </div>
                 </div>
@@ -29,23 +29,66 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-6 col-xs-12 pull-right">
-                                <a href="{{ route('extension-schools.create') }}" class="btn btn-dark mb-2 ">
-                                    <i class="ik ik-user-plus"></i>
-                                    Add Extension Schools</a>
+                            <div class="col-lg-8 col-xs-12 pull-left">
 
-                            </div>
-                            <div class="col-lg-6 col-xs-12">
                                 <form action="{{ route('extension-schools.index') }}" method="GET"
-                                    class="form-inline float-right">
+                                    class="form-inline float-left">
                                     @csrf
-                                    <input type="text" name="search" value="{{ request('search') }}" id="search"
-                                        class="form-control mb-2 mr-sm-2" placeholder="Search school...">
 
-                                    <button type="submit" class="btn btn-primary mb-2">
-                                        <i class="ik ik-search"></i> Search</button>
+                                    <div class="form-group mb-2 mr-sm-2">
+                                        <label for="filter">Filters</label>
+                                    </div>
+                                    <div class="form-group mb-2 mr-sm-2">
+                                        <select name="region_id" id="region_id" class="form-control">
+                                            <option value="">Select Region</option>
+                                            @foreach ($regions as $region)
+                                                <option value="{{ $region->id }}"
+                                                    {{ $region->id == request('region_id') ? 'selected' : '' }}>
+                                                    {{ $region->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-2 mr-sm-2">
+                                        <select name="division_id" id="division_id" class="form-control">
+                                            <option value="">Select Division</option>
+                                            @foreach ($divisions as $division)
+                                                <option value="{{ $division->id }}"
+                                                    {{ $division->id == request('division_id') ? 'selected' : '' }}>
+                                                    {{ $division->division_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-2 mr-sm-2">
+                                        <select name="district_id" id="district_id" class="form-control">
+                                            <option value="">Select District</option>
+                                            @foreach ($districts as $district)
+                                                <option value="{{ $district->id }}"
+                                                    {{ $district->id == request('district_id') ? 'selected' : '' }}>
+                                                    {{ $district->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-2 mr-sm-2">
+                                        <select name="school_id" id="school_id" class="form-control">
+                                            <option value="">Select School</option>
+                                            @foreach ($schools as $school)
+                                                <option value="{{ $school->id }}"
+                                                    {{ $school->id == request('school_id') ? 'selected' : '' }}>
+                                                    {{ $school->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-2 mr-sm-2">
+                                        <input type="text" name="search" value="{{ request('search') }}" id="search"
+                                            class="form-control" placeholder="Search by school name...">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mb-2"><i class="ik ik-search"></i>
+                                        Search</button>
                                 </form>
-
+                            </div>
+                            <div class="col-lg-4 col-xs-12">
+                                <a href="{{ route('extension-schools.create') }}" class="btn btn-dark mb-2 float-right">
+                                    <i class="ik ik-plus"></i> Add Extension School</a>
                             </div>
                         </div>
                         <div class="table-data">
@@ -61,6 +104,7 @@
                                                 </div>
                                             </th>
                                             <th>ID</th>
+                                            <th>Ext. Shool</th>
                                             <th>Shool</th>
                                             <th>District</th>
                                             <th>Division</th>
@@ -88,6 +132,7 @@
                                                 <td>{{ $ex_school->school->name }}</td>
                                                 <td>{{ $ex_school->school->district->name }}</td>
                                                 <td>{{ $ex_school->school->district->division->division_name }}</td>
+                                                <td>{{ $ex_school->school->district->division->region->name }}</td>
 
                                                 <td class="text-center">
                                                     <div class="table-actions ">
@@ -110,7 +155,7 @@
                                     </tbody>
 
                                 </table>
-                                {{ $paginated->appends(['search' => request('search')])->links() }}
+                                {{ $paginated->appends(request()->except('page'))->links() }}
                             </div>
                         </div>
 

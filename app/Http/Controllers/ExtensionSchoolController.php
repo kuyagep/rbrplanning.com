@@ -17,18 +17,51 @@ class ExtensionSchoolController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-
         $query = ExtensionSchool::query();
 
-        if ($search) {
-            $query->where('school_name', 'like', '%' . $search . '%');
+        // Filtering based on region, division, and district
+        if ($request->filled('region_id')) {
+            $query->whereHas('school.district.division.region', function ($q) use ($request) {
+                $q->where('id', $request->region_id);
+            });
         }
-        $paginated = $query->orderBy('created_at', 'desc')->paginate(15);
 
-        return view('admin.extension-schools.index', compact('paginated', 'search'));
+        if ($request->filled('division_id')) {
+            $query->whereHas('school.district.division', function ($q) use ($request) {
+                $q->where('id', $request->division_id);
+            });
+        }
+
+        if ($request->filled('district_id')) {
+            $query->whereHas('school.district', function ($q) use ($request) {
+                $q->where('id', $request->district_id);
+            });
+        }
+        if ($request->filled('school_id')) {
+            $query->whereHas('school', function ($q) use ($request) {
+                $q->where('id', $request->school_id);
+            });
+        }
+
+        // Searching by school name
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('school_name', 'like', '%' . $search . '%');
+            });
+        }
+
+        // Pagination and ordering
+        $paginated = $query->orderBy('created_at', 'desc')->paginate(10);
+
+        // Fetching all regions, divisions, and districts for filter dropdowns
+        $regions = Region::select('id', 'name')->get();
+        $divisions = Division::select('id', 'division_name')->get();
+        $districts = District::select('id', 'name')->get();
+        $schools = School::select('id', 'name')->get();
+
+        return view('admin.extension-schools.index', compact('paginated', 'regions', 'divisions', 'districts', 'schools'));
     }
-
     public function create()
     {
         $regions = Region::select('id', 'name')->get();
@@ -57,7 +90,7 @@ class ExtensionSchoolController extends Controller
                 'address' => 'required|string|max:255',
                 'mobile_number' => 'required|string|max:15',
                 'school_email' => 'required|email|max:255|unique:extension_schools,school_email',
-                'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'logo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
             // Handle file upload

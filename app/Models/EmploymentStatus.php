@@ -9,6 +9,9 @@ class EmploymentStatus extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
     public function personnel()
     {
         return $this->belongsTo(Personnel::class);

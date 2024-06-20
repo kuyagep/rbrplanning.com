@@ -55,7 +55,7 @@ class SchoolController extends Controller
                 'address' => 'required|string|max:255',
                 'mobile_number' => 'required|string|max:15',
                 'school_email' => 'required|email|max:255|unique:schools,school_email',
-                'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'logo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
                 'description' => 'required|string',
             ]);
 
@@ -75,7 +75,7 @@ class SchoolController extends Controller
             $school->address = $request->address;
             $school->mobile_number = $request->mobile_number;
             $school->school_email = $request->school_email;
-            $school->logo = $logoName ?? '';
+            $school->logo = $logoName ?? null;
             $school->description = $request->description;
 
             // Save the school record to the database
@@ -138,6 +138,7 @@ class SchoolController extends Controller
             $logo = $request->file('logo');
             $logoName = time() . '.' . $logo->getClientOriginalExtension();
             $logo->move(public_path('uploads/logos'), $logoName);
+            $school->logo = $logoName;
         }
 
         // Update school record with form data
@@ -148,7 +149,7 @@ class SchoolController extends Controller
         $school->address = $request->input('address');
         $school->mobile_number = $request->input('mobile_number');
         $school->school_email = $request->input('school_email');
-        $school->logo = $logoName ?? '';
+
         $school->description = $request->input('description');
 
         // Save the updated school record
