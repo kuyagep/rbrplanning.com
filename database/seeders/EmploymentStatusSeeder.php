@@ -12,17 +12,16 @@ class EmploymentStatusSeeder extends Seeder
      */
     public function run(): void
     {
+        // Define employment statuses
         $statuses = [
-            ['name' => 'Permanent Employee'],
-            ['name' => 'Temporary Employee'],
-            ['name' => 'Contractual Employee'],
-            ['name' => 'Part-Time Employee'],
-            ['name' => 'Intern'],
-            ['name' => 'Political Appointee'],
-            ['name' => 'Seasonal Employee'],
-            ['name' => 'Probationary Employee'],
+            ['name' => 'Permanent'],
+            ['name' => 'Temporary'],
+            ['name' => 'Contractual'],
+            ['name' => 'Part-Time'],
+            ['name' => 'Probationary'],
         ];
 
+        // Insert the statuses into the database
         foreach ($statuses as $status) {
             EmploymentStatus::create($status);
         }

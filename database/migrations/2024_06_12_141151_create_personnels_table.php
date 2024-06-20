@@ -18,14 +18,14 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name')->nullable();
-            $table->string('birth_date')->nullable();
-            $table->string('mobile_number')->nullable();
-            $table->string('deped_email')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->string('mobile_number')->nullable()->unique();
+            $table->string('deped_email')->nullable()->unique();
             $table->enum('sex', ['Male', 'Female'])->default('Male')->nullable();
             $table->string('employment_status_id')->constrained()->cascadeOnDelete();
             $table->foreignId('position_id')->constrained()->cascadeOnDelete();
             $table->foreignId('school_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('funding_source_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('funding_source_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('remarks')->nullable();
             $table->timestamps();
         });

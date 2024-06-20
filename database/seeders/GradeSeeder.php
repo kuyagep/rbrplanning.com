@@ -12,25 +12,23 @@ class GradeSeeder extends Seeder
      */
     public function run(): void
     {
-        // Define sample grade levels from Nursery to Grade 12
         $grades = [
-            ['name' => 'Nursery'],
-            ['name' => 'Kindergarten'],
-            ['name' => 'Grade 1'],
-            ['name' => 'Grade 2'],
-            ['name' => 'Grade 3'],
-            ['name' => 'Grade 4'],
-            ['name' => 'Grade 5'],
-            ['name' => 'Grade 6'],
-            ['name' => 'Grade 7'],
-            ['name' => 'Grade 8'],
-            ['name' => 'Grade 9'],
-            ['name' => 'Grade 10'],
-            ['name' => 'Grade 11'],
-            ['name' => 'Grade 12'],
+            ['name' => 'Kindergarten', 'grade_level' => 'Early Childhood'],
+            ['name' => 'Grade 1', 'grade_level' => 'Elementary'],
+            ['name' => 'Grade 2', 'grade_level' => 'Elementary'],
+            ['name' => 'Grade 3', 'grade_level' => 'Elementary'],
+            ['name' => 'Grade 4', 'grade_level' => 'Elementary'],
+            ['name' => 'Grade 5', 'grade_level' => 'Elementary'],
+            ['name' => 'Grade 6', 'grade_level' => 'Elementary'],
+            ['name' => 'Grade 7', 'grade_level' => 'Junior High School'],
+            ['name' => 'Grade 8', 'grade_level' => 'Junior High School'],
+            ['name' => 'Grade 9', 'grade_level' => 'Junior High School'],
+            ['name' => 'Grade 10', 'grade_level' => 'Junior High School'],
+            ['name' => 'Grade 11', 'grade_level' => 'Senior High School'],
+            ['name' => 'Grade 12', 'grade_level' => 'Senior High School'],
         ];
 
-        // Insert the grade levels into the database
+        // Insert data into the database
         foreach ($grades as $grade) {
             Grade::create($grade);
         }

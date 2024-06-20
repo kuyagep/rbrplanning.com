@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('strands', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('track_id')->constrained()->cascadeOnDelete();
-            $table->string('strand_name');
+            $table->foreignId('track_id')->constrained()->onDelete('cascade');
+            $table->string('name');
             $table->timestamps();
         });
     }

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class PositionCategory extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name'];
+
+    public function positions()
+    {
+        return $this->hasMany(Position::class);
+    }
 }

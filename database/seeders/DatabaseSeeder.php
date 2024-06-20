@@ -24,6 +24,11 @@ class DatabaseSeeder extends Seeder
             RegionSeeder::class,
             DivisionSeeder::class,
             EmploymentStatusSeeder::class,
+            PositionCategorySeeder::class,
+            PositionSeeder::class,
+            TrackSeeder::class,
+            StrandSeeder::class,
+            SpecializationSeeder::class,
         ]);
     }
 }

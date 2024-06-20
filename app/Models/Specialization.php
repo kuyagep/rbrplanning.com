@@ -9,6 +9,8 @@ class Specialization extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'strand_id'];
+
     public function strand()
     {
         return $this->belongsTo(Strand::class);
