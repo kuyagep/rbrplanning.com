@@ -10,8 +10,8 @@ use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\DroppedOutController;
 use App\Http\Controllers\EmploymentStatusController;
 use App\Http\Controllers\ExtensionSchoolController;
-use App\Http\Controllers\GradeLevelCategoryController;
-use App\Http\Controllers\GradeLevelController;
+use App\Http\Controllers\FundingSourceController;
+use App\Http\Controllers\GradeSchoolController;
 use App\Http\Controllers\InventoryOfClassroomController;
 use App\Http\Controllers\InventoryOfSchoolBuildingController;
 use App\Http\Controllers\MakeShiftController;
@@ -43,22 +43,7 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
 
-    // User Management Routes
-    Route::resource('/users', UserController::class);
-    Route::get('/users', [UserController::class, 'index'])->name('all.user');
-    Route::get('/users/create', [UserController::class, 'create'])->name('create.user');
-    Route::post('/users', [UserController::class, 'store'])->name('store.user');
-    Route::get('/users/{id}', [UserController::class, 'show'])->name('show.user');
-    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('edit.user');
-    Route::put('/users/{id}', [UserController::class, 'update'])->name('update.user');
-    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('destroy.user');
-    Route::delete('/users/delete', [UserController::class, 'deleteMultiple'])->name('delete.multiple.users');
-    Route::post('/users/reset/password', [UserController::class, 'resetPassword'])->name('reset.password.user');
-    Route::get('/export/users/excel', [UserController::class, 'exportExcelUser'])->name('export.excel.user');
-    Route::get('/export/users/pdf', [UserController::class, 'exportPdfUser'])->name('export.pdf.user');
-
 // Location Management Routes
-
     Route::resource('regions', RegionController::class);
     Route::resource('divisions', DivisionController::class);
     Route::post('/fetch-divisions', [DistrictController::class, 'fetchDivisions'])->name('fetch.divisions');
@@ -70,8 +55,19 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::resource('extension-schools', ExtensionSchoolController::class);
 
 // Grade and Level Management Routes
-    Route::resource('grade-level-categories', GradeLevelCategoryController::class);
-    Route::resource('grade-levels', GradeLevelController::class);
+    Route::get('/grades', [GradeSchoolController::class, 'index'])->name('grades.index');
+    Route::post('/grades', [GradeSchoolController::class, 'storeGrade']);
+    Route::get('/grades/{grade}', [GradeSchoolController::class, 'showGrade']);
+    Route::put('/grades/{grade}', [GradeSchoolController::class, 'updateGrade']);
+    Route::delete('/grades/{grade}', [GradeSchoolController::class, 'destroyGrade']);
+    Route::post('/grades/{grade}/schools', [GradeSchoolController::class, 'attachSchool']);
+    Route::delete('/grades/{grade}/schools/{school}', [GradeSchoolController::class, 'detachSchool']);
+
+    Route::post('/schools/store', [GradeSchoolController::class, 'storeSchool']);
+    Route::get('/schools/{school}', [GradeSchoolController::class, 'showSchool']);
+    Route::put('/schools/{school}', [GradeSchoolController::class, 'updateSchool']);
+    Route::delete('/schools/delete/{school}', [GradeSchoolController::class, 'destroySchool'])->name('schools.delete');
+
     Route::resource('year-levels', YearLevelController::class);
 
 // Position and Personnel Management Routes
@@ -99,6 +95,21 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::resource('strands', StrandController::class);
     Route::resource('tls', TLSController::class);
     Route::resource('tracks', TrackController::class);
+    Route::resource('funding-sources', FundingSourceController::class);
+
+    // User Management Routes
+    Route::resource('/users', UserController::class);
+    Route::get('/users', [UserController::class, 'index'])->name('all.user');
+    Route::get('/users/create', [UserController::class, 'create'])->name('create.user');
+    Route::post('/users', [UserController::class, 'store'])->name('store.user');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('show.user');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('edit.user');
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('update.user');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('destroy.user');
+    Route::delete('/users/delete', [UserController::class, 'deleteMultiple'])->name('delete.multiple.users');
+    Route::post('/users/reset/password', [UserController::class, 'resetPassword'])->name('reset.password.user');
+    Route::get('/export/users/excel', [UserController::class, 'exportExcelUser'])->name('export.excel.user');
+    Route::get('/export/users/pdf', [UserController::class, 'exportPdfUser'])->name('export.pdf.user');
 
 // Additional Routes
     Route::resource('reports', ReportController::class);

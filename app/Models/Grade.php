@@ -12,4 +12,9 @@ class Grade extends Model
         'name',
         'grade_level',
     ];
+
+    public function schools()
+    {
+        return $this->belongsToMany(School::class);
+    }
 }

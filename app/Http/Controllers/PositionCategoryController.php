@@ -25,13 +25,13 @@ class PositionCategoryController extends Controller
         $paginated = $query->orderBy('created_at', 'desc')->paginate(15);
 
         // Return view with paginated regions and search query
-        return view('admin.positions-categories.index', compact('paginated', 'search'));
+        return view('admin.position-categories.index', compact('paginated', 'search'));
     }
 
     // Show the form for creating a new resource.
     public function create()
     {
-        return view('admin.positions-categories.create');
+        return view('admin.position-categories.create');
     }
 
     // Store a newly created resource in storage.
@@ -59,14 +59,14 @@ class PositionCategoryController extends Controller
         $positionCategory = PositionCategory::findOrFail($id);
 
         // Return view with region data
-        return view('admin.positions-categories.show', compact('positionCategory'));
+        return view('admin.position-categories.show', compact('positionCategory'));
     }
 
     // Show the form for editing the specified resource.
     public function edit(PositionCategory $positionCategory)
     {
         // Return view with region data for editing
-        return view('admin.positions-categories.edit', compact('positionCategory'));
+        return view('admin.position-categories.edit', compact('positionCategory'));
     }
 
     // Update the specified resource in storage.

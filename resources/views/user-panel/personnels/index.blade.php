@@ -10,7 +10,8 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Personnels</h5>
+                            <h5>INVENTORY OF SCHOOL PERSONNEL</h5>
+                            <span>As of {{ date('M d, Y') }}</span>
                         </div>
                     </div>
                 </div>
@@ -87,7 +88,7 @@
                                 </form> --}}
                             </div>
                             <div class="col-lg-4 col-xs-12">
-                                <a href="{{ route('user.personnel.create') }}" class="btn btn-dark mb-2 float-right">
+                                <a href="{{ route('user.personnels.create') }}" class="btn btn-dark mb-2 float-right">
                                     <i class="ik ik-plus"></i> Add Personnel</a>
                             </div>
                         </div>

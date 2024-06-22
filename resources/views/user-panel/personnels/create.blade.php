@@ -53,7 +53,7 @@
                     </div>
                     <div class="card-body">
                         <form id="form" method="post" class="needs-validation"
-                            action="{{ route('user.personnels.store') }}" novalidate enctype="multipart/form-data">
+                            action="{{ route('user.personnels.create') }}" novalidate enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <label for="employee_number" class="col-sm-3 col-form-label">Employee Number</label>
@@ -247,96 +247,100 @@
                     </div>
                 </div>
             </div>
-        @endsection
-        @section('script')
-            <script type="text/javascript">
-                $(document).ready(function($) {
-                    // token header
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
+        </div>
+    </div>
 
-                    // Fetch divisions based on selected region
-                    $('#region_id').change(function() {
-                        var regionId = $(this).val();
-                        if (regionId) {
-                            $.ajax({
-                                url: '{{ route('fetch.divisions') }}', // Change this to your actual route
-                                type: 'POST',
-                                data: {
-                                    region_id: regionId
-                                },
-                                success: function(data) {
-                                    $('#division_id').empty();
-                                    $('#division_id').append('<option value="">Choose...</option>');
-                                    $.each(data.divisions, function(key, value) {
-                                        $('#division_id').append('<option value="' + value.id +
-                                            '">' + value.division_name + '</option>');
-                                    });
-                                }
-                            });
-                        } else {
+
+@endsection
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            // token header
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // Fetch divisions based on selected region
+            $('#region_id').change(function() {
+                var regionId = $(this).val();
+                if (regionId) {
+                    $.ajax({
+                        url: '{{ route('fetch.divisions') }}', // Change this to your actual route
+                        type: 'POST',
+                        data: {
+                            region_id: regionId
+                        },
+                        success: function(data) {
                             $('#division_id').empty();
                             $('#division_id').append('<option value="">Choose...</option>');
+                            $.each(data.divisions, function(key, value) {
+                                $('#division_id').append('<option value="' + value.id +
+                                    '">' + value.division_name + '</option>');
+                            });
                         }
                     });
+                } else {
+                    $('#division_id').empty();
+                    $('#division_id').append('<option value="">Choose...</option>');
+                }
+            });
 
 
-                    // Fetch districts based on selected division
-                    $('#division_id').change(function() {
-                        var divisionId = $(this).val();
-                        if (divisionId) {
-                            $.ajax({
-                                url: '{{ route('fetch.districts') }}', // Change this to your actual route
-                                type: 'POST',
-                                data: {
-                                    division_id: divisionId
-                                },
-                                success: function(data) {
-                                    console.log(data);
-                                    $('#district_id').empty();
-                                    $('#district_id').append('<option value="">Choose...</option>');
-                                    $.each(data.districts, function(key, value) {
-                                        $('#district_id').append('<option value="' + value.id +
-                                            '">' + value.name + '</option>');
-                                    });
-                                }
-                            });
-                        } else {
+            // Fetch districts based on selected division
+            $('#division_id').change(function() {
+                var divisionId = $(this).val();
+                if (divisionId) {
+                    $.ajax({
+                        url: '{{ route('fetch.districts') }}', // Change this to your actual route
+                        type: 'POST',
+                        data: {
+                            division_id: divisionId
+                        },
+                        success: function(data) {
+                            console.log(data);
                             $('#district_id').empty();
                             $('#district_id').append('<option value="">Choose...</option>');
+                            $.each(data.districts, function(key, value) {
+                                $('#district_id').append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
+                            });
                         }
                     });
+                } else {
+                    $('#district_id').empty();
+                    $('#district_id').append('<option value="">Choose...</option>');
+                }
+            });
 
-                    // Fetch schools based on selected district
-                    $('#district_id').change(function() {
-                        var districtId = $(this).val();
-                        if (districtId) {
-                            $.ajax({
-                                url: '{{ route('fetch.schools') }}',
-                                type: 'POST',
-                                data: {
-                                    district_id: districtId
-                                },
-                                success: function(data) {
-                                    console.log(data);
-                                    $('#school_id').empty();
-                                    $('#school_id').append('<option value="">Choose...</option>');
-                                    $.each(data.schools, function(key, value) {
-                                        $('#school_id').append('<option value="' + value.id +
-                                            '">' + value.name + '</option>');
-                                    });
-                                }
-                            });
-                        } else {
+            // Fetch schools based on selected district
+            $('#district_id').change(function() {
+                var districtId = $(this).val();
+                if (districtId) {
+                    $.ajax({
+                        url: '{{ route('fetch.schools') }}',
+                        type: 'POST',
+                        data: {
+                            district_id: districtId
+                        },
+                        success: function(data) {
+                            console.log(data);
                             $('#school_id').empty();
                             $('#school_id').append('<option value="">Choose...</option>');
+                            $.each(data.schools, function(key, value) {
+                                $('#school_id').append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
+                            });
                         }
                     });
+                } else {
+                    $('#school_id').empty();
+                    $('#school_id').append('<option value="">Choose...</option>');
+                }
+            });
 
 
-                });
-            </script>
-        @endsection
+        });
+    </script>
+@endsection

@@ -34,21 +34,14 @@ class School extends Model
         return $this->hasMany(Personnel::class);
     }
 
-    public function gradeLevel()
-    {
-        return $this->hasMany(GradeLevel::class);
-    }
-
-    public function gradeLevelCategory()
-    {
-        return $this->hasMany(GradeLevelCategory::class);
-    }
-
     public function registeredLearners()
     {
         return $this->hasMany(RegisteredLearner::class);
     }
-
+    public function grades()
+    {
+        return $this->belongsToMany(Grade::class);
+    }
     public function inventoryOfSchoolBuildings()
     {
         return $this->hasMany(InventoryOfSchoolBuilding::class);
