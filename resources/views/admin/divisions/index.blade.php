@@ -82,7 +82,7 @@
 
 
                                                 <td>{{ $division->id }}</td>
-                                                <td>{{ $division->division_name }}</td>
+                                                <td>{{ $division->name }}</td>
                                                 <td>{{ $division->region->name }}</td>
 
                                                 <td class="text-center">

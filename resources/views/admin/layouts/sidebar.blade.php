@@ -10,13 +10,20 @@
             <div class="nav-item has-sub {{ Request::is('personnel*') ? 'active open' : '' }}">
                 <a href="javascript:void(0)"><i class="ik ik-users"></i><span>Personnel</span></a>
                 <div class="submenu-content">
-                    <a href="{{ url('/personnel') }}"
-                        class="menu-item {{ Request::is('personnel*') ? 'active' : '' }}">Personnel</a>
-                    <a href="{{ url('/positions') }}"
-                        class="menu-item {{ Request::is('positions*') ? 'active' : '' }}">Positions</a>
+                    <a href="{{ url('/personnel') }}" class="menu-item {{ Request::is('personnel*') ? 'active' : '' }}">
+                        Personnel
+                    </a>
+                    <a href="{{ url('/position-categories') }}"
+                        class="menu-item {{ Request::is('position-categories*') ? 'active' : '' }}">
+                        Position Category
+                    </a>
+                    <a href="{{ url('/positions') }}" class="menu-item {{ Request::is('positions*') ? 'active' : '' }}">
+                        Positions
+                    </a>
                     <a href="{{ url('/employment-statuses') }}"
-                        class="menu-item {{ Request::is('employment-statuses*') ? 'active' : '' }}">Employment
-                        Status</a>
+                        class="menu-item {{ Request::is('employment-statuses*') ? 'active' : '' }}">
+                        Employment Status
+                    </a>
                 </div>
             </div>
 
@@ -26,10 +33,13 @@
                 <a href="javascript:void(0)"><i class="ik ik-user"></i><span>Manage Users</span></a>
                 <div class="submenu-content">
                     <a href="{{ route('all.user') }}"
-                        class="menu-item {{ Request::is('users', 'all.user') ? 'active' : '' }}">All Users</a>
+                        class="menu-item {{ Request::is('users', 'all.user') ? 'active' : '' }}">
+                        All Users
+                    </a>
                     <a href="{{ route('create.user') }}"
-                        class="menu-item {{ Request::is('users/create', 'create.user') ? 'active' : '' }}">Create
-                        User</a>
+                        class="menu-item {{ Request::is('users/create', 'create.user') ? 'active' : '' }}">
+                        Create User
+                    </a>
                 </div>
             </div>
 
@@ -118,8 +128,9 @@
             <!-- Funding Management -->
             <div class="nav-lavel">Funding Management</div>
             <div class="nav-item {{ Request::is('funding-sources*') ? 'active' : '' }}">
-                <a href="{{ url('/funding-sources') }}"><i class="ik ik-dollar-sign"></i><span>Funding
-                        Sources</span></a>
+                <a href="{{ url('/funding-sources') }}"><i class="ik ik-dollar-sign"></i>
+                    <span>Funding Sources</span>
+                </a>
             </div>
         </nav>
     </div>

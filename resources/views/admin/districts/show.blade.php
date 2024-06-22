@@ -35,7 +35,7 @@
                                 </tr>
                                 <tr>
                                     <td>Division</td>
-                                    <td>{{ $school->division_name }}</td>
+                                    <td>{{ $school->name }}</td>
                                 </tr>
                                 <tr>
                                     <td>Region</td>

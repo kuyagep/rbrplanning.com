@@ -24,7 +24,8 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="{{ asset('uploads/logos/' . $school->logo) }}" class="img-fluid" alt="School Logo">
+                                <img src="{{ asset('uploads/logos/' . $school->logo) }}" class="img-fluid"
+                                    alt="School Logo">
                             </div>
                             <div class="col-md-8">
                                 <table class="table table-bordered">
@@ -35,7 +36,7 @@
                                         </tr>
                                         <tr>
                                             <th scope="row">Division</th>
-                                            <td>{{ $school->district->division->division_name }}</td>
+                                            <td>{{ $school->district->division->name }}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">District</th>

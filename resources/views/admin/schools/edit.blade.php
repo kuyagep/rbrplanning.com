@@ -69,7 +69,7 @@
                                         @foreach ($divisions as $division)
                                             <option value="{{ $division->id }}"
                                                 {{ $division->id == $school->district->division->id ? 'selected' : '' }}>
-                                                {{ $division->division_name }}
+                                                {{ $division->name }}
                                             </option>
                                         @endforeach
                                     </select>

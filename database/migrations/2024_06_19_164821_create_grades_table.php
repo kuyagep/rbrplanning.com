@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('grades', function (Blueprint $table) {
-            Schema::create('grades', function (Blueprint $table) {
-                $table->id();
-                $table->string('name'); // Grade name, e.g., "Grade 1", "Kindergarten"
-                $table->string('grade_level'); // Grade level, e.g., "Elementary", "Junior High School", "Senior High School"
-                $table->timestamps();
-            });
+
+            $table->id();
+            $table->string('name'); // Grade name, e.g., "Grade 1", "Kindergarten"
+            $table->string('grade_level'); // Grade level, e.g., "Elementary", "Junior High School", "Senior High School"
+            $table->timestamps();
+
         });
     }
 

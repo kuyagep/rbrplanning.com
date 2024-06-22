@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('user-panel.layouts.master')
 @section('style')
     {{-- style --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.css">
@@ -10,7 +10,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Extension Schools</h5>
+                            <h5>Personnels</h5>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="col-lg-8 col-xs-12 pull-left">
 
-                                <form action="{{ route('extension-schools.index') }}" method="GET"
+                                {{-- <form action="{{ route('extension-schools.index') }}" method="GET"
                                     class="form-inline float-left">
                                     @csrf
 
@@ -84,11 +84,11 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary mb-2"><i class="ik ik-search"></i>
                                         Search</button>
-                                </form>
+                                </form> --}}
                             </div>
                             <div class="col-lg-4 col-xs-12">
-                                <a href="{{ route('extension-schools.create') }}" class="btn btn-dark mb-2 float-right">
-                                    <i class="ik ik-plus"></i> Add Extension School</a>
+                                <a href="{{ route('user.personnel.create') }}" class="btn btn-dark mb-2 float-right">
+                                    <i class="ik ik-plus"></i> Add Personnel</a>
                             </div>
                         </div>
                         <div class="table-data">
@@ -113,34 +113,34 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($paginated as  $ex_school)
+                                        @forelse ($paginated as  $personnel)
                                             <tr>
                                                 <td>
                                                     <div class="custom-control custom-checkbox ml-2">
                                                         <input type="checkbox" class="custom-control-input"
-                                                            id="check_box_{{ $ex_school->id }}" name="region_ids[]"
-                                                            value="{{ $ex_school->id }}">
+                                                            id="check_box_{{ $personnel->id }}" name="region_ids[]"
+                                                            value="{{ $personnel->id }}">
                                                         <label class="custom-control-label"
-                                                            for="check_box_{{ $ex_school->id }}">
+                                                            for="check_box_{{ $personnel->id }}">
                                                         </label>
                                                     </div>
                                                 </td>
 
 
-                                                <td>{{ $ex_school->id }}</td>
-                                                <td>{{ $ex_school->school_name }}</td>
-                                                <td>{{ $ex_school->school->name }}</td>
-                                                <td>{{ $ex_school->school->district->name }}</td>
-                                                <td>{{ $ex_school->school->district->division->name }}</td>
-                                                <td>{{ $ex_school->school->district->division->region->name }}</td>
+                                                <td>{{ $personnel->id }}</td>
+                                                <td>{{ $personnel->school_name }}</td>
+                                                <td>{{ $personnel->school->name }}</td>
+                                                <td>{{ $personnel->school->district->name }}</td>
+                                                <td>{{ $personnel->school->district->division->name }}</td>
+                                                <td>{{ $personnel->school->district->division->region->name }}</td>
 
                                                 <td class="text-center">
                                                     <div class="table-actions ">
-                                                        <a href="{{ url('/extension-schools', $ex_school->id) }}"><i
+                                                        <a href="{{ url('/extension-schools', $personnel->id) }}"><i
                                                                 class="ik ik-eye"></i></a>
-                                                        <a href="{{ route('extension-schools.edit', $ex_school->id) }}"><i
+                                                        <a href="{{ route('extension-schools.edit', $personnel->id) }}"><i
                                                                 class="ik ik-edit-2"></i></a>
-                                                        <a href="#" data-id="{{ $ex_school->id }}"
+                                                        <a href="#" data-id="{{ $personnel->id }}"
                                                             id="deleteButton"><i class="ik ik-trash-2"></i></a>
 
                                                     </div>

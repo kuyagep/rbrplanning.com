@@ -72,7 +72,7 @@
                                     <select class="form-control" id="division_id" name="division_id">
                                         <option>Choose...</option>
                                         @foreach ($divisions as $division)
-                                            <option value="{{ $division->id }}">{{ $division->division_name }}</option>
+                                            <option value="{{ $division->id }}">{{ $division->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('division_id')
@@ -144,7 +144,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="address" class="col-sm-3 col-form-label">Addres</label>
+                                <label for="address" class="col-sm-3 col-form-label">Address</label>
                                 <div class="col-sm-9">
                                     <input type="text"
                                         class="form-control @error('address')
@@ -262,7 +262,7 @@
                             $('#division_id').append('<option value="">Choose...</option>');
                             $.each(data.divisions, function(key, value) {
                                 $('#division_id').append('<option value="' + value.id +
-                                    '">' + value.division_name + '</option>');
+                                    '">' + value.name + '</option>');
                             });
                         }
                     });

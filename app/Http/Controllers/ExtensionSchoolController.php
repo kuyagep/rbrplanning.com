@@ -56,7 +56,7 @@ class ExtensionSchoolController extends Controller
 
         // Fetching all regions, divisions, and districts for filter dropdowns
         $regions = Region::select('id', 'name')->get();
-        $divisions = Division::select('id', 'division_name')->get();
+        $divisions = Division::select('id', 'name')->get();
         $districts = District::select('id', 'name')->get();
         $schools = School::select('id', 'name')->get();
 
@@ -65,7 +65,7 @@ class ExtensionSchoolController extends Controller
     public function create()
     {
         $regions = Region::select('id', 'name')->get();
-        $divisions = Division::select('id', 'division_name')->get();
+        $divisions = Division::select('id', 'name')->get();
         $districts = District::select('id', 'name')->get();
         $schools = School::select('id', 'name')->get();
         return view('admin.extension-schools.create', compact('regions', 'divisions', 'districts', 'schools'));
@@ -135,7 +135,7 @@ class ExtensionSchoolController extends Controller
     public function edit(ExtensionSchool $extension_school)
     {
         $regions = Region::select('id', 'name')->get();
-        $divisions = Division::select('id', 'division_name')->get();
+        $divisions = Division::select('id', 'name')->get();
         $districts = District::select('id', 'name')->get();
         $schools = School::select('id', 'name')->get();
         return view('admin.extension-schools.edit', compact('extension_school', 'regions', 'divisions', 'districts', 'schools'));

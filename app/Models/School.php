@@ -24,6 +24,11 @@ class School extends Model
     {
         return $this->belongsTo(District::class);
     }
+
+    public function extensionSchools()
+    {
+        return $this->hasMany(ExtensionSchool::class);
+    }
     public function personnel()
     {
         return $this->hasMany(Personnel::class);
@@ -32,10 +37,6 @@ class School extends Model
     public function gradeLevel()
     {
         return $this->hasMany(GradeLevel::class);
-    }
-    public function extentionSchool()
-    {
-        return $this->hasMany(ExtensionSchool::class);
     }
 
     public function gradeLevelCategory()

@@ -33,13 +33,15 @@ use App\Http\Controllers\TrackController;
 use App\Http\Controllers\TransferredInController;
 use App\Http\Controllers\TransferredOutController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\YearLevelController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [RedirectController::class, 'index']);
+Route::get('/', [RedirectController::class, 'index'])->name('index');
 
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/dashboard', [Dashboard::class, 'index']);
+Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+
+    Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
 
     // User Management Routes
     Route::resource('/users', UserController::class);
@@ -107,4 +109,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/profile-settings', [ProfileSettingsController::class, 'index'])->name('profile-settings.index');
     Route::put('/profile-settings', [ProfileSettingsController::class, 'update'])->name('profile-settings.update');
 
+});
+
+Route::prefix('user')->middleware(['auth:sanctum', 'role:user'])->group(function () {
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard.index');
+
+    Route::get('/personnels', [PersonnelController::class, 'personnelIndex'])->name('user.personnels.index');
+    Route::get('/personnels/create', [PersonnelController::class, 'personnelCreate'])->name('user.personnels.create');
+    Route::post('/personnels/store', [PersonnelController::class, 'personnelStore'])->name('user.personnels.store');
 });

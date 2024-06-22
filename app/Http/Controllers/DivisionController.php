@@ -15,7 +15,7 @@ class DivisionController extends Controller
         $query = Division::query();
 
         if ($search) {
-            $query->where('division_name', 'like', '%' . $search . '%');
+            $query->where('name', 'like', '%' . $search . '%');
         }
         $paginatedDivisions = $query->orderBy('created_at', 'desc')->paginate(15);
 
@@ -32,12 +32,12 @@ class DivisionController extends Controller
     {
         try {
             $request->validate([
-                'division_name' => 'required|unique:divisions,division_name|max:255',
+                'name' => 'required|unique:divisions,name|max:255',
                 'region_id' => 'required',
             ]);
 
             $division = new Division();
-            $division->division_name = $request->division_name;
+            $division->name = $request->name;
             $division->region_id = $request->region_id;
             $division->save();
 
@@ -69,7 +69,7 @@ class DivisionController extends Controller
     public function update(Request $request, Division $division)
     {
         $request->validate([
-            'division_name' => 'required|unique:divisions,division_name,' . $division->id . '|max:255',
+            'name' => 'required|unique:divisions,name,' . $division->id . '|max:255',
         ]);
 
         $division->update($request->all());

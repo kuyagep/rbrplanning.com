@@ -31,7 +31,7 @@
                                 </tr>
                                 <tr>
                                     <td>Division</td>
-                                    <td>{{ $division->division_name }}</td>
+                                    <td>{{ $division->name }}</td>
                                 </tr>
                                 <tr>
                                     <td>Region</td>

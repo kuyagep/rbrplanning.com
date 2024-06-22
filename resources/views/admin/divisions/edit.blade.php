@@ -61,11 +61,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="division_name" class="col-sm-3 col-form-label">Division</label>
+                                        <label for="name" class="col-sm-3 col-form-label">Division</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="division_name"
-                                                name="division_name"
-                                                value="{{ old('division_name', $division->division_name) }}">
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                value="{{ old('name', $division->name) }}">
                                         </div>
                                     </div>
 

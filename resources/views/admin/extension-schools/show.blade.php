@@ -26,7 +26,7 @@
                         <p class="card-text"><strong>Region:</strong>
                             {{ $ex_school->school->district->division->region->name }}</p>
                         <p class="card-text"><strong>Division:</strong>
-                            {{ $ex_school->school->district->division->division_name }}
+                            {{ $ex_school->school->district->division->name }}
                         </p>
                         <p class="card-text"><strong>District:</strong> {{ $ex_school->school->district->name }}</p>
                         <p class="card-text"><strong>Address:</strong> {{ $ex_school->address }}</p>

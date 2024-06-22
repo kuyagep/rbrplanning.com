@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Exports\UserExport;
+use App\Models\District;
+use App\Models\Division;
+use App\Models\Region;
+use App\Models\School;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -19,7 +23,7 @@ class UserController extends Controller
     {
         $search = $request->input('search');
 
-        $query = User::query();
+        $query = User::where('role', '!=', 'super_admin');
 
         if ($search) {
             $query->where('first_name', 'like', '%' . $search . '%')
@@ -37,7 +41,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create-users');
+        $regions = Region::select('id', 'name')->get();
+        $divisions = Division::select('id', 'name')->get();
+        $districts = District::select('id', 'name')->get();
+        $schools = School::select('id', 'name')->get();
+        return view('admin.users.create-users', compact('regions', 'divisions', 'districts', 'schools'));
     }
 
     /**

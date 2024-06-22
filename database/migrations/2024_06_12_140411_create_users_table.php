@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable();
             $table->string('email')->unique();
             $table->enum('role', ['super_admin', 'admin', 'user'])->default('user');
+            $table->foreignId('school_id')->nullable()->constrained();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

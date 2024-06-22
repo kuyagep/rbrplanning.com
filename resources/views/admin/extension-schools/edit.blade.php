@@ -60,7 +60,7 @@
                                         @foreach ($divisions as $division)
                                             <option value="{{ $division->id }}"
                                                 {{ $division->id == $extension_school->school->district->division->id ? 'selected' : '' }}>
-                                                {{ $division->division_name }}</option>
+                                                {{ $division->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('division_id')
@@ -230,7 +230,7 @@
                             $('#division_id').append('<option value="">Choose...</option>');
                             $.each(data.divisions, function(key, value) {
                                 $('#division_id').append('<option value="' + value.id +
-                                    '">' + value.division_name + '</option>');
+                                    '">' + value.name + '</option>');
                             });
                         }
                     });

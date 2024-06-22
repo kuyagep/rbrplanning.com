@@ -36,7 +36,7 @@ class SchoolController extends Controller
     public function create()
     {
         $regions = Region::select('id', 'name')->get();
-        $divisions = Division::select('id', 'division_name')->get();
+        $divisions = Division::select('id', 'name')->get();
         $districts = District::select('id', 'name')->get();
         return view('admin.schools.create', compact('regions', 'divisions', 'districts'));
     }
