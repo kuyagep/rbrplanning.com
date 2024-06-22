@@ -56,29 +56,29 @@ class PositionCategoryController extends Controller
     public function show($id)
     {
         // Find Position Category by ID
-        $positionCategory = PositionCategory::findOrFail($id);
+        $position_category = PositionCategory::findOrFail($id);
 
         // Return view with region data
-        return view('admin.position-categories.show', compact('positionCategory'));
+        return view('admin.position-categories.show', compact('position_category'));
     }
 
     // Show the form for editing the specified resource.
-    public function edit(PositionCategory $positionCategory)
+    public function edit(PositionCategory $position_category)
     {
         // Return view with region data for editing
-        return view('admin.position-categories.edit', compact('positionCategory'));
+        return view('admin.position-categories.edit', compact('position_category'));
     }
 
     // Update the specified resource in storage.
-    public function update(Request $request, PositionCategory $positionCategory)
+    public function update(Request $request, PositionCategory $position_category)
     {
         // Validate incoming request data
         $request->validate([
-            'name' => 'required|unique:positions-categories,name,' . $positionCategory->id . '|max:255',
+            'name' => 'required|unique:positions-categories,name,' . $position_category->id . '|max:255',
         ]);
 
         // Update the region with validated data
-        $positionCategory->update($request->all());
+        $position_category->update($request->all());
 
         // Redirect back with success message
         return redirect()->route('positions-categories.index')->with('success', 'Position Category updated successfully.');
@@ -90,8 +90,8 @@ class PositionCategoryController extends Controller
         // Check if request is AJAX
         if ($request->ajax()) {
             // Find Position Category by ID and delete it
-            $positionCategory = PositionCategory::findOrFail($id);
-            $positionCategory->delete();
+            $position_category = PositionCategory::findOrFail($id);
+            $position_category->delete();
 
             // Return success JSON response
             return response()->json([

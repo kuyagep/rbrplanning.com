@@ -9,7 +9,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Region Details</h5>
+                            <h5>Position Category</h5>
                         </div>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Region Details</h3>
+                        <h3>Position Category</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive"></div>
@@ -27,16 +27,18 @@
                             <tbody>
                                 <tr>
                                     <td>ID</td>
-                                    <td>{{ $region->id ?? '' }}</td>
+                                    <td>{{ $position_category->id ?? '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Name</td>
-                                    <td>{{ $region->name }}</td>
+                                    <td>{{ $position_category->name }}</td>
                                 </tr>
 
                             </tbody>
                         </table>
-                        <a onclick="history.back()" class="btn btn-secondary"><i class="ik ik-chevron-left"></i> Back</a>
+                        <a href="{{ route('position-categories.index') }}" class="btn btn-secondary"><i
+                                class="ik ik-chevron-left"></i>
+                            Back</a>
 
                     </div>
                 </div>
