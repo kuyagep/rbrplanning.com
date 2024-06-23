@@ -57,7 +57,7 @@ class PositionController extends Controller
     {
         $position = Position::where('id', $id)->first();
 
-        return view('admin.positions.view', compact('division'));
+        return view('admin.positions.view', compact('position'));
     }
 
     public function edit(Position $position)

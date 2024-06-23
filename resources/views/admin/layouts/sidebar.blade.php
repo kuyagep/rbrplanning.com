@@ -37,7 +37,7 @@
                 <a href="{{ route('grades.index') }}"><i class="ik ik-layers"></i><span>Grades</span></a>
             </div>
             <!-- Position and Personnel Management -->
-            <div class="nav-lavel">Position and Personnel Management</div>
+            <div class="nav-lavel">Personnel Management</div>
             <div class="nav-item {{ Request::is('positions*') ? 'active' : '' }}">
                 <a href="{{ route('positions.index') }}"><i class="ik ik-layers"></i><span>Positions</span></a>
             </div>
@@ -52,7 +52,7 @@
 
 
             <!-- School Year and Programs Management -->
-            <div class="nav-lavel">School Year and Programs Management</div>
+            <div class="nav-lavel">Programs Management</div>
             <div class="nav-item {{ Request::is('school-year*') ? 'active' : '' }}">
                 <a href="{{ route('school-year.index') }}"><i class="ik ik-layers"></i><span>School Year</span></a>
             </div>

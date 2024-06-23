@@ -20,17 +20,18 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            UserSeeder::class,
-            RegionSeeder::class,
-            DivisionSeeder::class,
-            DistrictSeeder::class,
-            EmploymentStatusSeeder::class,
-            PositionCategorySeeder::class,
-            PositionSeeder::class,
-            TrackSeeder::class,
-            StrandSeeder::class,
-            SpecializationSeeder::class,
-            GradeSeeder::class,
+            // UserSeeder::class,
+            // RegionSeeder::class,
+            // DivisionSeeder::class,
+            // DistrictSeeder::class,
+            // EmploymentStatusSeeder::class,
+            // PositionCategorySeeder::class,
+            // PositionSeeder::class,
+            // TrackSeeder::class,
+            // StrandSeeder::class,
+            // SpecializationSeeder::class,
+            // GradeSeeder::class,
+            FundingSourceSeeder::class,
         ]);
     }
 }

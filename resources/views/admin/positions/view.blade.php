@@ -30,17 +30,21 @@
                                     <td>{{ $position->id ?? '' }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Division</td>
+                                    <td>Position</td>
                                     <td>{{ $position->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Region</td>
-                                    <td>{{ $position->regions->name }}</td>
+                                    <td>Category</td>
+                                    <td>{{ $position->positionCategory->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Status</td>
+                                    <td>{{ $position->employmentStatus->name }}</td>
                                 </tr>
 
                             </tbody>
                         </table>
-                        <a onclick="{{ route('positions.index') }}" class="btn btn-secondary">
+                        <a href="{{ route('positions.index') }}" class="btn btn-secondary">
                             <i class="ik ik-chevron-left"></i>
                             Back
                         </a>

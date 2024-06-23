@@ -74,14 +74,14 @@ class PositionCategoryController extends Controller
     {
         // Validate incoming request data
         $request->validate([
-            'name' => 'required|unique:positions-categories,name,' . $position_category->id . '|max:255',
+            'name' => 'required|unique:position_categories,name,' . $position_category->id . '|max:255',
         ]);
 
         // Update the region with validated data
         $position_category->update($request->all());
 
         // Redirect back with success message
-        return redirect()->route('positions-categories.index')->with('success', 'Position Category updated successfully.');
+        return redirect()->route('position-categories.index')->with('success', 'Position Category updated successfully.');
     }
 
     // Remove the specified resource from storage.
@@ -102,6 +102,6 @@ class PositionCategoryController extends Controller
         }
 
         // Redirect to index if not AJAX request
-        return redirect()->route('positions-categories.index');
+        return redirect()->route('position-categories.index');
     }
 }

@@ -119,6 +119,7 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::put('/settings', [SettingsController::class, 'update'])->name('settings.update');
     Route::get('/profile-settings', [ProfileSettingsController::class, 'index'])->name('profile-settings.index');
     Route::put('/profile-settings', [ProfileSettingsController::class, 'update'])->name('profile-settings.update');
+    Route::post('/profile-settings/check-password', [ProfileSettingsController::class, 'checkCurrentPassword'])->name('profile-settings.check-current-password');
 
 });
 

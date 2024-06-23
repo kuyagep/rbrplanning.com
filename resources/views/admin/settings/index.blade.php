@@ -10,7 +10,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Reports</h5>
+                            <h5>Settings</h5>
                         </div>
                     </div>
                 </div>

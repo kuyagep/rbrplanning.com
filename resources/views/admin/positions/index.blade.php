@@ -63,6 +63,7 @@
                                             <th>ID</th>
                                             <th>Position</th>
                                             <th>Category</th>
+                                            <th>Status</th>
                                             <th class="nosort">&nbsp;</th>
                                         </tr>
                                     </thead>
@@ -84,7 +85,7 @@
                                                 <td>{{ $position->id }}</td>
                                                 <td>{{ $position->name }}</td>
                                                 <td>{{ $position->positionCategory->name }}</td>
-
+                                                <td>{{ $position->employmentStatus->name }}</td>
                                                 <td class="text-center">
                                                     <div class="table-actions ">
                                                         <a href="{{ url('/positions', $position->id) }}"><i
