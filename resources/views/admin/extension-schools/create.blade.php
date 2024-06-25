@@ -250,7 +250,7 @@
                             $('#division_id').append('<option value="">Choose...</option>');
                             $.each(data.divisions, function(key, value) {
                                 $('#division_id').append('<option value="' + value.id +
-                                    '">' + value.division_name + '</option>');
+                                    '">' + value.name + '</option>');
                             });
                         }
                     });
@@ -272,7 +272,7 @@
                             division_id: divisionId
                         },
                         success: function(data) {
-                            console.log(data);
+
                             $('#district_id').empty();
                             $('#district_id').append('<option value="">Choose...</option>');
                             $.each(data.districts, function(key, value) {
@@ -298,7 +298,7 @@
                             district_id: districtId
                         },
                         success: function(data) {
-                            console.log(data);
+
                             $('#school_id').empty();
                             $('#school_id').append('<option value="">Choose...</option>');
                             $.each(data.schools, function(key, value) {

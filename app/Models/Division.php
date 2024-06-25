@@ -11,7 +11,7 @@ class Division extends Model
 
     protected $fillable = [
         'region_id',
-        'divison_name',
+        'name',
     ];
 
     public function region()

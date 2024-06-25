@@ -98,11 +98,12 @@ class TrackController extends Controller
             $track = Track::findOrFail($id);
             $track->delete();
 
-            notyf()
-                ->position('x', 'right')
-                ->position('y', 'top')
-                ->success('Tracks deleted successfully!');
-            return redirect('tracks')->back();
+            // Return success JSON response
+            return response()->json([
+                'icon' => 'success',
+                'title' => 'Success!',
+                'message' => 'Tracks deleted successfully!',
+            ]);
         }
 
         // Redirect to index if not AJAX request

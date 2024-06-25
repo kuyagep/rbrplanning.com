@@ -6,8 +6,6 @@
                 <a href="{{ route('dashboard') }}"><i class="ik ik-home"></i><span>Dashboard</span></a>
             </div>
 
-
-
             <!-- Location Management -->
             <div class="nav-lavel">Location Management</div>
             <div class="nav-item {{ Request::is('regions*') ? 'active' : '' }}">

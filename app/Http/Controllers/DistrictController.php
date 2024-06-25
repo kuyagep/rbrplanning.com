@@ -100,7 +100,6 @@ class DistrictController extends Controller
     public function fetchDivisions(Request $request)
     {
         $divisions = Division::where('region_id', $request->region_id)->get();
-
         return response()->json(['divisions' => $divisions]);
     }
 

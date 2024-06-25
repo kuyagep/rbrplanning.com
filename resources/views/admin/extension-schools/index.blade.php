@@ -133,7 +133,6 @@
                                                 <td>{{ $ex_school->school->district->name }}</td>
                                                 <td>{{ $ex_school->school->district->division->name }}</td>
                                                 <td>{{ $ex_school->school->district->division->region->name }}</td>
-
                                                 <td class="text-center">
                                                     <div class="table-actions ">
                                                         <a href="{{ url('/extension-schools', $ex_school->id) }}"><i
