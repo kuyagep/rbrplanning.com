@@ -31,7 +31,9 @@ class DatabaseSeeder extends Seeder
             // StrandSeeder::class,
             // SpecializationSeeder::class,
             // GradeSeeder::class,
-            FundingSourceSeeder::class,
+            // FundingSourceSeeder::class,
+            // SchoolYearSeeder::class,
+            SpecialProgramsSeeder::class,
         ]);
     }
 }

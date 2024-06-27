@@ -45,10 +45,7 @@ class TrackController extends Controller
         // Create a new region using validated data
         Track::create($request->all());
 
-        notyf()
-            ->position('x', 'right')
-            ->position('y', 'top')
-            ->success('Tracks created successfully!');
+        notyf()->success('Tracks created successfully!');
         return redirect()->back();
 
     }
@@ -60,14 +57,14 @@ class TrackController extends Controller
         $track = Track::findOrFail($id);
 
         // Return view with region data
-        return view('admin.tracks.show', compact('funding_source'));
+        return view('admin.tracks.show', compact('track'));
     }
 
     // Show the form for editing the specified resource.
     public function edit(Track $track)
     {
         // Return view with region data for editing
-        return view('admin.tracks.edit', compact('funding_source'));
+        return view('admin.tracks.edit', compact('track'));
     }
 
     // Update the specified resource in storage.
@@ -85,7 +82,7 @@ class TrackController extends Controller
         notyf()
             ->position('x', 'right')
             ->position('y', 'top')
-            ->success('Funding Sources updated successfully.');
+            ->success('Track updated successfully.');
         return redirect()->back();
     }
 

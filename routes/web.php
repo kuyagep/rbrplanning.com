@@ -90,6 +90,7 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
 // School Year and Programs Management Routes
     Route::resource('school-year', SchoolYearController::class);
+    Route::post('/fetch-strands', [SpecializationController::class, 'fetchStrands'])->name('fetch.strands');
     Route::resource('specializations', SpecializationController::class);
     Route::resource('special-programs', SpecialProgramsController::class);
     Route::resource('strands', StrandController::class);

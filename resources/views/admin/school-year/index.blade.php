@@ -10,7 +10,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Region</h5>
+                            <h5>School Year</h5>
                         </div>
                     </div>
                 </div>
@@ -30,16 +30,17 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6 col-xs-12 pull-right">
-                                <a href="{{ route('regions.create') }}" class="btn btn-dark mb-2 ">
+                                <a href="{{ route('school-year.create') }}" class="btn btn-dark mb-2 ">
                                     <i class="ik ik-user-plus"></i>
-                                    Add Region</a>
+                                    Add School Year</a>
 
                             </div>
                             <div class="col-lg-6 col-xs-12">
-                                <form action="{{ route('regions.index') }}" method="GET" class="form-inline float-right">
+                                <form action="{{ route('school-year.index') }}" method="GET"
+                                    class="form-inline float-right">
                                     @csrf
                                     <input type="text" name="search" value="{{ request('search') }}" id="search"
-                                        class="form-control mb-2 mr-sm-2" placeholder="Search regions...">
+                                        class="form-control mb-2 mr-sm-2" placeholder="Search school-year...">
 
                                     <button type="submit" class="btn btn-primary mb-2">
                                         <i class="ik ik-search"></i> Search</button>
@@ -52,43 +53,26 @@
                                 <table id="dataTableajax" class="table table-striped table-bordered nowrap">
                                     <thead>
                                         <tr>
-                                            <th width="1px">
-                                                <div class="custom-control custom-checkbox ml-2">
-                                                    <input type="checkbox" class="custom-control-input" id="select-all">
-                                                    <label class="custom-control-label" for="select-all">
-                                                    </label>
-                                                </div>
-                                            </th>
+
                                             <th>ID</th>
-                                            <th>Region Name</th>
+                                            <th>School Year</th>
                                             <th class="nosort">&nbsp;</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($paginatedRegions as  $region)
+                                        @forelse ($paginated as  $school_year)
                                             <tr>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox ml-2">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="check_box_{{ $region->id }}" name="region_ids[]"
-                                                            value="{{ $region->id }}">
-                                                        <label class="custom-control-label"
-                                                            for="check_box_{{ $region->id }}">
-                                                        </label>
-                                                    </div>
-                                                </td>
 
-
-                                                <td>{{ $region->id }}</td>
-                                                <td>{{ $region->name }}</td>
+                                                <td>{{ $school_year->id }}</td>
+                                                <td>{{ $school_year->school_year }}</td>
 
                                                 <td class="text-center">
                                                     <div class="table-actions ">
-                                                        <a href="{{ url('/regions', $region->id) }}"><i
+                                                        <a href="{{ url('/school-year', $school_year->id) }}"><i
                                                                 class="ik ik-eye"></i></a>
-                                                        <a href="{{ route('regions.edit', $region->id) }}"><i
+                                                        <a href="{{ route('school-year.edit', $school_year->id) }}"><i
                                                                 class="ik ik-edit-2"></i></a>
-                                                        <a href="#" data-id="{{ $region->id }}"
+                                                        <a href="#" data-id="{{ $school_year->id }}"
                                                             id="deleteButton"><i class="ik ik-trash-2"></i></a>
 
                                                     </div>
@@ -103,7 +87,7 @@
                                     </tbody>
 
                                 </table>
-                                {{ $paginatedRegions->appends(['search' => request('search')])->links() }}
+                                {{ $paginated->appends(['search' => request('search')])->links() }}
                             </div>
                         </div>
 
@@ -129,12 +113,12 @@
             $('table').on('click', '#deleteButton', function(e) {
                 e.preventDefault();
 
-                var regionId = $(this).data('id');
-                var route = "{{ route('regions.destroy', ':id') }}".replace(':id', regionId);
+                var schoolYearID = $(this).data('id');
+                var route = "{{ route('school-year.destroy', ':id') }}".replace(':id', schoolYearID);
 
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "You want to delete this region?",
+                    text: "You want to delete this school years?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -169,8 +153,6 @@
                     }
                 });
             });
-
-
         });
     </script>
 @endsection

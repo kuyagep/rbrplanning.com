@@ -2,63 +2,91 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Strand;
+use App\Models\Track;
 use Illuminate\Http\Request;
 
 class StrandController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request->input('search');
+
+        $query = Strand::query();
+
+        if ($search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+        $paginated = $query->orderBy('created_at', 'desc')->paginate(15);
+
+        return view('admin.strands.index', compact('paginated', 'search'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $tracks = Track::select('id', 'name')->get();
+        return view('admin.strands.create', compact('tracks'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        try {
+            $request->validate([
+                'name' => 'required|unique:strands,name|max:255',
+                'track_id' => 'required',
+            ]);
+
+            $strand = new Strand();
+            $strand->name = $request->name;
+            $strand->track_id = $request->track_id;
+            $strand->save();
+
+            notyf()->success('Strand created successfully!');
+
+            return redirect('strands');
+        } catch (\Exception $e) {
+
+            notyf()->error($e->getMessage());
+
+            return redirect()->back();
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Request $request, $id)
     {
-        //
+        $strand = Strand::where('id', $id)->first();
+
+        return view('admin.strands.view', compact('strand'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Strand $strand)
     {
-        //
+        $tracks = Track::select('id', 'name')->get();
+        return view('admin.strands.edit', compact('strand', 'tracks'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Strand $strand)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:strands,name,' . $strand->id . '|max:255',
+        ]);
+
+        $strand->update($request->all());
+
+        notyf()->success('Strand updated successfully!');
+        return redirect()->route('strands.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            $strand = Strand::findOrFail($id);
+
+            if (!is_null($strand)) {
+                $strand->delete();
+            }
+            return response()->json(['icon' => 'success', 'title' => 'Success!', 'message' => 'Strand deleted successfully!']);
+        }
+        return redirect()->route('strands.index');
     }
 }

@@ -10,7 +10,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Region</h5>
+                            <h5>Strand</h5>
                         </div>
                     </div>
                 </div>
@@ -30,16 +30,16 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6 col-xs-12 pull-right">
-                                <a href="{{ route('regions.create') }}" class="btn btn-dark mb-2 ">
+                                <a href="{{ route('strands.create') }}" class="btn btn-dark mb-2 ">
                                     <i class="ik ik-user-plus"></i>
-                                    Add Region</a>
+                                    Add Strand</a>
 
                             </div>
                             <div class="col-lg-6 col-xs-12">
-                                <form action="{{ route('regions.index') }}" method="GET" class="form-inline float-right">
+                                <form action="{{ route('strands.index') }}" method="GET" class="form-inline float-right">
                                     @csrf
                                     <input type="text" name="search" value="{{ request('search') }}" id="search"
-                                        class="form-control mb-2 mr-sm-2" placeholder="Search regions...">
+                                        class="form-control mb-2 mr-sm-2" placeholder="Search here...">
 
                                     <button type="submit" class="btn btn-primary mb-2">
                                         <i class="ik ik-search"></i> Search</button>
@@ -52,44 +52,29 @@
                                 <table id="dataTableajax" class="table table-striped table-bordered nowrap">
                                     <thead>
                                         <tr>
-                                            <th width="1px">
-                                                <div class="custom-control custom-checkbox ml-2">
-                                                    <input type="checkbox" class="custom-control-input" id="select-all">
-                                                    <label class="custom-control-label" for="select-all">
-                                                    </label>
-                                                </div>
-                                            </th>
+
                                             <th>ID</th>
-                                            <th>Region Name</th>
+                                            <th>Strand</th>
+                                            <th>Track</th>
                                             <th class="nosort">&nbsp;</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($paginatedRegions as  $region)
+                                        @forelse ($paginated as  $strand)
                                             <tr>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox ml-2">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="check_box_{{ $region->id }}" name="region_ids[]"
-                                                            value="{{ $region->id }}">
-                                                        <label class="custom-control-label"
-                                                            for="check_box_{{ $region->id }}">
-                                                        </label>
-                                                    </div>
-                                                </td>
 
-
-                                                <td>{{ $region->id }}</td>
-                                                <td>{{ $region->name }}</td>
+                                                <td>{{ $strand->id }}</td>
+                                                <td>{{ $strand->name }}</td>
+                                                <td>{{ $strand->track->name }}</td>
 
                                                 <td class="text-center">
                                                     <div class="table-actions ">
-                                                        <a href="{{ url('/regions', $region->id) }}"><i
+                                                        <a href="{{ url('/divisions', $strand->id) }}"><i
                                                                 class="ik ik-eye"></i></a>
-                                                        <a href="{{ route('regions.edit', $region->id) }}"><i
+                                                        <a href="{{ route('strands.edit', $strand->id) }}"><i
                                                                 class="ik ik-edit-2"></i></a>
-                                                        <a href="#" data-id="{{ $region->id }}"
-                                                            id="deleteButton"><i class="ik ik-trash-2"></i></a>
+                                                        <a href="#" data-id="{{ $strand->id }}" id="deleteButton"><i
+                                                                class="ik ik-trash-2"></i></a>
 
                                                     </div>
                                                 </td>
@@ -103,7 +88,7 @@
                                     </tbody>
 
                                 </table>
-                                {{ $paginatedRegions->appends(['search' => request('search')])->links() }}
+                                {{ $paginated->appends(['search' => request('search')])->links() }}
                             </div>
                         </div>
 
@@ -129,12 +114,12 @@
             $('table').on('click', '#deleteButton', function(e) {
                 e.preventDefault();
 
-                var regionId = $(this).data('id');
-                var route = "{{ route('regions.destroy', ':id') }}".replace(':id', regionId);
+                var strandID = $(this).data('id');
+                var route = "{{ route('strands.destroy', ':id') }}".replace(':id', strandID);
 
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "You want to delete this region?",
+                    text: "You want to delete this strand?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -147,7 +132,6 @@
                             url: route,
                             dataType: 'json',
                             success: function(response) {
-                                // location.reload();
                                 $('.table').load(location.href + ' .table');
 
                                 Swal.fire({
@@ -169,8 +153,6 @@
                     }
                 });
             });
-
-
         });
     </script>
 @endsection

@@ -9,7 +9,10 @@ class Specialization extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'strand_id'];
+    protected $fillable = [
+        'name',
+        'strand_id',
+    ];
 
     public function strand()
     {

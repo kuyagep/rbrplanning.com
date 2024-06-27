@@ -11,7 +11,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Edit Region</h5>
+                            <h5>Edit School Year</h5>
                         </div>
                     </div>
                 </div>
@@ -31,30 +31,31 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>Edit Region</h3>
+                        <h3>Edit School Year</h3>
                     </div>
                     <div class="card-body">
-                        <form method="post" class="needs-validation" action="{{ route('regions.update', $region->id) }}"
-                            novalidate enctype="multipart/form-data">
+                        <form method="post" class="needs-validation"
+                            action="{{ route('school-year.update', $school_year->id) }}" novalidate
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
-                            <input type="hidden" name="id" id="id" value="{{ $region->id }}">
+                            <input type="hidden" name="id" id="id" value="{{ $school_year->id }}">
 
                             <div class="form-group row">
-                                <label for="name" class="col-sm-3 col-form-label">Region Name</label>
+                                <label for="school_year" class="col-sm-3 col-form-label">School Year</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        value="{{ old('name', $region->name) }}" required>
+                                    <input type="text" class="form-control" id="school_year" name="school_year"
+                                        value="{{ old('school_year', $school_year->school_year) }}" required>
                                     <div class="invalid-feedback">
-                                        Please provide a region name.
+                                        Please provide a school year.
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-sm-12 text-right">
-                                    <a href="{{ route('regions.index') }}" class="btn btn-secondary"><i
+                                    <a href="{{ route('school-year.index') }}" class="btn btn-secondary"><i
                                             class="ik ik-chevron-left"></i> Back</a>
                                     <button type="submit" class="btn btn-primary"><i class="ik ik-save"></i>
                                         Update</button>

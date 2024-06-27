@@ -28,7 +28,6 @@
                         Schools</span></a>
             </div>
 
-
             <!-- Grades Management -->
             <div class="nav-lavel">Grades Management</div>
             <div class="nav-item {{ Request::is('grades*') ? 'active' : '' }}">
@@ -54,22 +53,21 @@
             <div class="nav-item {{ Request::is('school-year*') ? 'active' : '' }}">
                 <a href="{{ route('school-year.index') }}"><i class="ik ik-layers"></i><span>School Year</span></a>
             </div>
-            <div class="nav-item {{ Request::is('specializations*') ? 'active' : '' }}">
-                <a href="{{ route('specializations.index') }}"><i
-                        class="ik ik-layers"></i><span>Specializations</span></a>
-            </div>
+
             <div class="nav-item {{ Request::is('special-programs*') ? 'active' : '' }}">
                 <a href="{{ route('special-programs.index') }}"><i class="ik ik-layers"></i><span>Special
                         Programs</span></a>
             </div>
-            <div class="nav-item {{ Request::is('strands*') ? 'active' : '' }}">
-                <a href="{{ route('strands.index') }}"><i class="ik ik-layers"></i><span>Strands</span></a>
-            </div>
             <div class="nav-item {{ Request::is('tracks*') ? 'active' : '' }}">
                 <a href="{{ route('tracks.index') }}"><i class="ik ik-layers"></i><span>Tracks</span></a>
             </div>
-
-
+            <div class="nav-item {{ Request::is('strands*') ? 'active' : '' }}">
+                <a href="{{ route('strands.index') }}"><i class="ik ik-layers"></i><span>Strands</span></a>
+            </div>
+            <div class="nav-item {{ Request::is('specializations*') ? 'active' : '' }}">
+                <a href="{{ route('specializations.index') }}"><i
+                        class="ik ik-layers"></i><span>Specializations</span></a>
+            </div>
 
             <!-- Funding Management -->
             <div class="nav-lavel">Funding Management</div>
@@ -110,5 +108,11 @@
                         Settings</span></a>
             </div>
         </nav>
+    </div>
+    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+    </div>
+    <div class="ps__rail-y" style="top: 0px; height: 898px; right: 0px;">
+        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 562px;"></div>
     </div>
 </div>
