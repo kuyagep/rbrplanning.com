@@ -49,7 +49,7 @@
 
                             </div>
                             <div class="col-lg-6 col-xs-12">
-                                <form action="{{ route('all.user') }}" method="GET" class="form-inline float-right">
+                                <form action="{{ route('users.create') }}" method="GET" class="form-inline float-right">
                                     @csrf
                                     <input type="text" name="search" value="{{ request('search') }}" id="search"
                                         class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
@@ -80,6 +80,7 @@
                                             <th class="nosort">Avatar</th>
                                             <th>Name</th>
                                             <th>Email</th>
+                                            <th class="text-center">School</th>
                                             <th class="text-center">Role</th>
                                             <th class="text-center">Status</th>
                                             <th class="nosort">&nbsp;</th>
@@ -104,6 +105,7 @@
                                                 </td>
                                                 <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
                                                 <td>{{ $user->email }}</td>
+                                                <td>{{ $user->school->name ?? 'N/A' }}</td>
                                                 <td class="text-center">
                                                     @if ($user->role == 'super_admin')
                                                         <span
@@ -179,9 +181,8 @@
             $('table').on('click', '#deleteButton', function(e) {
                 e.preventDefault();
 
-                var id = $(this).data('id');
-                var route = "{{ route('destroy.user', ':id') }}";
-                route = route.replace(':id', id);
+                var userID = $(this).data('id');
+                var route = "{{ route('users.destroy', ':id') }}".replace(':id', userID);
 
                 Swal.fire({
                     title: 'Are you sure?',
@@ -197,9 +198,6 @@
                         $.ajax({
                             type: "POST",
                             url: route,
-                            data: {
-                                id: id
-                            },
                             dataType: 'json',
                             success: function(response) {
                                 console.log(response);

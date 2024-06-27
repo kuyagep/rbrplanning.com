@@ -99,18 +99,11 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::resource('funding-sources', FundingSourceController::class);
 
     // User Management Routes
-    Route::resource('/users', UserController::class);
-    Route::get('/users', [UserController::class, 'index'])->name('all.user');
-    Route::get('/users/create', [UserController::class, 'create'])->name('create.user');
-    Route::post('/users', [UserController::class, 'store'])->name('store.user');
-    Route::get('/users/{id}', [UserController::class, 'show'])->name('show.user');
-    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('edit.user');
-    Route::put('/users/{id}', [UserController::class, 'update'])->name('update.user');
-    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('destroy.user');
     Route::delete('/users/delete', [UserController::class, 'deleteMultiple'])->name('delete.multiple.users');
     Route::post('/users/reset/password', [UserController::class, 'resetPassword'])->name('reset.password.user');
     Route::get('/export/users/excel', [UserController::class, 'exportExcelUser'])->name('export.excel.user');
     Route::get('/export/users/pdf', [UserController::class, 'exportPdfUser'])->name('export.pdf.user');
+    Route::resource('users', UserController::class);
 
 // Additional Routes
     Route::resource('reports', ReportController::class);

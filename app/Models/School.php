@@ -52,4 +52,9 @@ class School extends Model
         return $this->hasMany(InventoryOfClassroom::class);
     }
 
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
 }

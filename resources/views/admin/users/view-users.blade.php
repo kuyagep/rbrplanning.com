@@ -37,10 +37,14 @@
                                     <td>Email</td>
                                     <td>{{ $user->email }}</td>
                                 </tr>
+                                <tr>
+                                    <td>School</td>
+                                    <td>{{ $user->school->name ?? 'N/A' }}</td>
+                                </tr>
                             </tbody>
                         </table>
-                        <a onclick="history.back()" class="btn btn-secondary"><i class="ik ik-chevron-left"></i> Back</a>
-
+                        <a href="{{ route('users.index') }}" class="btn btn-secondary"><i class="ik ik-chevron-left"></i>
+                            Back</a>
                     </div>
                 </div>
             </div>

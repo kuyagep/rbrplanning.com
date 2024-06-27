@@ -56,13 +56,15 @@ class UserController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/|max:255',
         ]);
-
+        // dd($request->all());
         $user = new User;
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
+        $user->school_id = $request->school_id ?? null;
         $user->password = Hash::make($temp_password);
         $user->save();
+        notyf()->success('User created successfully.');
 
         return redirect('users')->with([
             'status' => 'Success',
@@ -71,7 +73,7 @@ class UserController extends Controller
             'temp_password' => $temp_password],
 
         );
-        // return redirect('all.user')->route('all.user', compact(['temp_password', 'user']));
+
     }
 
     /**
@@ -90,10 +92,10 @@ class UserController extends Controller
     public function edit(Request $request, $id)
     {
         $user = User::where('id', $id)->first();
-        $regions = Region::select('id', 'name')->where('id', $user->school->district->division->region->id)->get();
-        $divisions = Division::select('id', 'name')->where('id', $user->school->district->division->id)->get();
-        $districts = District::select('id', 'name')->where('id', $user->school->district->id)->get();
-        $schools = School::select('id', 'name')->where('id', $user->school->id)->get();
+        $regions = Region::select('id', 'name')->get();
+        $divisions = Division::select('id', 'name')->get();
+        $districts = District::select('id', 'name')->get();
+        $schools = School::select('id', 'name')->get();
         return view('admin.users.edit-users', compact('user', 'regions', 'divisions', 'districts', 'schools'));
     }
 
@@ -112,9 +114,10 @@ class UserController extends Controller
         $data->first_name = $request->first_name;
         $data->last_name = $request->last_name;
         $data->email = $request->email;
+        $data->school_id = $request->school_id ?? null;
         $data->save();
-
-        return redirect()->route('all.user');
+        notyf()->success('User updated successfully.');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -123,14 +126,11 @@ class UserController extends Controller
     public function destroy(Request $request, $id)
     {
         if ($request->ajax()) {
-            $user = User::findOrFail($id);
-
-            if (!is_null($user)) {
-                $user->delete();
-            }
+            $data = User::findOrFail($request->id);
+            $data->delete();
             return response()->json(['icon' => 'success', 'title' => 'Success!', 'message' => 'User deleted successfully!']);
         }
-        return redirect()->route('all.user');
+        return redirect()->route('users.index');
     }
 
     public function search(Request $request)
@@ -149,7 +149,6 @@ class UserController extends Controller
 
         if (!empty($userIds)) {
             User::whereIn('id', $userIds)->delete();
-            // return response()->json(['message' => 'Selected users have been deleted.']);
             return response()->json(['icon' => 'success', 'title' => 'Success!', 'message' => 'Selected users have been deleted!']);
         }
 
@@ -165,7 +164,7 @@ class UserController extends Controller
         $user = User::findOrFail($request->id);
         $user->password = Hash::make($temp_password);
         $user->save();
-
+        notyf()->info('User password resetted successfully.');
         return redirect()->back()->with([
             'status' => 'Info',
             'message' => 'User password resetted successfully!',

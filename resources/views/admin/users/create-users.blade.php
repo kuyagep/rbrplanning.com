@@ -22,14 +22,14 @@
                         <h3>Add User</h3>
                     </div>
                     <div class="card-body">
-                        <form method="post" class="needs-validation" action="{{ route('store.user') }}" novalidate=""
+                        <form method="post" class="needs-validation" action="{{ route('users.store') }}" novalidate=""
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <label for="region_id" class="col-sm-3 col-form-label">Region</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" id="region_id" name="region_id">
-                                        <option>Choose...</option>
+                                        <option value="">Choose...</option>
                                         @foreach ($regions as $region)
                                             <option value="{{ $region->id }}">{{ $region->name }}
                                             </option>
@@ -41,7 +41,7 @@
                                 <label for="division_id" class="col-sm-3 col-form-label">Division</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" id="division_id" name="division_id">
-                                        <option>Choose...</option>
+                                        <option value="">Choose...</option>
 
                                     </select>
                                     @error('division_id')
@@ -55,7 +55,7 @@
                                 <label for="district_id" class="col-sm-3 col-form-label">District</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" id="district_id" name="district_id">
-                                        <option>Choose...</option>
+                                        <option value="">Choose...</option>
 
                                     </select>
                                     @error('division_id')
@@ -69,7 +69,7 @@
                                 <label for="school_id" class="col-sm-3 col-form-label">School</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" id="school_id" name="school_id">
-                                        <option>Choose...</option>
+                                        <option value="">Choose...</option>
 
                                     </select>
                                     @error('school_id')
@@ -80,14 +80,14 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="first_name" class="col-sm-3 col-form-label">FirstName</label>
+                                <label for="first_name" class="col-sm-3 col-form-label">First Name</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="first_name" name="first_name"
                                         value="{{ old('first_name') }}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="last_name" class="col-sm-3 col-form-label">LastName</label>
+                                <label for="last_name" class="col-sm-3 col-form-label">Last Name</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="last_name" name="last_name"
                                         value="{{ old('last_name') }}">
@@ -102,7 +102,7 @@
                             </div>
 
                             <button type="submit" id="btn-save" class="btn btn-primary mr-2">Create User</button>
-                            <a onclick="history.back()" class="btn btn-light">Back</a>
+                            <a onclick="{{ route('users.index') }}" class="btn btn-light">Back</a>
                         </form>
                     </div>
                 </div>

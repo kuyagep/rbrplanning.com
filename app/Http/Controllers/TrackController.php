@@ -79,10 +79,7 @@ class TrackController extends Controller
         $track->update($request->all());
 
         // Redirect back with success message
-        notyf()
-            ->position('x', 'right')
-            ->position('y', 'top')
-            ->success('Track updated successfully.');
+        notyf()->success('Track updated successfully.');
         return redirect()->back();
     }
 

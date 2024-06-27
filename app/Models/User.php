@@ -26,12 +26,18 @@ class User extends Authenticatable
         'first_name',
         'last_name',
         'ext_name',
-        'middle_name',
+        'middle_initial',
         'date_of_birth',
         'email',
-        'password',
-        'isAdmin',
+        'school_id',
+        'email_verified_at',
+        'role',
+        'profile_photo_path',
+        'current_team_id',
+        'status',
     ];
+
+    // protected $guarded =[];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -66,4 +72,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
+
 }

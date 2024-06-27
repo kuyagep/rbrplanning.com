@@ -51,10 +51,13 @@
                         <div class="row">
 
                             <div class="col-12">
-                                <form method="post" class="needs-validation" action="{{ route('update.user', $user->id) }}"
-                                    novalidate="" enctype="multipart/form-data">
+                                <form method="post" class="needs-validation"
+                                    action="{{ route('users.update', $user->id) }}" novalidate=""
+                                    enctype="multipart/form-data">
 
                                     @csrf
+
+                                    @method('PUT')
                                     <input type="hidden" name="id" id="id" value="{{ $user->id }}">
                                     <div class="form-group row">
                                         <label for="region_id" class="col-sm-3 col-form-label">Region</label>
@@ -62,7 +65,9 @@
                                             <select class="form-control" id="region_id" name="region_id">
                                                 <option>Choose...</option>
                                                 @foreach ($regions as $region)
-                                                    <option value="{{ $region->id }}">{{ $region->name }}
+                                                    <option value="{{ $region->id }}"
+                                                        {{ $region->id == $user->school->district->division->region->id ? 'selected' : '' }}>
+                                                        {{ $region->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -74,10 +79,11 @@
                                             <select class="form-control" id="division_id" name="division_id">
                                                 <option>Choose...</option>
                                                 @foreach ($divisions as $division)
-                                                    <option value="{{ $division->id }}">{{ $division->name }}
+                                                    <option value="{{ $division->id }}"
+                                                        {{ $division->id == $user->school->district->division->id ? 'selected' : '' }}>
+                                                        {{ $division->name }}
                                                     </option>
                                                 @endforeach
-
                                             </select>
                                             @error('division_id')
                                                 <span class="invalid-feedback" role="alert">
@@ -92,11 +98,13 @@
                                             <select class="form-control" id="district_id" name="district_id">
                                                 <option>Choose...</option>
                                                 @foreach ($districts as $district)
-                                                    <option value="{{ $district->id }}">{{ $district->name }}
+                                                    <option value="{{ $district->id }}"
+                                                        {{ $district->id == $user->school->district->id ? 'selected' : '' }}>
+                                                        {{ $district->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @error('district_id')
+                                            @error('division_id')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -109,7 +117,9 @@
                                             <select class="form-control" id="school_id" name="school_id">
                                                 <option>Choose...</option>
                                                 @foreach ($schools as $school)
-                                                    <option value="{{ $school->id }}">{{ $school->name }}
+                                                    <option value="{{ $school->id }}"
+                                                        {{ $school->id == $user->school->id ? 'selected' : '' }}>
+                                                        {{ $school->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -141,7 +151,7 @@
                                                 value="{{ old('email', $user->email) }}">
                                         </div>
                                     </div>
-                                    <a href="{{ route('all.user') }}" class="btn btn-secondary float-right"><i
+                                    <a href="{{ route('users.index') }}" class="btn btn-secondary float-right"><i
                                             class="ik ik-chevron-left"></i>Back</a>
                                     <button type="submit" class="btn btn-primary mr-2 float-right"><i
                                             class="ik ik-save"></i>

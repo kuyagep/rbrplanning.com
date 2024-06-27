@@ -45,6 +45,7 @@
                     <td>{{ $user->first_name }}</td>
                     <td>{{ $user->last_name }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>{{ $user->school->name ?? 'N/A' }}</td>
                     <td>{{ date('F j, Y', strtotime($user->created_at)) }}</td>
                 </tr>
             @endforeach
