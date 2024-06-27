@@ -42,9 +42,7 @@
                                 <div class="col-sm-9">
                                     <select class="form-control" id="division_id" name="division_id">
                                         <option>Choose...</option>
-                                        @foreach ($divisions as $division)
-                                            <option value="{{ $division->id }}">{{ $division->name }}</option>
-                                        @endforeach
+
                                     </select>
                                     @error('division_id')
                                         <span class="invalid-feedback" role="alert">
@@ -58,9 +56,7 @@
                                 <div class="col-sm-9">
                                     <select class="form-control" id="district_id" name="district_id">
                                         <option>Choose...</option>
-                                        @foreach ($districts as $district)
-                                            <option value="{{ $district->id }}">{{ $district->name }}</option>
-                                        @endforeach
+
                                     </select>
                                     @error('division_id')
                                         <span class="invalid-feedback" role="alert">
@@ -74,9 +70,7 @@
                                 <div class="col-sm-9">
                                     <select class="form-control" id="school_id" name="school_id">
                                         <option>Choose...</option>
-                                        @foreach ($schools as $school)
-                                            <option value="{{ $school->id }}">{{ $school->name }}</option>
-                                        @endforeach
+
                                     </select>
                                     @error('school_id')
                                         <span class="invalid-feedback" role="alert">

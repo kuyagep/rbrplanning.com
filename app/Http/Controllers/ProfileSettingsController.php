@@ -11,10 +11,10 @@ class ProfileSettingsController extends Controller
 {
     public function index(Request $request)
     {
-
+        $user = User::find(Auth::user()->id);
         $title = 'Profile Settings';
         $data = 'Profile Settings';
-        return view('admin.profile-settings.index', compact('title', 'data'));
+        return view('admin.profile-settings.index', compact('title', 'data', 'user'));
     }
 
     public function update(Request $request)
@@ -25,14 +25,11 @@ class ProfileSettingsController extends Controller
             'new_password' => 'required|min:8|confirmed',
         ]);
 
-        $user = Auth::user();
+        $user = User::findOrFail(Auth::user()->id);
 
         // Check if the current password matches
         if (!Hash::check($request->current_password, $user->password)) {
-            notyf()
-                ->position('x', 'right')
-                ->position('y', 'top')
-                ->error('Current password is incorrect');
+            notyf()->error('Current password is incorrect');
             return redirect()->back();
         }
 
@@ -40,10 +37,7 @@ class ProfileSettingsController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        notyf()
-            ->position('x', 'right')
-            ->position('y', 'top')
-            ->success('Password updated successfully');
+        notyf()->success('Password updated successfully');
         return redirect()->back();
     }
 

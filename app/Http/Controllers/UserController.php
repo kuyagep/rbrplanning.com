@@ -42,10 +42,7 @@ class UserController extends Controller
     public function create()
     {
         $regions = Region::select('id', 'name')->get();
-        $divisions = Division::select('id', 'name')->get();
-        $districts = District::select('id', 'name')->get();
-        $schools = School::select('id', 'name')->get();
-        return view('admin.users.create-users', compact('regions', 'divisions', 'districts', 'schools'));
+        return view('admin.users.create-users', compact('regions'));
     }
 
     /**
@@ -90,11 +87,14 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request)
+    public function edit(Request $request, $id)
     {
-        $user = User::where('id', $request->id)->first();
-
-        return view('admin.users.edit-users', compact('user'));
+        $user = User::where('id', $id)->first();
+        $regions = Region::select('id', 'name')->where('id', $user->school->district->division->region->id)->get();
+        $divisions = Division::select('id', 'name')->where('id', $user->school->district->division->id)->get();
+        $districts = District::select('id', 'name')->where('id', $user->school->district->id)->get();
+        $schools = School::select('id', 'name')->where('id', $user->school->id)->get();
+        return view('admin.users.edit-users', compact('user', 'regions', 'divisions', 'districts', 'schools'));
     }
 
     /**

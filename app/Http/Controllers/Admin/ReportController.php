@@ -11,7 +11,7 @@ class ReportController extends Controller
     {
 
         $title = 'Reports';
-        $data = 'Generate reports here!';
+        $data = 'Generate reports coming soon!';
         return view('admin.reports.index', compact('title', 'data'));
     }
 }
