@@ -40,4 +40,9 @@ class Personnel extends Model
     {
         return $this->belongsTo(EmploymentStatus::class);
     }
+
+    public function fundingSource()
+    {
+        return $this->belongsTo(FundingSource::class);
+    }
 }

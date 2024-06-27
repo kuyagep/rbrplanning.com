@@ -123,4 +123,8 @@ Route::prefix('user')->middleware(['auth:sanctum', 'role:user'])->group(function
     Route::get('/personnels', [PersonnelController::class, 'personnelIndex'])->name('user.personnels.index');
     Route::get('/personnels/create', [PersonnelController::class, 'personnelCreate'])->name('user.personnels.create');
     Route::post('/personnels/store', [PersonnelController::class, 'personnelStore'])->name('user.personnels.store');
+    Route::get('/personnels/{id}', [PersonnelController::class, 'personnelShow'])->name('user.personnels.show');
+    Route::get('/personnels/{id}/edit', [PersonnelController::class, 'personnelEdit'])->name('user.personnels.edit');
+    Route::put('/personnels/{id}/update', [PersonnelController::class, 'personnelUpdate'])->name('user.personnels.update');
+    Route::delete('/personnels/{id}/delete', [PersonnelController::class, 'personnelDestroy'])->name('user.personnels.destroy');
 });

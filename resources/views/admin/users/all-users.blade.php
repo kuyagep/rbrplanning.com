@@ -40,16 +40,15 @@
 
                         <div class="row">
                             <div class="col-lg-6 col-xs-12 pull-right">
-                                <a href="{{ route('create.user') }}" class="btn btn-dark mb-2 ">
+                                <a href="{{ route('users.create') }}" class="btn btn-dark mb-2 ">
                                     <i class="ik ik-user-plus"></i>
                                     Add User</a>
                                 <a href="#" class="btn btn-dark mb-2" id="deleteSelected">
                                     <i class="ik ik-trash "></i>
                                     Delete Selected</a>
-
                             </div>
                             <div class="col-lg-6 col-xs-12">
-                                <form action="{{ route('users.create') }}" method="GET" class="form-inline float-right">
+                                <form action="{{ route('users.index') }}" method="GET" class="form-inline float-right">
                                     @csrf
                                     <input type="text" name="search" value="{{ request('search') }}" id="search"
                                         class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
@@ -130,7 +129,7 @@
                                                     <div class="table-actions ">
                                                         <a href="{{ url('/users', $user->id) }}"><i
                                                                 class="ik ik-eye"></i></a>
-                                                        <a href="{{ route('edit.user', $user->id) }}"><i
+                                                        <a href="{{ route('users.edit', $user->id) }}"><i
                                                                 class="ik ik-edit-2"></i></a>
                                                         <a href="#" data-id="{{ $user->id }}"
                                                             id="deleteButton"><i class="ik ik-trash-2"></i></a>
@@ -196,7 +195,7 @@
                     if (result.isConfirmed) {
 
                         $.ajax({
-                            type: "POST",
+                            type: "DELETE",
                             url: route,
                             dataType: 'json',
                             success: function(response) {

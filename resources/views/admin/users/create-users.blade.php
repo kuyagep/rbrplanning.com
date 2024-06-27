@@ -84,6 +84,11 @@
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="first_name" name="first_name"
                                         value="{{ old('first_name') }}">
+                                    @error('first_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -91,6 +96,11 @@
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="last_name" name="last_name"
                                         value="{{ old('last_name') }}">
+                                    @error('last_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -98,6 +108,11 @@
                                 <div class="col-sm-9">
                                     <input type="email" class="form-control" id="email" name="email"
                                         value="{{ old('email') }}">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 

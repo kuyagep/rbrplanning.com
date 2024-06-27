@@ -97,49 +97,32 @@
                                 <table id="dataTableajax" class="table table-striped table-bordered nowrap">
                                     <thead>
                                         <tr>
-                                            <th width="1px">
-                                                <div class="custom-control custom-checkbox ml-2">
-                                                    <input type="checkbox" class="custom-control-input" id="select-all">
-                                                    <label class="custom-control-label" for="select-all">
-                                                    </label>
-                                                </div>
-                                            </th>
-                                            <th>ID</th>
-                                            <th>Ext. Shool</th>
-                                            <th>Shool</th>
+                                            <th>Item Number</th>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>School</th>
                                             <th>District</th>
-                                            <th>Division</th>
-                                            <th>Region</th>
-                                            <th class="nosort">&nbsp;</th>
+                                            <th>Employment Status</th>
+                                            <th>Remarks</th>
+                                            <th class="nosort">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse ($paginated as  $personnel)
                                             <tr>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox ml-2">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="check_box_{{ $personnel->id }}" name="region_ids[]"
-                                                            value="{{ $personnel->id }}">
-                                                        <label class="custom-control-label"
-                                                            for="check_box_{{ $personnel->id }}">
-                                                        </label>
-                                                    </div>
-                                                </td>
-
-
-                                                <td>{{ $personnel->id }}</td>
-                                                <td>{{ $personnel->school_name }}</td>
+                                                <td>{{ $personnel->item_number }}</td>
+                                                <td>{{ $personnel->first_name }} {{ $personnel->middle_name }}
+                                                    {{ $personnel->last_name }}</td>
+                                                <td>{{ $personnel->position->name }}</td>
                                                 <td>{{ $personnel->school->name }}</td>
                                                 <td>{{ $personnel->school->district->name }}</td>
-                                                <td>{{ $personnel->school->district->division->name }}</td>
-                                                <td>{{ $personnel->school->district->division->region->name }}</td>
-
+                                                <td>{{ $personnel->employmentStatus->name }}</td>
+                                                <td>{{ $personnel->remarks }}</td>
                                                 <td class="text-center">
                                                     <div class="table-actions ">
-                                                        <a href="{{ url('/extension-schools', $personnel->id) }}"><i
+                                                        <a href="{{ url('/user/personnels', $personnel->id) }}"><i
                                                                 class="ik ik-eye"></i></a>
-                                                        <a href="{{ route('extension-schools.edit', $personnel->id) }}"><i
+                                                        <a href="{{ route('user.personnels.edit', $personnel->id) }}"><i
                                                                 class="ik ik-edit-2"></i></a>
                                                         <a href="#" data-id="{{ $personnel->id }}"
                                                             id="deleteButton"><i class="ik ik-trash-2"></i></a>
@@ -182,12 +165,12 @@
             $('table').on('click', '#deleteButton', function(e) {
                 e.preventDefault();
 
-                var schoolId = $(this).data('id');
-                var route = "{{ route('extension-schools.destroy', ':id') }}".replace(':id', schoolId);
+                var personnelID = $(this).data('id');
+                var route = "{{ route('user.personnels.destroy', ':id') }}".replace(':id', personnelID);
 
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "You want to delete this school?",
+                    text: "You want to delete this personnel?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -301,7 +284,6 @@
                     $('#school_id').append('<option value="">Select School</option>');
                 }
             });
-
         });
     </script>
 @endsection

@@ -35,7 +35,7 @@
                 @endif
                 @if ($errors->any())
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <h6 class="alert-heading mb-0"><strong>Validation Errors:</strong></h6>
+
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="card-body">
                         <form id="form" method="post" class="needs-validation"
-                            action="{{ route('user.personnels.create') }}" novalidate enctype="multipart/form-data">
+                            action="{{ route('user.personnels.store') }}" novalidate enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <label for="employee_number" class="col-sm-3 col-form-label">Employee Number</label>
@@ -164,11 +164,16 @@
                                 <label for="employment_status_id" class="col-sm-3 col-form-label">Employment
                                     Status</label>
                                 <div class="col-sm-9">
-                                    <input type="text"
-                                        class="form-control @error('employment_status_id') is-invalid @enderror"
-                                        id="employment_status_id" name="employment_status_id"
-                                        value="{{ old('employment_status_id') }}" required>
-                                    @error('employment_status_id')
+                                    <select class="form-control @error('employment_status_id') is-invalid @enderror"
+                                        id="employment_status_id" name="employment_status_id">
+                                        <option value="">Choose...</option>
+                                        @foreach ($employment_statuses as $employment_status)
+                                            <option value="{{ $employment_status->id }}"
+                                                {{ old('employment_status_id') == $employment_status->id ? 'selected' : '' }}>
+                                                {{ $employment_status->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('school_id')
                                         <span class="invalid-feedback"
                                             role="alert"><strong>{{ $message }}</strong></span>
                                     @enderror
@@ -179,6 +184,7 @@
                                 <div class="col-sm-9">
                                     <select class="form-control @error('position_id') is-invalid @enderror"
                                         id="position_id" name="position_id">
+                                        <option value="">Choose...</option>
                                         @foreach ($positions as $position)
                                             <option value="{{ $position->id }}"
                                                 {{ old('position_id') == $position->id ? 'selected' : '' }}>
@@ -196,6 +202,7 @@
                                 <div class="col-sm-9">
                                     <select class="form-control @error('school_id') is-invalid @enderror" id="school_id"
                                         name="school_id">
+                                        <option value="">Choose...</option>
                                         @foreach ($schools as $school)
                                             <option value="{{ $school->id }}"
                                                 {{ old('school_id') == $school->id ? 'selected' : '' }}>
@@ -217,7 +224,7 @@
                                         @foreach ($funding_sources as $funding_source)
                                             <option value="{{ $funding_source->id }}"
                                                 {{ old('funding_source_id') == $funding_source->id ? 'selected' : '' }}>
-                                                {{ $funding_source->name }}</option>
+                                                {{ $funding_source->fund_source }}</option>
                                         @endforeach
                                     </select>
                                     @error('funding_source_id')

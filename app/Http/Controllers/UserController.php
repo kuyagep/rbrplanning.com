@@ -50,7 +50,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         $temp_password = Str::random(6);
+
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -64,6 +66,7 @@ class UserController extends Controller
         $user->school_id = $request->school_id ?? null;
         $user->password = Hash::make($temp_password);
         $user->save();
+
         notyf()->success('User created successfully.');
 
         return redirect('users')->with([
@@ -71,7 +74,6 @@ class UserController extends Controller
             'message' => 'User created successfully!',
             'email' => $user->email,
             'temp_password' => $temp_password],
-
         );
 
     }
@@ -89,9 +91,9 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, $id)
+    public function edit(User $user)
     {
-        $user = User::where('id', $id)->first();
+        $user = User::where('id', $user)->first();
         $regions = Region::select('id', 'name')->get();
         $divisions = Division::select('id', 'name')->get();
         $districts = District::select('id', 'name')->get();
@@ -102,7 +104,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'first_name' => 'required|string|max:255',
@@ -110,7 +112,7 @@ class UserController extends Controller
             'email' => 'required|email|max:255',
         ]);
 
-        $data = User::findOrFail($id);
+        $data = User::findOrFail($user);
         $data->first_name = $request->first_name;
         $data->last_name = $request->last_name;
         $data->email = $request->email;
@@ -126,7 +128,7 @@ class UserController extends Controller
     public function destroy(Request $request, $id)
     {
         if ($request->ajax()) {
-            $data = User::findOrFail($request->id);
+            $data = User::findOrFail($id);
             $data->delete();
             return response()->json(['icon' => 'success', 'title' => 'Success!', 'message' => 'User deleted successfully!']);
         }
