@@ -9,6 +9,7 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\DroppedOutController;
 use App\Http\Controllers\EmploymentStatusController;
+use App\Http\Controllers\ExistingBuilding;
 use App\Http\Controllers\ExtensionSchoolController;
 use App\Http\Controllers\FundingSourceController;
 use App\Http\Controllers\GradeSchoolController;
@@ -127,4 +128,6 @@ Route::prefix('user')->middleware(['auth:sanctum', 'role:user'])->group(function
     Route::get('/personnels/{id}/edit', [PersonnelController::class, 'personnelEdit'])->name('user.personnels.edit');
     Route::put('/personnels/{id}/update', [PersonnelController::class, 'personnelUpdate'])->name('user.personnels.update');
     Route::delete('/personnels/{id}/delete', [PersonnelController::class, 'personnelDestroy'])->name('user.personnels.destroy');
+
+    Route::get('/existing-buildings', [ExistingBuilding::class, 'index'])->name('user.existing-buildings.index');
 });

@@ -27,6 +27,22 @@
     <link rel="stylesheet" href="{{ asset('assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/dist/css/theme.min.css') }}">
     <script src="{{ asset('assets/src/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .background {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -47,6 +63,40 @@
     <script src="{{ asset('assets/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/node_modules/screenfull/dist/screenfull.js') }}"></script>
     <script src="{{ asset('assets/dist/js/theme.js') }}"></script>
+
+    <script>
+        window.onload = function() {
+            Particles.init({
+                selector: '.background',
+                color: '#fff',
+                maxParticles: 200,
+                speed: 0.5,
+
+                // options for breakpoints
+                responsive: [{
+                    breakpoint: 768,
+                    options: {
+                        maxParticles: 200,
+                        color: '#48F2E3',
+                        connectParticles: false
+                    }
+                }, {
+                    breakpoint: 425,
+                    options: {
+                        maxParticles: 100,
+                        connectParticles: true
+                    }
+                }, {
+                    breakpoint: 320,
+                    options: {
+                        maxParticles: 0
+
+                        // disables particles.js
+                    }
+                }]
+            });
+        };
+    </script>
 </body>
 
 </html>

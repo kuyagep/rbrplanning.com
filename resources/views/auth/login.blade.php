@@ -7,6 +7,7 @@
                     <div class="lavalite-bg" style="background-image: url('assets/img/auth/login-bg.jpg')">
                         <div class="lavalite-overlay"></div>
                     </div>
+                    <canvas class="background"></canvas>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-7 my-auto p-0">
                     <div class="authentication-form mx-auto">

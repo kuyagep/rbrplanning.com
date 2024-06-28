@@ -28,13 +28,9 @@
                 </div>
             </div>
 
-            <div class="nav-item {{ Request::is('inventory-of-classrooms*') ? 'active' : '' }}">
-                <a href="{{ route('inventory-of-classrooms.index') }}"><i class="ik ik-layers"></i><span>Inventory of
-                        Classrooms</span></a>
-            </div>
-            <div class="nav-item {{ Request::is('inventory-of-school-buildings*') ? 'active' : '' }}">
-                <a href="{{ route('inventory-of-school-buildings.index') }}"><i
-                        class="ik ik-layers"></i><span>Inventory of School Buildings</span></a>
+            <div class="nav-item {{ Request::is('user.existing-buildings*') ? 'active' : '' }}">
+                <a href="{{ route('user.existing-buildings.index') }}"><i class="ik ik-layers"></i><span>IBldg, CL and
+                        Furniture</span></a>
             </div>
 
 
@@ -47,20 +43,7 @@
             <div class="nav-item {{ Request::is('attendances*') ? 'active' : '' }}">
                 <a href="{{ route('attendances.index') }}"><i class="ik ik-layers"></i><span>Attendances</span></a>
             </div>
-            <div class="nav-item {{ Request::is('make-shifts*') ? 'active' : '' }}">
-                <a href="{{ route('make-shifts.index') }}"><i class="ik ik-layers"></i><span>Make Shifts</span></a>
-            </div>
-            <div class="nav-item {{ Request::is('dropped-outs*') ? 'active' : '' }}">
-                <a href="{{ route('dropped-outs.index') }}"><i class="ik ik-layers"></i><span>Dropped Outs</span></a>
-            </div>
-            <div class="nav-item {{ Request::is('transferred-in*') ? 'active' : '' }}">
-                <a href="{{ route('transferred-in.index') }}"><i class="ik ik-layers"></i><span>Transferred
-                        In</span></a>
-            </div>
-            <div class="nav-item {{ Request::is('transferred-out*') ? 'active' : '' }}">
-                <a href="{{ route('transferred-out.index') }}"><i class="ik ik-layers"></i><span>Transferred
-                        Out</span></a>
-            </div>
+
 
         </nav>
     </div>
