@@ -27,16 +27,16 @@
                             <tbody>
                                 <tr>
                                     <td>ID</td>
-                                    <td>{{ $funding_source->id ?? '' }}</td>
+                                    <td>{{ $track->id ?? '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Name</td>
-                                    <td>{{ $funding_source->name }}</td>
+                                    <td>{{ $track->name }}</td>
                                 </tr>
 
                             </tbody>
                         </table>
-                        <a href="{{ route('funding-sources.index') }}" class="btn btn-secondary">
+                        <a href="{{ route('tracks.index') }}" class="btn btn-secondary">
                             <i class="ik ik-chevron-left"></i>
                             Back
                         </a>

@@ -9,7 +9,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Division Details</h5>
+                            <h5>Strand Details</h5>
                         </div>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Division Details</h3>
+                        <h3>Strand Details</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive"></div>
@@ -27,20 +27,21 @@
                             <tbody>
                                 <tr>
                                     <td>ID</td>
-                                    <td>{{ $division->id ?? '' }}</td>
+                                    <td>{{ $strand->id ?? '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Division</td>
-                                    <td>{{ $division->name }}</td>
+                                    <td>{{ $strand->name }}</td>
                                 </tr>
                                 <tr>
                                     <td>Region</td>
-                                    <td>{{ $division->regions->name }}</td>
+                                    <td>{{ $strand->track->name }}</td>
                                 </tr>
 
                             </tbody>
                         </table>
-                        <a onclick="history.back()" class="btn btn-secondary"><i class="ik ik-chevron-left"></i> Back</a>
+                        <a href="{{ route('strands.index') }}" class="btn btn-secondary"><i class="ik ik-chevron-left"></i>
+                            Back</a>
 
                     </div>
                 </div>

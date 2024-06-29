@@ -9,7 +9,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Add Position Category</h5>
+                            <h5>Add Employment Status</h5>
                         </div>
                     </div>
                 </div>
@@ -60,9 +60,6 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
-
-
 
         });
     </script>

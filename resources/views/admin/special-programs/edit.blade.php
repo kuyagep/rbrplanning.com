@@ -11,7 +11,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Edit Region</h5>
+                            <h5>Edit Special Programs</h5>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>Edit Region</h3>
+                        <h3>Edit Special Programs</h3>
                     </div>
                     <div class="card-body">
                         <form method="post" class="needs-validation" action="{{ route('regions.update', $region->id) }}"
