@@ -1,126 +1,144 @@
-@extends('admin.layouts.master')
+@extends('admin.partials.app')
 @section('style')
-    {{-- style --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.css">
 @endsection
 @section('content')
-    <div class="container-fluid">
-        <div class="page-header">
-            <div class="row align-items-end">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="page-header-title">
-                        <div class="d-inline">
-                            <h5>District</h5>
-                        </div>
+    <!-- Content Header (Page header) -->
+    <section class="content-header ">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between">
+                <div class="clearfix">
+                    <div class="pt-0 pb-0">
+                        <h4 class="pd-0 mg-0 text-10">District</h4>
                     </div>
+                    <div class="breadcrumb pd-0 mg-0 text-sm">
+                        <a class="breadcrumb-item" href="{{ route('dashboard') }}"><i class="icon ion-ios-home-outline"></i>
+                            Home</a>
+                        <a class="breadcrumb-item" href="">Dashboard</a>
+                        <span class="breadcrumb-item active">District</span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+
+                    <a href=""
+                        class="btn btn-sm btn-default mr-2 d-none d-none d-lg-block pd-t-6-force pd-b-5-force">
+                        <i class="fa fa-regular fa-file-excel"></i>
+                        Export as Excel
+                    </a>
+                    <a href="" target="_blank"
+                        class="btn btn-sm btn-default mr-2 mb-2 mb-md-0 d-none d-lg-block pd-t-6-force pd-b-5-force"
+                        style="margin-right: 5px;">
+                        <i class="fa fa-download"></i>
+                        Generate PDF
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                @if (session('status'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <h6 class="alert-heading mb-0 "><strong>{{ session('message') }}</strong></h6>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-6 col-xs-12 pull-right">
-                                <a href="{{ route('districts.create') }}" class="btn btn-dark mb-2 ">
-                                    <i class="ik ik-user-plus"></i>
-                                    Add Districts</a>
+    </section>
 
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6 col-xs-12 pull-right">
+                                    <a href="{{ route('districts.create') }}" class="btn btn-dark mb-2 ">
+                                        <i class="ik ik-user-plus"></i>
+                                        Add Districts</a>
+
+                                </div>
+                                <div class="col-lg-6 col-xs-12">
+                                    <form action="{{ route('districts.index') }}" method="GET"
+                                        class="form-inline float-right">
+                                        @csrf
+                                        <input type="text" name="search" value="{{ request('search') }}" id="search"
+                                            class="form-control mb-2 mr-sm-2" placeholder="Search here...">
+
+                                        <button type="submit" class="btn btn-primary mb-2">
+                                            <i class="ik ik-search"></i> Search</button>
+                                    </form>
+
+                                </div>
                             </div>
-                            <div class="col-lg-6 col-xs-12">
-                                <form action="{{ route('districts.index') }}" method="GET"
-                                    class="form-inline float-right">
-                                    @csrf
-                                    <input type="text" name="search" value="{{ request('search') }}" id="search"
-                                        class="form-control mb-2 mr-sm-2" placeholder="Search here...">
-
-                                    <button type="submit" class="btn btn-primary mb-2">
-                                        <i class="ik ik-search"></i> Search</button>
-                                </form>
-
-                            </div>
-                        </div>
-                        <div class="table-data">
-                            <div class="table-responsive">
-                                <table id="dataTableajax" class="table table-striped table-bordered nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th width="1px">
-                                                <div class="custom-control custom-checkbox ml-2">
-                                                    <input type="checkbox" class="custom-control-input" id="select-all">
-                                                    <label class="custom-control-label" for="select-all">
-                                                    </label>
-                                                </div>
-                                            </th>
-                                            <th>ID</th>
-                                            <th>District</th>
-                                            <th>Division</th>
-                                            <th>Region</th>
-                                            <th class="nosort">&nbsp;</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($paginated as  $district)
+                            <div class="table-data">
+                                <div class="table-responsive">
+                                    <table id="dataTableajax" class="table table-striped table-bordered nowrap">
+                                        <thead>
                                             <tr>
-                                                <td>
+                                                <th width="1px">
                                                     <div class="custom-control custom-checkbox ml-2">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="check_box_{{ $district->id }}" name="region_ids[]"
-                                                            value="{{ $district->id }}">
-                                                        <label class="custom-control-label"
-                                                            for="check_box_{{ $district->id }}">
+                                                        <input type="checkbox" class="custom-control-input" id="select-all">
+                                                        <label class="custom-control-label" for="select-all">
                                                         </label>
                                                     </div>
-                                                </td>
-
-
-                                                <td>{{ $district->id }}</td>
-                                                <td>{{ $district->name }}</td>
-                                                <td>{{ $district->division->name }}</td>
-                                                <td>{{ $district->division->region->name }}</td>
-
-                                                <td class="text-center">
-                                                    <div class="table-actions ">
-                                                        <a href="{{ url('/divisions', $district->id) }}"><i
-                                                                class="ik ik-eye"></i></a>
-                                                        <a href="{{ route('districts.edit', $district->id) }}"><i we
-                                                                class="ik ik-edit-2"></i></a>
-                                                        <a href="#" data-id="{{ $district->id }}"
-                                                            id="deleteButton"><i class="ik ik-trash-2"></i></a>
-
-                                                    </div>
-                                                </td>
+                                                </th>
+                                                <th>ID</th>
+                                                <th>District</th>
+                                                <th>Division</th>
+                                                <th>Region</th>
+                                                <th class="nosort">&nbsp;</th>
                                             </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="8" class="text-center">No data found!</td>
-                                            </tr>
-                                        @endforelse
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($paginated as  $district)
+                                                <tr>
+                                                    <td>
+                                                        <div class="custom-control custom-checkbox ml-2">
+                                                            <input type="checkbox" class="custom-control-input"
+                                                                id="check_box_{{ $district->id }}" name="region_ids[]"
+                                                                value="{{ $district->id }}">
+                                                            <label class="custom-control-label"
+                                                                for="check_box_{{ $district->id }}">
+                                                            </label>
+                                                        </div>
+                                                    </td>
 
-                                    </tbody>
 
-                                </table>
-                                {{ $paginated->appends(['search' => request('search')])->links() }}
+                                                    <td>{{ $district->id }}</td>
+                                                    <td>{{ $district->name }}</td>
+                                                    <td>{{ $district->division->name }}</td>
+                                                    <td>{{ $district->division->region->name }}</td>
+
+                                                    <td class="text-center">
+                                                        <div class="table-actions ">
+                                                            <a href="{{ url('/divisions', $district->id) }}"><i
+                                                                    class="ik ik-eye"></i></a>
+                                                            <a href="{{ route('districts.edit', $district->id) }}"><i we
+                                                                    class="ik ik-edit-2"></i></a>
+                                                            <a href="#" data-id="{{ $district->id }}"
+                                                                id="deleteButton"><i class="ik ik-trash-2"></i></a>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="8" class="text-center">No data found!</td>
+                                                </tr>
+                                            @endforelse
+
+                                        </tbody>
+
+                                    </table>
+                                    {{ $paginated->appends(['search' => request('search')])->links() }}
+                                </div>
                             </div>
+
+
                         </div>
-
-
                     </div>
+
                 </div>
+
             </div>
+
         </div>
-    </div>
+    </section>
 @endsection
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.all.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             // Token header setup
@@ -130,6 +148,7 @@
                 }
             });
 
+            // Delete Function
             // Delete Function
             $('table').on('click', '#deleteButton', function(e) {
                 e.preventDefault();

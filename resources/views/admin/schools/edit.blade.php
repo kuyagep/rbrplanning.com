@@ -1,232 +1,231 @@
-@extends('admin.layouts.master')
+@extends('admin.partials.app')
 @section('style')
-    {{-- style --}}
 @endsection
 @section('content')
-    <div class="container-fluid">
-        <div class="page-header">
-            <div class="row align-items-end">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="page-header-title">
-                        <div class="d-inline">
-                            <h5>Edit School</h5>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h4>School</h4>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">School</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="card">
+                        <div class="card-header">Edit School</div>
+
+                        <div class="card-body">
+                            <form id="form" method="post" class="needs-validation"
+                                action="{{ route('schools.update', $school->id) }}" novalidate=""
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="id" value="{{ $school->id }}">
+                                <div class="form-group row">
+                                    <label for="region_id" class="col-sm-3 col-form-label">Region</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control @error('region_id') is-invalid @enderror" id="region_id"
+                                            name="region_id" required>
+                                            <option value="">Choose...</option>
+                                            @foreach ($regions as $region)
+                                                <option value="{{ $region->id }}"
+                                                    {{ $region->id == $school->district->division->region->id ? 'selected' : '' }}>
+                                                    {{ $region->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('region_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="division_id" class="col-sm-3 col-form-label">Division</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control @error('division_id') is-invalid @enderror"
+                                            id="division_id" name="division_id" required>
+                                            <option value="">Choose...</option>
+                                            @foreach ($divisions as $division)
+                                                <option value="{{ $division->id }}"
+                                                    {{ $division->id == $school->district->division->id ? 'selected' : '' }}>
+                                                    {{ $division->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('division_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="district_id" class="col-sm-3 col-form-label">District</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control @error('district_id') is-invalid @enderror"
+                                            id="district_id" name="district_id" required>
+                                            <option value="">Choose...</option>
+                                            @foreach ($districts as $district)
+                                                <option value="{{ $district->id }}"
+                                                    {{ $district->id == $school->district->id ? 'selected' : '' }}>
+                                                    {{ $district->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('district_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="school_id" class="col-sm-3 col-form-label">School ID</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control @error('school_id') is-invalid @enderror"
+                                            id="school_id" name="school_id"
+                                            value="{{ old('school_id', $school->school_id) }}" required>
+                                        @error('school_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="code" class="col-sm-3 col-form-label">School CODE</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control @error('code') is-invalid @enderror"
+                                            id="code" name="code" value="{{ old('code', $school->code) }}"
+                                            required>
+                                        @error('code')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-3 col-form-label">School Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                            id="name" name="name" value="{{ old('name', $school->name) }}"
+                                            required>
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="address" class="col-sm-3 col-form-label">Address</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control @error('address') is-invalid @enderror"
+                                            id="address" name="address" value="{{ old('address', $school->address) }}"
+                                            required>
+                                        @error('address')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="mobile_number" class="col-sm-3 col-form-label">Mobile Number</label>
+                                    <div class="col-sm-9">
+                                        <input type="text"
+                                            class="form-control @error('mobile_number') is-invalid @enderror"
+                                            id="mobile_number" name="mobile_number"
+                                            value="{{ old('mobile_number', $school->mobile_number) }}" required>
+                                        @error('mobile_number')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="school_email" class="col-sm-3 col-form-label">School Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="text"
+                                            class="form-control @error('school_email') is-invalid @enderror"
+                                            id="school_email" name="school_email"
+                                            value="{{ old('school_email', $school->school_email) }}" required>
+                                        @error('school_email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="logo" class="col-sm-3 col-form-label">School Logo</label>
+                                    <div class="col-sm-9">
+                                        <input type="file" class="form-control @error('logo') is-invalid @enderror"
+                                            id="logo" name="logo">
+                                        @error('logo')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="description" class="col-sm-3 col-form-label">School Description</label>
+                                    <div class="col-sm-9">
+                                        <textarea id="description" class="form-control @error('description') is-invalid @enderror"" name="description"
+                                            rows="4" cols="50">{{ old('description', $school->description) }}</textarea>
+
+                                        @error('description')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-9">
+                                        <button type="submit" class="btn btn-primary">Update School</button>
+                                        <a href="{{ route('schools.index') }}" class="btn btn-light">Back</a>
+                                    </div>
+                                </div>
+
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-
-                @if (session('status'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <h6 class="alert-heading mb-0 "><strong>{{ session('message') }}</strong></h6>
-
-
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
-
-                <div class="card">
-                    <div class="card-header">Edit School</div>
-
-                    <div class="card-body">
-                        <form id="form" method="post" class="needs-validation"
-                            action="{{ route('schools.update', $school->id) }}" novalidate=""
-                            enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-                            <input type="hidden" name="id" value="{{ $school->id }}">
-                            <div class="form-group row">
-                                <label for="region_id" class="col-sm-3 col-form-label">Region</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control @error('region_id') is-invalid @enderror" id="region_id"
-                                        name="region_id" required>
-                                        <option value="">Choose...</option>
-                                        @foreach ($regions as $region)
-                                            <option value="{{ $region->id }}"
-                                                {{ $region->id == $school->district->division->region->id ? 'selected' : '' }}>
-                                                {{ $region->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('region_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="division_id" class="col-sm-3 col-form-label">Division</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control @error('division_id') is-invalid @enderror" id="division_id"
-                                        name="division_id" required>
-                                        <option value="">Choose...</option>
-                                        @foreach ($divisions as $division)
-                                            <option value="{{ $division->id }}"
-                                                {{ $division->id == $school->district->division->id ? 'selected' : '' }}>
-                                                {{ $division->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('division_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="district_id" class="col-sm-3 col-form-label">District</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control @error('district_id') is-invalid @enderror" id="district_id"
-                                        name="district_id" required>
-                                        <option value="">Choose...</option>
-                                        @foreach ($districts as $district)
-                                            <option value="{{ $district->id }}"
-                                                {{ $district->id == $school->district->id ? 'selected' : '' }}>
-                                                {{ $district->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('district_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="school_id" class="col-sm-3 col-form-label">School ID</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control @error('school_id') is-invalid @enderror"
-                                        id="school_id" name="school_id" value="{{ old('school_id', $school->school_id) }}"
-                                        required>
-                                    @error('school_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="code" class="col-sm-3 col-form-label">School CODE</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control @error('code') is-invalid @enderror"
-                                        id="code" name="code" value="{{ old('code', $school->code) }}" required>
-                                    @error('code')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="name" class="col-sm-3 col-form-label">School Name</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        id="name" name="name" value="{{ old('name', $school->name) }}" required>
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="address" class="col-sm-3 col-form-label">Address</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror"
-                                        id="address" name="address" value="{{ old('address', $school->address) }}"
-                                        required>
-                                    @error('address')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="mobile_number" class="col-sm-3 col-form-label">Mobile Number</label>
-                                <div class="col-sm-9">
-                                    <input type="text"
-                                        class="form-control @error('mobile_number') is-invalid @enderror"
-                                        id="mobile_number" name="mobile_number"
-                                        value="{{ old('mobile_number', $school->mobile_number) }}" required>
-                                    @error('mobile_number')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="school_email" class="col-sm-3 col-form-label">School Email</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control @error('school_email') is-invalid @enderror"
-                                        id="school_email" name="school_email"
-                                        value="{{ old('school_email', $school->school_email) }}" required>
-                                    @error('school_email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="logo" class="col-sm-3 col-form-label">School Logo</label>
-                                <div class="col-sm-9">
-                                    <input type="file" class="form-control @error('logo') is-invalid @enderror"
-                                        id="logo" name="logo">
-                                    @error('logo')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="description" class="col-sm-3 col-form-label">School Description</label>
-                                <div class="col-sm-9">
-                                    <textarea id="description" class="form-control @error('description') is-invalid @enderror"" name="description"
-                                        rows="4" cols="50">{{ old('description', $school->description) }}</textarea>
-
-                                    @error('description')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-sm-3"></div>
-                                <div class="col-sm-9">
-                                    <button type="submit" class="btn btn-primary">Update School</button>
-                                    <a href="{{ route('schools.index') }}" class="btn btn-light">Back</a>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+    </section>
 @endsection
 @section('script')
     <script type="text/javascript">
@@ -237,6 +236,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
 
             // Fetch divisions based on selected region
             $('#region_id').change(function() {
@@ -288,7 +288,6 @@
                     $('#district_id').append('<option value="">Choose...</option>');
                 }
             });
-
 
         });
     </script>

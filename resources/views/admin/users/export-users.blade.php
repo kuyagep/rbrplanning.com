@@ -35,6 +35,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email Name</th>
+                <th>School Name</th>
                 <th>Date Created</th>
             </tr>
         </thead>

@@ -1,171 +1,151 @@
-@extends('user-panel.layouts.master')
+@extends('user-panel.partials.app')
 @section('style')
-    {{-- style --}}
 @endsection
 @section('content')
-    <div class="container-fluid">
-        <div class="page-header">
-            <div class="row align-items-end">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="page-header-title">
-                        <div class="d-inline">
-                            <h5>Edit Personnel</h5>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h4>Edit Personnel</h4>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Edit Personnel</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Edit Personnel</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('user.personnels.update', $personnel->id) }}">
+                                @csrf
+                                @method('PUT')
+
+                                <div class="form-group">
+                                    <label for="employee_number">Employee Number:</label>
+                                    <input type="text" class="form-control" id="employee_number" name="employee_number"
+                                        value="{{ $personnel->employee_number }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="item_number">Item Number:</label>
+                                    <input type="text" class="form-control" id="item_number" name="item_number"
+                                        value="{{ $personnel->item_number }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="first_name">First Name:</label>
+                                    <input type="text" class="form-control" id="first_name" name="first_name"
+                                        value="{{ $personnel->first_name }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="middle_name">Middle Name:</label>
+                                    <input type="text" class="form-control" id="middle_name" name="middle_name"
+                                        value="{{ $personnel->middle_name }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="last_name">Last Name:</label>
+                                    <input type="text" class="form-control" id="last_name" name="last_name"
+                                        value="{{ $personnel->last_name }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="birth_date">Birth Date:</label>
+                                    <input type="date" class="form-control" id="birth_date" name="birth_date"
+                                        value="{{ $personnel->birth_date }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="mobile_number">Mobile Number:</label>
+                                    <input type="text" class="form-control" id="mobile_number" name="mobile_number"
+                                        value="{{ $personnel->mobile_number }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="deped_email">DepEd Email:</label>
+                                    <input type="email" class="form-control" id="deped_email" name="deped_email"
+                                        value="{{ $personnel->deped_email }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="sex">Sex:</label>
+                                    <select class="form-control" id="sex" name="sex">
+                                        <option value="Male" @if ($personnel->sex == 'Male') selected @endif>Male
+                                        </option>
+                                        <option value="Female" @if ($personnel->sex == 'Female') selected @endif>Female
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="employment_status_id">Employment Status:</label>
+                                    <select class="form-control" id="employment_status_id" name="employment_status_id">
+                                        @foreach ($employmentStatuses as $employmentStatus)
+                                            <option value="{{ $employmentStatus->id }}"
+                                                @if ($personnel->employment_status_id == $employmentStatus->id) selected @endif>
+                                                {{ $employmentStatus->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="position_id">Position:</label>
+                                    <select class="form-control" id="position_id" name="position_id">
+                                        @foreach ($positions as $position)
+                                            <option value="{{ $position->id }}"
+                                                @if ($personnel->position_id == $position->id) selected @endif>{{ $position->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="school_id">School:</label>
+                                    <select class="form-control" id="school_id" name="school_id">
+                                        @foreach ($schools as $school)
+                                            <option value="{{ $school->id }}"
+                                                @if ($personnel->school_id == $school->id) selected @endif>{{ $school->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="funding_source_id">Funding Source:</label>
+                                    <select class="form-control" id="funding_source_id" name="funding_source_id">
+                                        @foreach ($fundingSources as $fundingSource)
+                                            <option value="{{ $fundingSource->id }}"
+                                                @if ($personnel->funding_source_id == $fundingSource->id) selected @endif>
+                                                {{ $fundingSource->fund_source }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-
-                @if (session('status') == 'Success')
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <h6 class="alert-heading mb-0"><strong>{{ session('message') }}</strong></h6>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @elseif (session('status') == 'Error')
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <h6 class="alert-heading mb-0"><strong>{{ session('message') }}</strong></h6>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
-                @if ($errors->any())
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
-
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Edit Personnel</h3>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('user.personnels.update', $personnel->id) }}">
-                            @csrf
-                            @method('PUT')
-
-                            <div class="form-group">
-                                <label for="employee_number">Employee Number:</label>
-                                <input type="text" class="form-control" id="employee_number" name="employee_number"
-                                    value="{{ $personnel->employee_number }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="item_number">Item Number:</label>
-                                <input type="text" class="form-control" id="item_number" name="item_number"
-                                    value="{{ $personnel->item_number }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="first_name">First Name:</label>
-                                <input type="text" class="form-control" id="first_name" name="first_name"
-                                    value="{{ $personnel->first_name }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="middle_name">Middle Name:</label>
-                                <input type="text" class="form-control" id="middle_name" name="middle_name"
-                                    value="{{ $personnel->middle_name }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="last_name">Last Name:</label>
-                                <input type="text" class="form-control" id="last_name" name="last_name"
-                                    value="{{ $personnel->last_name }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="birth_date">Birth Date:</label>
-                                <input type="date" class="form-control" id="birth_date" name="birth_date"
-                                    value="{{ $personnel->birth_date }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="mobile_number">Mobile Number:</label>
-                                <input type="text" class="form-control" id="mobile_number" name="mobile_number"
-                                    value="{{ $personnel->mobile_number }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="deped_email">DepEd Email:</label>
-                                <input type="email" class="form-control" id="deped_email" name="deped_email"
-                                    value="{{ $personnel->deped_email }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="sex">Sex:</label>
-                                <select class="form-control" id="sex" name="sex">
-                                    <option value="Male" @if ($personnel->sex == 'Male') selected @endif>Male</option>
-                                    <option value="Female" @if ($personnel->sex == 'Female') selected @endif>Female</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="employment_status_id">Employment Status:</label>
-                                <select class="form-control" id="employment_status_id" name="employment_status_id">
-                                    @foreach ($employmentStatuses as $employmentStatus)
-                                        <option value="{{ $employmentStatus->id }}"
-                                            @if ($personnel->employment_status_id == $employmentStatus->id) selected @endif>{{ $employmentStatus->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="position_id">Position:</label>
-                                <select class="form-control" id="position_id" name="position_id">
-                                    @foreach ($positions as $position)
-                                        <option value="{{ $position->id }}"
-                                            @if ($personnel->position_id == $position->id) selected @endif>{{ $position->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="school_id">School:</label>
-                                <select class="form-control" id="school_id" name="school_id">
-                                    @foreach ($schools as $school)
-                                        <option value="{{ $school->id }}"
-                                            @if ($personnel->school_id == $school->id) selected @endif>{{ $school->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="funding_source_id">Funding Source:</label>
-                                <select class="form-control" id="funding_source_id" name="funding_source_id">
-                                    @foreach ($fundingSources as $fundingSource)
-                                        <option value="{{ $fundingSource->id }}"
-                                            @if ($personnel->funding_source_id == $fundingSource->id) selected @endif>
-                                            {{ $fundingSource->fund_source }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+    </section>
 @endsection
 @section('script')
     <script type="text/javascript">

@@ -1,51 +1,69 @@
-@extends('admin.layouts.master')
+@extends('admin.partials.app')
 @section('style')
-    {{-- style --}}
 @endsection
 @section('content')
-    <div class="container-fluid">
-        <div class="page-header">
-            <div class="row align-items-end">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="page-header-title">
-                        <div class="d-inline">
-                            <h5>Position Category</h5>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h4>Position Category</h4>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Position Category</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Position Category</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive"></div>
+                            <table id="" class="table table-striped table-bordered nowrap">
+                                <tbody>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>{{ $position_category->id ?? '' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>{{ $position_category->name }}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <a href="{{ route('position-categories.index') }}" class="btn btn-secondary"><i
+                                    class="ik ik-chevron-left"></i>
+                                Back</a>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Position Category</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive"></div>
-                        <table id="" class="table table-striped table-bordered nowrap">
-                            <tbody>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>{{ $position_category->id ?? '' }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>{{ $position_category->name }}</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                        <a href="{{ route('position-categories.index') }}" class="btn btn-secondary"><i
-                                class="ik ik-chevron-left"></i>
-                            Back</a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 @endsection
 @section('script')
-    {{-- script --}}
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            // token header
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+        });
+    </script>
 @endsection

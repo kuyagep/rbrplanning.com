@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="{{ asset('assets/node_modules/owl.carousel/dist/assets/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/node_modules/owl.carousel/dist/assets/owl.theme.default.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/node_modules/jquery-toast-plugin/dist/jquery.toast.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/dist/css/theme.min.css') }}">
     <script src="{{ asset('assets/src/js/vendor/modernizr-2.8.3.min.js') }}"></script>
 
@@ -98,6 +99,7 @@
     <script src="{{ asset('assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
     <script src="{{ asset('assets/node_modules/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js') }}">
     </script>
+
     <script src="{{ asset('assets/node_modules/d3/dist/d3.min.js') }}"></script>
     <script src="{{ asset('assets/node_modules/c3/c3.min.js') }}"></script>
     <script src="{{ asset('assets/js/tables.js') }}"></script>
@@ -106,7 +108,7 @@
     <script src="{{ asset('assets/dist/js/theme.min.js') }}"></script>
 
     {{-- Toastr Notifications --}}
-    <script>
+    {{-- <script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}";
             switch (type) {
@@ -127,7 +129,7 @@
                     break;
             }
         @endif
-    </script>
+    </script> --}}
 
 
 

@@ -1,156 +1,178 @@
-@extends('user-panel.layouts.master')
+@extends('user-panel.partials.app')
 @section('style')
-    {{-- style --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.css">
 @endsection
 @section('content')
-    <div class="container-fluid">
-        <div class="page-header">
-            <div class="row align-items-end">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="page-header-title">
-                        <div class="d-inline">
-                            <h5>Summary of Existing Building </h5>
-                            <span>As of {{ date('M d, Y') }}</span>
+    <!-- Content Header (Page header) -->
+    <section class="content-header ">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between">
+                <div class="clearfix">
+                    <div class="pt-0 pb-0">
+                        <h4 class="pd-0 mg-0 text-10">Existing Building</h4>
+                    </div>
+                    <div class="breadcrumb pd-0 mg-0 text-sm">
+                        <a class="breadcrumb-item" href="{{ route('dashboard') }}"><i class="icon ion-ios-home-outline"></i>
+                            Home</a>
+                        <a class="breadcrumb-item" href="">Dashboard</a>
+                        <span class="breadcrumb-item active">Existing Building</span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+
+                    <a href=""
+                        class="btn btn-sm btn-default mr-2 d-none d-none d-lg-block pd-t-6-force pd-b-5-force">
+                        <i class="fa fa-regular fa-file-excel"></i>
+                        Export as Excel
+                    </a>
+                    <a href="" target="_blank"
+                        class="btn btn-sm btn-default mr-2 mb-2 mb-md-0 d-none d-lg-block pd-t-6-force pd-b-5-force"
+                        style="margin-right: 5px;">
+                        <i class="fa fa-download"></i>
+                        Generate PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1>Inventories</h1>
+                            <h6>School Buildings</h6>
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>School</th>
+                                        <th>Good Condition</th>
+                                        <th>Minor Repair</th>
+                                        <th>Major Repair</th>
+                                        <th>Condemnation/Demolition</th>
+                                        <th>Ongoing Construction</th>
+                                        <th>For Completion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>{{ $inventory_of_school_building->school->name ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_school_building->good_condition ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_school_building->minor_repair ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_school_building->major_repair ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_school_building->condemnation_demolition ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_school_building->on_going_contruction ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_school_building->for_completion ?? 'N/A' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h6>TLS</h6>
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>School</th>
+                                        <th>No. of TLS</th>
+                                        <th>No. of Classes in TLS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>{{ $tls->school->name ?? 'N/A' }}</td>
+                                        <td>{{ $tls->no_of_tls ?? 'N/A' }}</td>
+                                        <td>{{ $tls->no_of_classes_in_tls ?? 'N/A' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h6>Make Shifts</h6>
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>School</th>
+                                        <th>No. of Make Shift Rooms</th>
+                                        <th>No. of Classes in Make Shift Rooms</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>{{ $makeshift->school->name ?? 'N/A' }}</td>
+                                        <td>{{ $makeshift->no_of_makeshift_rooms ?? 'N/A' }}</td>
+                                        <td>{{ $makeshift->no_of_classes_in_makeshift_rooms ?? 'N/A' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h6>Classrooms</h6>
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>School</th>
+                                        <th>Good Condition</th>
+                                        <th>Minor Repair</th>
+                                        <th>Major Repair</th>
+                                        <th>Condemnation/Demolition</th>
+                                        <th>Ongoing Construction</th>
+                                        <th>For Completion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>{{ $inventory_of_classrooms->school->name ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_classrooms->good_condition ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_classrooms->minor_repair ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_classrooms->major_repair ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_classrooms->comdemnation_demolition ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_classrooms->on_going_construction ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_classrooms->for_completion ?? 'N/A' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h6>Furniture</h6>
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>School</th>
+                                        <th>Kinder Modular Table</th>
+                                        <th>Kinder Chair</th>
+                                        <th>Arm Chair</th>
+                                        <th>School Desk</th>
+                                        <th>Other Classroom Table</th>
+                                        <th>Other Classroom Chair</th>
+                                        <th>Sets of Tables and Chairs</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>{{ $inventory_of_furniture->school->name ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_furniture->kinder_modular_table ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_furniture->kinder_chair ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_furniture->arm_chair ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_furniture->school_desk ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_furniture->other_classroom_table ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_furniture->other_classroom_chair ?? 'N/A' }}</td>
+                                        <td>{{ $inventory_of_furniture->sets_of_tables_and_chairs ?? 'N/A' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
-        <div class="row">
-            <div class="col-md-12">
-
-                <div class="card">
-                    <div class="card-body">
-                        <h1>Inventories</h1>
-                        <h6>School Buildings</h6>
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>School</th>
-                                    <th>Good Condition</th>
-                                    <th>Minor Repair</th>
-                                    <th>Major Repair</th>
-                                    <th>Condemnation/Demolition</th>
-                                    <th>Ongoing Construction</th>
-                                    <th>For Completion</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>{{ $inventory_of_school_building->school->name ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_school_building->good_condition ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_school_building->minor_repair ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_school_building->major_repair ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_school_building->condemnation_demolition ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_school_building->on_going_contruction ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_school_building->for_completion ?? 'N/A' }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <h6>TLS</h6>
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>School</th>
-                                    <th>No. of TLS</th>
-                                    <th>No. of Classes in TLS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>{{ $tls->school->name ?? 'N/A' }}</td>
-                                    <td>{{ $tls->no_of_tls ?? 'N/A' }}</td>
-                                    <td>{{ $tls->no_of_classes_in_tls ?? 'N/A' }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <h6>Make Shifts</h6>
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>School</th>
-                                    <th>No. of Make Shift Rooms</th>
-                                    <th>No. of Classes in Make Shift Rooms</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>{{ $makeshift->school->name ?? 'N/A' }}</td>
-                                    <td>{{ $makeshift->no_of_makeshift_rooms ?? 'N/A' }}</td>
-                                    <td>{{ $makeshift->no_of_classes_in_makeshift_rooms ?? 'N/A' }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <h6>Classrooms</h6>
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>School</th>
-                                    <th>Good Condition</th>
-                                    <th>Minor Repair</th>
-                                    <th>Major Repair</th>
-                                    <th>Condemnation/Demolition</th>
-                                    <th>Ongoing Construction</th>
-                                    <th>For Completion</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>{{ $inventory_of_classrooms->school->name ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_classrooms->good_condition ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_classrooms->minor_repair ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_classrooms->major_repair ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_classrooms->comdemnation_demolition ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_classrooms->on_going_construction ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_classrooms->for_completion ?? 'N/A' }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <h6>Furniture</h6>
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>School</th>
-                                    <th>Kinder Modular Table</th>
-                                    <th>Kinder Chair</th>
-                                    <th>Arm Chair</th>
-                                    <th>School Desk</th>
-                                    <th>Other Classroom Table</th>
-                                    <th>Other Classroom Chair</th>
-                                    <th>Sets of Tables and Chairs</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>{{ $inventory_of_furniture->school->name ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_furniture->kinder_modular_table ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_furniture->kinder_chair ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_furniture->arm_chair ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_furniture->school_desk ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_furniture->other_classroom_table ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_furniture->other_classroom_chair ?? 'N/A' }}</td>
-                                    <td>{{ $inventory_of_furniture->sets_of_tables_and_chairs ?? 'N/A' }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 @endsection
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.all.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             // Token header setup

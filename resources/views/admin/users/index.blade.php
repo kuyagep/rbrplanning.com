@@ -1,75 +1,93 @@
-@extends('admin.layouts.master')
+@extends('admin.partials.app')
 @section('style')
-    {{-- style --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.css">
 @endsection
 @section('content')
-    <div class="container-fluid">
-        <div class="page-header">
-            <div class="row align-items-end">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="page-header-title">
-                        <div class="d-inline">
-                            <h5>User</h5>
-                        </div>
+    <!-- Content Header (Page header) -->
+    <section class="content-header ">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between">
+                <div class="clearfix">
+                    <div class="pt-0 pb-0">
+                        <h4 class="pd-0 mg-0 text-10">Users</h4>
                     </div>
+                    <div class="breadcrumb pd-0 mg-0 text-sm">
+                        <a class="breadcrumb-item" href="{{ route('dashboard') }}"><i class="icon ion-ios-home-outline"></i>
+                            Home</a>
+                        <a class="breadcrumb-item" href="">Dashboard</a>
+                        <span class="breadcrumb-item active">Users</span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+
+                    <a href="{{ url('/export/users/excel') }}"
+                        class="btn btn-sm btn-default mr-2 d-none d-none d-lg-block pd-t-6-force pd-b-5-force">
+                        <i class="fa fa-regular fa-file-excel"></i>
+                        Export as Excel
+                    </a>
+                    <a href="{{ url('/export/users/pdf') }}" target="_blank"
+                        class="btn btn-sm btn-default mr-2 mb-2 mb-md-0 d-none d-lg-block pd-t-6-force pd-b-5-force"
+                        style="margin-right: 5px;">
+                        <i class="fa fa-download"></i>
+                        Generate PDF
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
+    </section>
 
-                @if (session('status'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <h5 class="alert-heading mb-0 "><strong>{{ session('message') }}</strong></h5>
-                        <hr>
-                        <h6 class="mb-0">
-                            Email Address: {{ session('email') }} <br>
-                            Temporary Password: {{ session('temp_password') }} <br>
-                        </h6>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    @if (session('status'))
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            <h5 class="alert-heading mb-0 "><strong>{{ session('message') }}</strong></h5>
+                            <hr>
+                            <h6 class="mb-0">
+                                Email Address: {{ session('email') }} <br>
+                                Temporary Password: {{ session('temp_password') }} <br>
+                            </h6>
 
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
-
-
-                <div class="card">
-                    <div class="card-body">
-
-                        <div class="row">
-                            <div class="col-lg-6 col-xs-12 pull-right">
-                                <a href="{{ route('users.create') }}" class="btn btn-dark mb-2 ">
-                                    <i class="ik ik-user-plus"></i>
-                                    Add User</a>
-                                <a href="#" class="btn btn-dark mb-2" id="deleteSelected">
-                                    <i class="ik ik-trash "></i>
-                                    Delete Selected</a>
-                            </div>
-                            <div class="col-lg-6 col-xs-12">
-                                <form action="{{ route('users.index') }}" method="GET" class="form-inline float-right">
-                                    @csrf
-                                    <input type="text" name="search" value="{{ request('search') }}" id="search"
-                                        class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
-                                        placeholder="Search users...">
-
-                                    <button type="submit" class="btn btn-primary mb-2">
-                                        <i class="ik ik-search"></i> Search</button>
-                                </form>
-
-                            </div>
-
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
+                    @endif
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">List of Users</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6 col-xs-12 pull-right">
+                                    <a href="{{ route('users.create') }}" class="btn btn-sm btn-dark mb-2 ">
+                                        <i class="ik ik-user-plus"></i>
+                                        Add User</a>
+                                    <a href="#" class="btn btn-sm btn-dark mb-2" id="deleteSelected">
+                                        <i class="ik ik-trash "></i>
+                                        Delete Selected</a>
+                                </div>
+                                <div class="col-lg-6 col-xs-12">
+                                    <form action="{{ route('users.index') }}" method="GET"
+                                        class="form-inline float-right">
+                                        @csrf
+                                        <input type="text" name="search" value="{{ request('search') }}" id="search"
+                                            class="form-control form-control-sm mb-2 mr-sm-1" placeholder="Search here...">
 
+                                        <button type="submit" class="btn btn-sm btn-primary mb-2">
+                                            <i class="ik ik-search"></i> Search</button>
+                                    </form>
+                                </div>
+                            </div>
 
-                        <div class="table-data">
                             <div class="table-responsive">
-                                <table id="dataTableajax" class="table table-striped table-bordered nowrap">
+                                <table id="" class="table table-bordered text-sm">
                                     <thead>
                                         <tr>
                                             <th width="1px">
-                                                <div class="custom-control custom-checkbox ml-2">
+                                                <div class="custom-control  custom-checkbox ml-2">
                                                     <input type="checkbox" class="custom-control-input" id="select_all_id">
                                                     <label class="custom-control-label" for="select_all_id">
                                                     </label>
@@ -78,7 +96,6 @@
                                             <th>Id</th>
                                             <th class="nosort">Avatar</th>
                                             <th>Name</th>
-                                            <th>Email</th>
                                             <th class="text-center">School</th>
                                             <th class="text-center">Role</th>
                                             <th class="text-center">Status</th>
@@ -100,11 +117,15 @@
                                                 </td>
                                                 <td>{{ $user->id }}</td>
                                                 <td><img src="{{ Gravatar::avatar($user->email)->defaultImage('identicon') }}"
-                                                        class="table-user-thumb" alt="">
+                                                        class="table-user-thumb" alt=""
+                                                        style="width: 1.5rem; height: 1.5rem; border-radius: 50%; object-fit: cover;">
                                                 </td>
-                                                <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->school->name ?? 'N/A' }}</td>
+                                                <td>{{ $user->first_name . ' ' . $user->last_name }} <br>
+                                                    <small class="text-muted ">{{ $user->email }}</small>
+                                                </td>
+                                                <td>{{ $user->school->name ?? 'N/A' }} <br>
+                                                    {{ $user->school->district->name ?? 'N/A' }}
+                                                </td>
                                                 <td class="text-center">
                                                     @if ($user->role == 'super_admin')
                                                         <span
@@ -127,13 +148,16 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="table-actions ">
-                                                        <a href="{{ url('/users', $user->id) }}"><i
-                                                                class="ik ik-eye"></i></a>
-                                                        <a href="{{ route('users.edit', $user->id) }}"><i
-                                                                class="ik ik-edit-2"></i></a>
+                                                        <a href="{{ url('/users', $user->id) }}">
+                                                            <i class="fas fa-eye text-muted"></i>
+                                                        </a>
+                                                        <a href="{{ route('users.edit', $user->id) }}">
+                                                            <i class="fas fa-edit text-muted"></i>
+                                                        </a>
                                                         <a href="#" data-id="{{ $user->id }}"
-                                                            id="deleteButton"><i class="ik ik-trash-2"></i></a>
-
+                                                            id="deleteButton">
+                                                            <i class="fas fa-trash-alt text-muted"></i>
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -148,25 +172,19 @@
                                 </table>
                                 {{ $paginatedUsers->appends(['search' => request('search')])->links() }}
                             </div>
+
                         </div>
 
-                        <div class="row no-print">
-                            <div class="col-12">
-                                <a href="{{ url('/export/users/excel') }}" class="btn btn-success pull-right">
-                                    <i class="fa fa-regular fa-file-excel"></i>
-                                    Export as Excel</a>
-                                <a href="{{ url('/export/users/pdf') }}" target="_blank" class="btn btn-primary pull-right"
-                                    style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</a>
-                            </div>
-                        </div>
                     </div>
+
                 </div>
+
             </div>
+
         </div>
-    </div>
+    </section>
 @endsection
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.all.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function($) {
             // token header
