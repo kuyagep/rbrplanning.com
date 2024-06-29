@@ -121,7 +121,7 @@
                 e.preventDefault();
 
                 var regionId = $(this).data('id');
-                var route = "{{ route('regions.destroy', ':id') }}".replace(':id', regionId);
+                var route = "{{ route('grades.destroy', ':id') }}".replace(':id', regionId);
 
                 Swal.fire({
                     title: 'Are you sure?',

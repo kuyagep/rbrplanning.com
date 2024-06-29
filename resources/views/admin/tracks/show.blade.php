@@ -9,7 +9,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Funding Source</h5>
+                            <h5>Tracks</h5>
                         </div>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Funding Source</h3>
+                        <h3>Tracks</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive"></div>
@@ -31,7 +31,7 @@
                                 </tr>
                                 <tr>
                                     <td>Name</td>
-                                    <td>{{ $funding_source->fund_source }}</td>
+                                    <td>{{ $funding_source->name }}</td>
                                 </tr>
 
                             </tbody>

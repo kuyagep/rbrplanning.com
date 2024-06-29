@@ -43,8 +43,6 @@
             <div class="nav-item {{ Request::is('attendances*') ? 'active' : '' }}">
                 <a href="{{ route('attendances.index') }}"><i class="ik ik-layers"></i><span>Attendances</span></a>
             </div>
-
-
         </nav>
     </div>
 </div>

@@ -9,7 +9,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Add Region</h5>
+                            <h5>Add Grade</h5>
                         </div>
                     </div>
                 </div>
@@ -19,10 +19,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Add Region</h3>
+                        <h3>Add Grade</h3>
                     </div>
                     <div class="card-body">
-                        <form method="post" class="needs-validation" action="{{ route('regions.store') }}" novalidate=""
+                        <form method="post" class="needs-validation" action="{{ route('grades.store') }}" novalidate=""
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
@@ -37,8 +37,8 @@
                             </div>
 
 
-                            <button type="submit" id="btn-save" class="btn btn-primary mr-2">Create Region</button>
-                            <a href="{{ route('regions.index') }}" class="btn btn-light">Back</a>
+                            <button type="submit" id="btn-save" class="btn btn-primary mr-2">Create Grades</button>
+                            <a href="{{ route('grades.index') }}" class="btn btn-light">Back</a>
                         </form>
                     </div>
                 </div>

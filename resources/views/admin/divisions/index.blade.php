@@ -18,14 +18,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                @if (session('status'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <h6 class="alert-heading mb-0 "><strong>{{ session('message') }}</strong></h6>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
+
                 <div class="card">
                     <div class="card-body">
                         <div class="row">

@@ -11,7 +11,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="page-header-title">
                         <div class="d-inline">
-                            <h5>Edit Funding Source</h5>
+                            <h5>Edit Tracks/h5>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>Edit Funding Source</h3>
+                        <h3>Edit Tracks</h3>
                     </div>
                     <div class="card-body">
                         <form method="post" class="needs-validation"
