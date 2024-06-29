@@ -112,16 +112,12 @@ class ExtensionSchoolController extends Controller
 
             // Save the school record to the database
             $ex_school->save();
-
-            return redirect('extension-schools')->with([
-                'status' => 'Success',
-                'message' => 'Extension School created successfully!',
-            ]);
+            notyf()->success('Extension School created successfully.');
+            return redirect('extension-schools');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors([
-                'status' => 'Error',
-                'message' => 'An error occurred: ' . $e->getMessage(),
-            ])->withInput();
+
+            notyf()->success($e->getMessage());
+            return redirect()->back();
         }
     }
 
@@ -148,7 +144,7 @@ class ExtensionSchoolController extends Controller
             'division_id' => 'required|exists:divisions,id',
             'district_id' => 'required|exists:districts,id',
             'school_id' => 'required|string|exists:schools,id',
-            'schoolid' => 'required|string|unique:extension_schools,schoolid',
+            'schoolid' => 'required|string',
             'school_name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'mobile_number' => 'required|string|max:15',
@@ -183,8 +179,8 @@ class ExtensionSchoolController extends Controller
 
         // Save the updated school record
         $ex_school->save();
-
-        return redirect()->route('extension-schools.index')->with('success', 'Extension School updated successfully.');
+        notyf()->success('Extension school updated successfully.');
+        return redirect()->route('extension-schools.index');
     }
 
     public function destroy(Request $request, $id)

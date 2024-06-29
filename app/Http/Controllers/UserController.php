@@ -33,7 +33,7 @@ class UserController extends Controller
         $paginatedUsers = $query->orderBy('created_at', 'desc')->paginate(10);
 
         // $users = User::latest()->paginate(10);
-        return view('admin.users.all-users', compact('paginatedUsers', 'search'));
+        return view('admin.users.index', compact('paginatedUsers', 'search'));
     }
 
     /**
@@ -42,7 +42,7 @@ class UserController extends Controller
     public function create()
     {
         $regions = Region::select('id', 'name')->get();
-        return view('admin.users.create-users', compact('regions'));
+        return view('admin.users.create', compact('regions'));
     }
 
     /**
@@ -81,11 +81,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show(Request $request, User $user)
     {
-        $user = User::where('id', $request->id)->first();
 
-        return view('admin.users.view-users', compact('user'));
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -93,12 +92,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $user = User::where('id', $user)->first();
+        // $user = User::where('id', $user)->first();
         $regions = Region::select('id', 'name')->get();
         $divisions = Division::select('id', 'name')->get();
         $districts = District::select('id', 'name')->get();
         $schools = School::select('id', 'name')->get();
-        return view('admin.users.edit-users', compact('user', 'regions', 'divisions', 'districts', 'schools'));
+        return view('admin.users.edit', compact('user', 'regions', 'divisions', 'districts', 'schools'));
     }
 
     /**
@@ -112,12 +111,9 @@ class UserController extends Controller
             'email' => 'required|email|max:255',
         ]);
 
-        $data = User::findOrFail($user);
-        $data->first_name = $request->first_name;
-        $data->last_name = $request->last_name;
-        $data->email = $request->email;
-        $data->school_id = $request->school_id ?? null;
-        $data->save();
+        // Update the region with validated data
+        $user->update($request->all());
+
         notyf()->success('User updated successfully.');
         return redirect()->route('users.index');
     }

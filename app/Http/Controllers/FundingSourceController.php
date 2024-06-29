@@ -45,11 +45,9 @@ class FundingSourceController extends Controller
         // Create a new region using validated data
         FundingSource::create($request->all());
 
+        notyf()->success('Funding Sources created successfully!');
         // Redirect back with success message
-        return redirect('funding-sources')->with([
-            'status' => 'Success',
-            'message' => 'Funding Sources created successfully!',
-        ]);
+        return redirect('funding-sources');
     }
 
     // Display the specified resource.
@@ -79,9 +77,9 @@ class FundingSourceController extends Controller
 
         // Update the region with validated data
         $funding_source->update($request->all());
-
+        notyf()->success('Funding Sources updated successfully!');
         // Redirect back with success message
-        return redirect()->route('funding-sources.index')->with('success', 'Funding Sources updated successfully.');
+        return redirect()->route('funding-sources.index');
     }
 
     // Remove the specified resource from storage.

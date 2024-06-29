@@ -39,17 +39,15 @@ class PositionCategoryController extends Controller
     {
         // Validate incoming request data
         $request->validate([
-            'name' => 'required|unique:position_catogories,name|max:255',
+            'name' => 'required|unique:position_categories,name|max:255',
         ]);
 
         // Create a new region using validated data
         PositionCategory::create($request->all());
 
+        notyf()->success('Position Categories create successfully!');
         // Redirect back with success message
-        return redirect('regions')->with([
-            'status' => 'Success',
-            'message' => 'Position Category created successfully!',
-        ]);
+        return redirect('position-categories');
     }
 
     // Display the specified resource.
@@ -79,9 +77,9 @@ class PositionCategoryController extends Controller
 
         // Update the region with validated data
         $position_category->update($request->all());
-
+        notyf()->success('Position Categories updated successfully!');
         // Redirect back with success message
-        return redirect()->route('position-categories.index')->with('success', 'Position Category updated successfully.');
+        return redirect()->route('position-categories.index');
     }
 
     // Remove the specified resource from storage.

@@ -56,7 +56,7 @@ class StrandController extends Controller
     {
         $strand = Strand::where('id', $id)->first();
 
-        return view('admin.strands.view', compact('strand'));
+        return view('admin.strands.show', compact('strand'));
     }
 
     public function edit(Strand $strand)

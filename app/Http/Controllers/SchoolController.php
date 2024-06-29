@@ -36,9 +36,7 @@ class SchoolController extends Controller
     public function create()
     {
         $regions = Region::select('id', 'name')->get();
-        $divisions = Division::select('id', 'name')->get();
-        $districts = District::select('id', 'name')->get();
-        return view('admin.schools.create', compact('regions', 'divisions', 'districts'));
+        return view('admin.schools.create', compact('regions'));
     }
 
     public function store(Request $request)
@@ -80,11 +78,8 @@ class SchoolController extends Controller
 
             // Save the school record to the database
             $school->save();
-
-            return redirect('schools')->with([
-                'status' => 'Success',
-                'message' => 'School created successfully!',
-            ]);
+            notyf()->success('School created successfully.');
+            return redirect('schools');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors([
                 'status' => 'Error',
@@ -103,7 +98,7 @@ class SchoolController extends Controller
     public function edit(School $school)
     {
         $regions = Region::select('id', 'name')->get();
-        $divisions = Division::select('id', 'division_name')->get();
+        $divisions = Division::select('id', 'name')->get();
         $districts = District::select('id', 'name')->get();
         return view('admin.schools.edit', compact('school', 'regions', 'divisions', 'districts'));
     }
@@ -154,8 +149,8 @@ class SchoolController extends Controller
 
         // Save the updated school record
         $school->save();
-
-        return redirect()->route('schools.index')->with('success', 'School updated successfully.');
+        notyf()->success('School updated successfully.');
+        return redirect()->route('schools.index');
     }
 
     public function destroy(Request $request, $id)

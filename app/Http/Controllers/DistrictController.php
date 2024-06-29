@@ -29,8 +29,7 @@ class DistrictController extends Controller
     public function create()
     {
         $regions = Region::select('id', 'name')->get();
-        $divisions = Division::select('id', 'division_name')->get();
-        return view('admin.districts.create', compact('regions', 'divisions'));
+        return view('admin.districts.create', compact('regions', ));
     }
 
     public function store(Request $request)

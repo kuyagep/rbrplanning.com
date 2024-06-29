@@ -44,12 +44,9 @@ class EmploymentStatusController extends Controller
 
         // Create a new region using validated data
         EmploymentStatus::create($request->all());
-
+        notyf()->success('Employment Status created successfully!');
         // Redirect back with success message
-        return redirect('employment-statuses')->with([
-            'status' => 'Success',
-            'message' => 'Employment Status created successfully!',
-        ]);
+        return redirect('employment-statuses');
     }
 
     // Display the specified resource.
@@ -79,9 +76,9 @@ class EmploymentStatusController extends Controller
 
         // Update the region with validated data
         $employment_status->update($request->all());
-
+        notyf()->success('Employment Status updated successfully!');
         // Redirect back with success message
-        return redirect()->route('employment-statuses.index')->with('success', 'Employment Status updated successfully.');
+        return redirect()->route('employment-statuses.index');
     }
 
     // Remove the specified resource from storage.

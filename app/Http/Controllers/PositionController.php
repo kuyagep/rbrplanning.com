@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EmploymentStatus;
 use App\Models\Position;
 use App\Models\PositionCategory;
 use Illuminate\Http\Request;
@@ -24,8 +25,9 @@ class PositionController extends Controller
 
     public function create()
     {
+        $employment_statuses = EmploymentStatus::select('id', 'name')->get();
         $position_categories = PositionCategory::select('id', 'name')->get();
-        return view('admin.positions.create', compact('position_categories'));
+        return view('admin.positions.create', compact('position_categories', 'employment_statuses'));
     }
 
     public function store(Request $request)
@@ -34,22 +36,23 @@ class PositionController extends Controller
             $request->validate([
                 'name' => 'required|unique:positions,name|max:255',
                 'position_category_id' => 'required',
+                'employment_status_id' => 'required',
             ]);
 
             $position = new Position();
             $position->name = $request->name;
             $position->position_category_id = $request->position_category_id;
+            $position->employment_status_id = $request->employment_status_id;
             $position->save();
 
-            return redirect('positions')->with([
-                'status' => 'Success',
-                'message' => 'Position created successfully!',
-            ]);
+            notyf()->success('Position created successfully!');
+
+            return redirect('positions');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors([
-                'status' => 'Error',
-                'message' => 'An error occurred: ' . $e->getMessage(),
-            ])->withInput();
+
+            notyf()->error($e->getMessage());
+
+            return redirect()->back();
         }
     }
 
@@ -63,18 +66,27 @@ class PositionController extends Controller
     public function edit(Position $position)
     {
         $position_categories = PositionCategory::select('id', 'name')->get();
-        return view('admin.positions.edit', compact('position', 'position_categories'));
+        $employment_statuses = EmploymentStatus::select('id', 'name')->get();
+        return view('admin.positions.edit', compact('position', 'position_categories', 'employment_statuses'));
     }
 
     public function update(Request $request, Position $position)
     {
-        $request->validate([
-            'name' => 'required|unique:positions,name,' . $position->id . '|max:255',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|unique:positions,name,' . $position->id . '|max:255',
+                'position_category_id' => 'required',
+                'employment_status_id' => 'required',
+            ]);
 
-        $position->update($request->all());
+            $position->update($request->all());
+            notyf()->success('Position updated succesfully!');
+            return redirect('positions');
+        } catch (\Exception $e) {
+            notyf()->success($e->getMessage());
+            return redirect()->back();
+        }
 
-        return redirect()->route('positions.index')->with('success', 'Position updated successfully.');
     }
 
     public function destroy(Request $request, $id)

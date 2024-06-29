@@ -44,12 +44,9 @@ class RegionController extends Controller
 
         // Create a new region using validated data
         Region::create($request->all());
-
+        notyf()->success('Region created successfully.');
         // Redirect back with success message
-        return redirect('regions')->with([
-            'status' => 'Success',
-            'message' => 'Region created successfully!',
-        ]);
+        return redirect('regions');
     }
 
     // Display the specified resource.
@@ -79,9 +76,9 @@ class RegionController extends Controller
 
         // Update the region with validated data
         $region->update($request->all());
-
+        notyf()->success('Region updated successfully.');
         // Redirect back with success message
-        return redirect()->route('regions.index')->with('success', 'Region updated successfully.');
+        return redirect()->route('regions.index');
     }
 
     // Remove the specified resource from storage.

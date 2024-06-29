@@ -40,11 +40,8 @@ class DivisionController extends Controller
             $division->name = $request->name;
             $division->region_id = $request->region_id;
             $division->save();
-
-            return redirect('divisions')->with([
-                'status' => 'Success',
-                'message' => 'Division created successfully!',
-            ]);
+            notyf()->success('Division created successfully.');
+            return redirect('divisions');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors([
                 'status' => 'Error',
@@ -73,8 +70,8 @@ class DivisionController extends Controller
         ]);
 
         $division->update($request->all());
-
-        return redirect()->route('divisions.index')->with('success', 'Division updated successfully.');
+        notyf()->success('Division updated successfully.');
+        return redirect()->route('divisions.index');
     }
 
     public function destroy(Request $request, $id)
