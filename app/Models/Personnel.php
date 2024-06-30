@@ -26,6 +26,11 @@ class Personnel extends Model
         'funding_source_id',
         'remarks',
     ];
+
+    public function getFullNameAttribute()
+    {
+        return implode(' ', [$this->first_name, $this->middle_name, $this->last_name]);
+    }
     public function position()
     {
         return $this->belongsTo(Position::class);

@@ -9,6 +9,16 @@ class InventoryOfClassroom extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'school_id',
+        'good_condition',
+        'minor_repair',
+        'major_repair',
+        'comdemnation_demolition',
+        'on_going_construction',
+        'for_completion',
+    ];
+
     public function school()
     {
         return $this->belongsTo(School::class);

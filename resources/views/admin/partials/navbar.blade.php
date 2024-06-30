@@ -12,7 +12,7 @@
         <!-- Navbar Search -->
         <li class="nav-item">
             <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                <i class="fas fa-search"></i>
+                <i class="fas fa-search" title="Search"></i>
             </a>
             <div class="navbar-search-block">
                 <form class="form-inline">
@@ -33,13 +33,13 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                <i class="fas fa-expand-arrows-alt"></i>
+                <i class="fas fa-expand-arrows-alt" title="Full screen"></i>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="fas fa-sign-out-alt"></i>
+                <i class="fas fa-sign-out-alt" title="Sign out here"></i>
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf

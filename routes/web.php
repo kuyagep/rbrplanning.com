@@ -36,6 +36,7 @@ use App\Http\Controllers\TransferredOutController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\YearLevelController;
+use App\Models\InventoryOfFurniture;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [RedirectController::class, 'index'])->name('index');
@@ -44,7 +45,7 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
 
-// Location Management Routes
+    // Location Management Routes
     Route::resource('regions', RegionController::class);
     Route::resource('divisions', DivisionController::class);
     Route::post('/fetch-divisions', [DistrictController::class, 'fetchDivisions'])->name('fetch.divisions');
@@ -55,7 +56,7 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::post('/fetch-schools', [ExtensionSchoolController::class, 'fetchsSchool'])->name('fetch.schools');
     Route::resource('extension-schools', ExtensionSchoolController::class);
 
-// Grade and Level Management Routes
+    // Grade and Level Management Routes
     Route::get('/grades', [GradeSchoolController::class, 'index'])->name('grades.index');
     Route::post('/grades', [GradeSchoolController::class, 'storeGrade']);
     Route::get('/grades/{grade}', [GradeSchoolController::class, 'showGrade']);
@@ -77,25 +78,13 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::resource('personnel', PersonnelController::class);
     Route::resource('employment-statuses', EmploymentStatusController::class);
 
-// Inventory Management Routes
-    Route::resource('inventory-of-classrooms', InventoryOfClassroomController::class);
-    Route::resource('inventory-of-school-buildings', InventoryOfSchoolBuildingController::class);
-
-// Learner and Attendance Management Routes
-    Route::resource('registered-learners', RegisteredLearnerController::class);
-    Route::resource('attendances', AttendanceController::class);
-    Route::resource('make-shifts', MakeShiftController::class);
-    Route::resource('dropped-outs', DroppedOutController::class);
-    Route::resource('transferred-in', TransferredInController::class);
-    Route::resource('transferred-out', TransferredOutController::class);
-
 // School Year and Programs Management Routes
     Route::resource('school-year', SchoolYearController::class);
     Route::post('/fetch-strands', [SpecializationController::class, 'fetchStrands'])->name('fetch.strands');
     Route::resource('specializations', SpecializationController::class);
     Route::resource('special-programs', SpecialProgramsController::class);
     Route::resource('strands', StrandController::class);
-    Route::resource('tls', TLSController::class);
+
     Route::resource('tracks', TrackController::class);
     Route::resource('funding-sources', FundingSourceController::class);
 
@@ -130,4 +119,18 @@ Route::prefix('user')->middleware(['auth:sanctum', 'role:user'])->group(function
     Route::delete('/personnels/{id}/delete', [PersonnelController::class, 'personnelDestroy'])->name('user.personnels.destroy');
 
     Route::get('/existing-buildings', [ExistingBuilding::class, 'index'])->name('user.existing-buildings.index');
+    Route::get('/existing-buildings/create', [ExistingBuilding::class, 'create'])->name('user.existing-buildings.create');
+
+// Inventory Management Routes
+    Route::resource('inventory-of-classrooms', InventoryOfClassroomController::class);
+    Route::resource('inventory-of-school-buildings', InventoryOfSchoolBuildingController::class);
+    Route::resource('tls', TLSController::class);
+    Route::resource('inventory-of-furniture', InventoryOfFurniture::class);
+    // Learner and Attendance Management Routes
+    Route::resource('registered-learners', RegisteredLearnerController::class);
+    Route::resource('attendances', AttendanceController::class);
+    Route::resource('make-shifts', MakeShiftController::class);
+    Route::resource('dropped-outs', DroppedOutController::class);
+    Route::resource('transferred-in', TransferredInController::class);
+    Route::resource('transferred-out', TransferredOutController::class);
 });

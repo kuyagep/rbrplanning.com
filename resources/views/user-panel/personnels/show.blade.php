@@ -25,27 +25,71 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Employee Details</div>
-
+                        <div class="card-header bg-primary text-white">
+                            Employee Details
+                        </div>
                         <div class="card-body">
-                            <h5>Employee Number: {{ $personnel->employee_number }}</h5>
-                            <h5>Item Number: {{ $personnel->item_number }}</h5>
-                            <h5>Name: {{ $personnel->first_name }} {{ $personnel->middle_name }} {{ $personnel->last_name }}
-                            </h5>
-                            <h5>Birth Date: {{ $personnel->birth_date }}</h5>
-                            <h5>Mobile Number: {{ $personnel->mobile_number }}</h5>
-                            <h5>DepEd Email: {{ $personnel->deped_email }}</h5>
-                            <h5>Sex: {{ $personnel->sex }}</h5>
-                            <h5>Employment Status: {{ $personnel->employmentStatus->name }}</h5>
-                            <h5>Position: {{ $personnel->position->name }}</h5>
-                            <h5>School: {{ $personnel->school->name }}</h5>
-                            <h5>Funding Source: {{ $personnel->fundingSource->name }}</h5>
-                            <h5>Remarks: {{ $personnel->remarks }}</h5>
-
-                            <a href="{{ route('user.personnels.index') }}" class="btn btn-secondary">Back to List</a>
-                            <a href="{{ route('user.personnels.edit', $personnel->id) }}" class="btn btn-primary">Edit</a>
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Employee Number:</div>
+                                <div class="col-md-8">{{ $personnel->employee_number }}</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Item Number:</div>
+                                <div class="col-md-8">{{ $personnel->item_number }}</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Name:</div>
+                                <div class="col-md-8">{{ $personnel->first_name }} {{ $personnel->middle_name }}
+                                    {{ $personnel->last_name }}</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Birth Date:</div>
+                                <div class="col-md-8">{{ \Carbon\Carbon::parse($personnel->birth_date)->format('F d, Y') }}
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Mobile Number:</div>
+                                <div class="col-md-8">{{ $personnel->mobile_number }}</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">DepEd Email:</div>
+                                <div class="col-md-8">{{ $personnel->deped_email }}</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Sex:</div>
+                                <div class="col-md-8">{{ $personnel->sex }}</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Employment Status:</div>
+                                <div class="col-md-8">{{ $personnel->employmentStatus->name }}</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Position:</div>
+                                <div class="col-md-8">{{ $personnel->position->name }}</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">School:</div>
+                                <div class="col-md-8">{{ $personnel->school->name }}</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Funding Source:</div>
+                                <div class="col-md-8">{{ $personnel->fundingSource->name }}</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Remarks:</div>
+                                <div class="col-md-8">{{ $personnel->remarks }}</div>
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <a href="{{ route('user.personnels.index') }}" class="btn btn-secondary">
+                                    <i class="fas fa-arrow-left"></i> Back to List
+                                </a>
+                                <a href="{{ route('user.personnels.edit', $personnel->id) }}" class="btn btn-primary">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

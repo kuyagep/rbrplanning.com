@@ -6,6 +6,7 @@ use App\Models\InventoryOfClassroom;
 use App\Models\InventoryOfFurniture;
 use App\Models\InventoryOfSchoolBuilding;
 use App\Models\MakeShift;
+use App\Models\School;
 use App\Models\TLS;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +37,8 @@ class ExistingBuilding extends Controller
      */
     public function create()
     {
-        //
+        $schools = School::all();
+        return view('user-panel.existing-buildings.create', compact('schools'));
     }
 
     /**
