@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('mobile_number')->nullable()->unique();
             $table->string('deped_email')->nullable()->unique();
             $table->enum('sex', ['Male', 'Female'])->default('Male')->nullable();
-            $table->string('employment_status_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('employment_status_id')->constrained()->cascadeOnDelete();
             $table->foreignId('position_id')->constrained()->cascadeOnDelete();
             $table->foreignId('school_id')->constrained()->cascadeOnDelete();
             $table->foreignId('funding_source_id')->nullable()->constrained()->cascadeOnDelete();
