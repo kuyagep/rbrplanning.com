@@ -13,8 +13,14 @@ class MakeShift extends Model
         'no_of_makeshift_rooms',
         'no_of_classes_in_makeshift_rooms',
     ];
+
     public function school()
     {
         return $this->belongsTo(School::class);
+    }
+
+    public function schoolYear()
+    {
+        return $this->belongsTo(SchoolYear::class);
     }
 }

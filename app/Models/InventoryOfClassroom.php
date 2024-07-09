@@ -23,4 +23,9 @@ class InventoryOfClassroom extends Model
     {
         return $this->belongsTo(School::class);
     }
+
+    public function schoolYear()
+    {
+        return $this->belongsTo(SchoolYear::class);
+    }
 }

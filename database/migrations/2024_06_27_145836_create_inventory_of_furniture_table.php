@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('inventory_of_furniture', function (Blueprint $table) {
             $table->id();
             $table->foreignId('school_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('school_year_id')->constrained('school_years')->cascadeOnDelete();
             $table->integer('kinder_modular_table');
             $table->integer('kinder_chair');
             $table->integer('arm_chair');

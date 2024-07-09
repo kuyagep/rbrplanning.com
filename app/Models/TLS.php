@@ -13,8 +13,14 @@ class TLS extends Model
         'no_of_tls',
         'no_of_classes_in_tls',
     ];
+
     public function school()
     {
         return $this->belongsTo(School::class);
+    }
+
+    public function schoolYear()
+    {
+        return $this->belongsTo(SchoolYear::class);
     }
 }

@@ -2,11 +2,11 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img src="{{ asset('theme/assets/') }}/dist/img/user2-160x160.jpg" class="img-circle elevation-1"
-                alt="User Image">
+            <img src="{{ Gravatar::avatar(Auth::user()->email)->defaultImage('identicon') }}"
+                class="img-circle elevation-1" alt="User Image">
         </div>
-        <div class="info">
-            <a href="#" class="d-block text-white">
+        <div class="info ">
+            <a href="{{ route('profile-settings.index') }}" class="d-block text-white">
                 {{ Auth::user()->first_name }}
                 {{ Auth::user()->last_name }}
             </a>

@@ -50,7 +50,7 @@
     @yield('style')
 </head>
 
-<body class="layout-fixed sidebar-mini layout-navbar-fixed sidebar-closed accent-secondary">
+<body class="layout-fixed sidebar-mini layout-navbar-fixed sidebar-closed accent-danger">
     <div class="wrapper">
 
         <!-- Navbar -->

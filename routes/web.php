@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Admin\DatabaseBackupController;
-use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DistrictController;
@@ -23,6 +22,7 @@ use App\Http\Controllers\ProfileSettingsController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RegisteredLearnerController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SectionController;
@@ -120,7 +120,10 @@ Route::prefix('user')->middleware(['auth:sanctum', 'role:user'])->group(function
 
     Route::get('/existing-buildings', [ExistingBuilding::class, 'index'])->name('user.existing-buildings.index');
     Route::get('/existing-buildings/create', [ExistingBuilding::class, 'create'])->name('user.existing-buildings.create');
+    Route::post('/existing-buildings/store', [ExistingBuilding::class, 'store'])->name('user.existing-buildings.store');
 
+    // Reports
+    Route::get('/reports/by-school-year/{schoolYear}', [ReportController::class, 'bySchoolYear'])->name('reports.bySchoolYear');
 // Inventory Management Routes
     Route::resource('inventory-of-classrooms', InventoryOfClassroomController::class);
     Route::resource('inventory-of-school-buildings', InventoryOfSchoolBuildingController::class);

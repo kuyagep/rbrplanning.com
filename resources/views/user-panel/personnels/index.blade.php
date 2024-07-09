@@ -38,77 +38,87 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <form action="{{ route('user.personnels.index') }}" method="GET">
+                @csrf
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label>Region:</label>
+                                    <select name="region_id" id="region_id" class="form-control" style="width: 100%;">
+                                        <option value="">--Select Region--</option>
+                                        @foreach ($regions as $region)
+                                            <option value="{{ $region->id }}"
+                                                {{ $region->id == request('region_id') ? 'selected' : '' }}>
+                                                {{ $region->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label>Division:</label>
+                                    <select name="division_id" id="division_id" class="form-control">
+                                        <option value="">Select Division</option>
+                                        @foreach ($divisions as $division)
+                                            <option value="{{ $division->id }}"
+                                                {{ $division->id == request('division_id') ? 'selected' : '' }}>
+                                                {{ $division->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label>District:</label>
+                                    <select name="district_id" id="district_id" class="form-control">
+                                        <option value="">Select District</option>
+                                        @foreach ($districts as $district)
+                                            <option value="{{ $district->id }}"
+                                                {{ $district->id == request('district_id') ? 'selected' : '' }}>
+                                                {{ $district->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label>School:</label>
+                                    <select name="school_id" id="school_id" class="form-control">
+                                        <option value="">Select School</option>
+                                        @foreach ($schools as $school)
+                                            <option value="{{ $school->id }}"
+                                                {{ $school->id == request('school_id') ? 'selected' : '' }}>
+                                                {{ $school->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <input type="search" class="form-control form-control-lg" placeholder="Search by names"
+                                    name="search" id="search" value="{{ request('search') }}">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-lg btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-8 col-xs-12 pull-left">
-
-                                    <form action="{{ route('user.personnels.index') }}" method="GET"
-                                        class="form-inline float-left">
-                                        @csrf
-
-                                        <div class="form-group mb-2 mr-sm-2">
-                                            <label for="filter">Filters</label>
-                                        </div>
-                                        <div class="form-group mb-2 mr-sm-2">
-                                            <select name="region_id" id="region_id" class="form-control">
-                                                <option value="">Select Region</option>
-                                                @foreach ($regions as $region)
-                                                    <option value="{{ $region->id }}"
-                                                        {{ $region->id == request('region_id') ? 'selected' : '' }}>
-                                                        {{ $region->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-2 mr-sm-2">
-                                            <select name="division_id" id="division_id" class="form-control">
-                                                <option value="">Select Division</option>
-                                                @foreach ($divisions as $division)
-                                                    <option value="{{ $division->id }}"
-                                                        {{ $division->id == request('division_id') ? 'selected' : '' }}>
-                                                        {{ $division->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-2 mr-sm-2">
-                                            <select name="district_id" id="district_id" class="form-control">
-                                                <option value="">Select District</option>
-                                                @foreach ($districts as $district)
-                                                    <option value="{{ $district->id }}"
-                                                        {{ $district->id == request('district_id') ? 'selected' : '' }}>
-                                                        {{ $district->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-2 mr-sm-2">
-                                            <select name="school_id" id="school_id" class="form-control">
-                                                <option value="">Select School</option>
-                                                @foreach ($schools as $school)
-                                                    <option value="{{ $school->id }}"
-                                                        {{ $school->id == request('school_id') ? 'selected' : '' }}>
-                                                        {{ $school->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-2 mr-sm-2">
-                                            <input type="text" name="search" value="{{ request('search') }}"
-                                                id="search" class="form-control" placeholder="Search name...">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary mb-2"><i class="ik ik-search"></i>
-                                            Search</button>
-                                    </form>
-                                </div>
-                                <div class="col-lg-4 col-xs-12">
-                                    <a href="{{ route('user.personnels.create') }}" class="btn btn-dark mb-2 float-right">
-                                        <i class="ik ik-plus"></i> Add Personnel</a>
-                                </div>
-                            </div>
+                            <a href="{{ route('user.personnels.create') }}" class="btn btn-danger mb-3">Add Personnel</a>
                             <div class="table-data">
                                 <div class="table-responsive">
                                     <table id="dataTableajax" class="table table-striped table-bordered nowrap">
-                                        <thead>
+                                        <thead class="bg-danger">
                                             <tr>
                                                 <th>Item Number</th>
                                                 <th>Name</th>
@@ -124,24 +134,32 @@
                                             @forelse ($paginated as  $personnel)
                                                 <tr>
                                                     <td>{{ $personnel->item_number }}</td>
-                                                    <td>{{ $personnel->first_name }} {{ $personnel->middle_name }}
-                                                        {{ $personnel->last_name }}</td>
+                                                    <td>{{ $personnel->full_name }} <br>
+                                                        <span
+                                                            class="text-muted text-sm">{{ $personnel->position->name }}</span>
+                                                    </td>
                                                     <td>{{ $personnel->position->name }}</td>
                                                     <td>{{ $personnel->school->name }}</td>
                                                     <td>{{ $personnel->school->district->name }}</td>
                                                     <td>{{ $personnel->employmentStatus->name }}</td>
                                                     <td>{{ $personnel->remarks }}</td>
                                                     <td class="text-center">
-                                                        <div class="table-actions ">
-                                                            <a href="{{ url('/user/personnels', $personnel->id) }}"><i
-                                                                    class="fas fa-search"></i></a>
-                                                            <a href="{{ route('user.personnels.edit', $personnel->id) }}"><i
-                                                                    class="fas fa-pen"></i></a>
-                                                            <a href="#" data-id="{{ $personnel->id }}"
-                                                                id="deleteButton"><i class="fas fa-times"></i></a>
-
+                                                        <div class="btn-group">
+                                                            <a href="{{ url('/user/personnels', $personnel->id) }}"
+                                                                class="btn btn-sm btn-info" title="View">
+                                                                <i class="fas fa-search"></i>
+                                                            </a>
+                                                            <a href="{{ route('user.personnels.edit', $personnel->id) }}"
+                                                                class="btn btn-sm btn-primary" title="Edit">
+                                                                <i class="fas fa-pen"></i>
+                                                            </a>
+                                                            <button class="btn btn-sm btn-danger" title="Delete"
+                                                                data-id="{{ $personnel->id }}" id="deleteButton">
+                                                                <i class="far fa-trash-alt"></i>
+                                                            </button>
                                                         </div>
                                                     </td>
+
                                                 </tr>
                                             @empty
                                                 <tr>
@@ -155,13 +173,12 @@
                                     {{ $paginated->appends(request()->except('page'))->links() }}
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
-
             </div>
+
+
 
         </div>
     </section>
@@ -239,6 +256,9 @@
                                 $('#division_id').append('<option value="' + value.id +
                                     '">' + value.name + '</option>');
                             });
+                        },
+                        error: function(data) {
+                            console.log(data);
                         }
                     });
                 } else {
@@ -266,6 +286,9 @@
                                 $('#district_id').append('<option value="' + value.id +
                                     '">' + value.name + '</option>');
                             });
+                        },
+                        error: function(data) {
+                            console.log(data);
                         }
                     });
                 } else {

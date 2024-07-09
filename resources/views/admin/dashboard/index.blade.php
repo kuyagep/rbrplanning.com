@@ -18,12 +18,12 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
-                    <a href=""
+                    <a href="#"
                         class="btn btn-sm btn-default mr-2 d-none d-none d-lg-block pd-t-6-force pd-b-5-force">
                         <i class="fa fa-regular fa-file-excel"></i>
                         Export as Excel
                     </a>
-                    <a href="" target="_blank"
+                    <a href="#"
                         class="btn btn-sm btn-default mr-2 mb-2 mb-md-0 d-none d-lg-block pd-t-6-force pd-b-5-force"
                         style="margin-right: 5px;">
                         <i class="fa fa-download"></i>
@@ -40,68 +40,83 @@
 
             <div class="row">
                 <!-- Total Regions -->
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Regions</h5>
-                            <p class="card-text">{{ $regionCount }}</p>
+                        <div class="card-body d-flex align-items-center">
+                            <i class="fas fa-globe fa-3x mr-3"></i>
+                            <div>
+                                <h5 class="card-title">Total Regions</h5>
+                                <p class="card-text">{{ $regionCount }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Total Divisions -->
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Divisions</h5>
-                            <p class="card-text">{{ $divisionCount }}</p>
+                        <div class="card-body d-flex align-items-center">
+                            <i class="fas fa-sitemap fa-3x mr-3"></i>
+                            <div>
+                                <h5 class="card-title">Total Divisions</h5>
+                                <p class="card-text">{{ $divisionCount }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Total Districts -->
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Districts</h5>
-                            <p class="card-text">{{ $districtCount }}</p>
+                        <div class="card-body d-flex align-items-center">
+                            <i class="fas fa-map-marked-alt fa-3x mr-3"></i>
+                            <div>
+                                <h5 class="card-title">Total Districts</h5>
+                                <p class="card-text">{{ $districtCount }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Total Schools -->
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Schools</h5>
-                            <p class="card-text">{{ $schoolCount }}</p>
+                        <div class="card-body d-flex align-items-center">
+                            <i class="fas fa-school fa-3x mr-3"></i>
+                            <div>
+                                <h5 class="card-title">Total Schools</h5>
+                                <p class="card-text">{{ $schoolCount }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Total Personnels -->
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Personnels</h5>
-                            <p class="card-text">{{ $personnelCount }}</p>
+                        <div class="card-body d-flex align-items-center">
+                            <i class="fas fa-users fa-3x mr-3"></i>
+                            <div>
+                                <h5 class="card-title">Total Personnels</h5>
+                                <p class="card-text">{{ $personnelCount }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Total Users -->
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Users</h5>
-                            <p class="card-text">{{ $userCount }}</p>
+                        <div class="card-body d-flex align-items-center">
+                            <i class="fas fa-user fa-3x mr-3"></i>
+                            <div>
+                                <h5 class="card-title">Total Users</h5>
+                                <p class="card-text">{{ $userCount }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
 
 
 
