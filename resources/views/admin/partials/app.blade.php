@@ -48,6 +48,8 @@
     <link rel="stylesheet" href="{{ asset('assets/node_modules/icon-kit/dist/css/iconkit.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/node_modules/ionicons/dist/css/ionicons.min.css') }}">
     @yield('style')
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4048306512221579"
+        crossorigin="anonymous"></script>
 </head>
 
 <body class="layout-fixed sidebar-mini layout-navbar-fixed sidebar-closed accent-danger">

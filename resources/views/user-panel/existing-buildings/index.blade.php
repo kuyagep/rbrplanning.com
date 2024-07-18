@@ -38,181 +38,208 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <a href="{{ route('user.existing-buildings.create') }}" class="btn btn-primary">
-                Add Submission Report</a>
-
-            <h6>Reports by School Year</h6>
-
-            <form action="{{ route('user.existing-buildings.index') }}" method="GET">
-                @csrf
-                <div class="row">
-                    <div class="col-md-10 offset-md-1">
+            <div class="row">
+                <div class="col-6">
+                    <a href="{{ route('user.existing-buildings.create') }}" class="btn btn-primary">
+                        Add Submission Report</a>
+                </div>
+                <div class="col-6">
+                    <form action="{{ route('user.existing-buildings.index') }}" method="GET">
+                        @csrf
                         <div class="row">
-                            <div class="col-3">
-                                <div class="form-group">
-                                    <div class="input-group input-group-lg">
-                                        <select name="search" id="search" class="form-control">
-                                            <option value="">--Select School Year--</option>
-                                            @foreach ($schoolYears as $schoolYear)
-                                                <option value="{{ $schoolYear->id }}"
-                                                    {{ $schoolYear->id == request('school_year_id') ? 'selected' : '' }}>
-                                                    {{ $schoolYear->school_year }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-lg btn-default">
-                                                <i class="fa fa-paper-plane"></i>
-                                            </button>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="search"> Reports by School Year</label>
+                                            <div class="input-group">
+                                                <select name="search" id="search" class="form-control">
+                                                    <option value="">--Select School Year--</option>
+                                                    @foreach ($schoolYears as $schoolYear)
+                                                        <option value="{{ $schoolYear->id }}"
+                                                            {{ $schoolYear->id == request('search') ? 'selected' : '' }}>
+                                                            {{ $schoolYear->school_year }}</option>
+                                                    @endforeach
+                                                </select>
+
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-lg btn-primary">
+                                                        <i class="fa fa-paper-plane"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
-                    </div>
+                    </form>
                 </div>
-            </form>
+            </div>
+            <h6>Reports for School Year:
+                @foreach ($school_year as $year)
+                    <span class="badge badge-primary">{{ $year->school_year }}</span>
+                @endforeach
+            </h6>
+            <div class="card">
+                <div class="card-header">Inventory of School Buildings</div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>School</th>
+                                <th>Good Condition</th>
+                                <th>Minor Repair</th>
+                                <th>Major Repair</th>
+                                <th>Condemnation/Demolition</th>
+                                <th>Ongoing Construction</th>
+                                <th>For Completion</th>
+                                <th>Timestamps</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($inventory_of_school_buildings as $inventory_of_school_building)
+                                <tr>
+                                    <td>{{ $inventory_of_school_building->school->name ?? 'N/A' }}</td>
+                                    <td>{{ $inventory_of_school_building->good_condition ?? 'N/A' }}</td>
+                                    <td>{{ $inventory_of_school_building->minor_repair ?? 'N/A' }}</td>
+                                    <td>{{ $inventory_of_school_building->major_repair ?? 'N/A' }}</td>
+                                    <td>{{ $inventory_of_school_building->condemnation_demolition ?? 'N/A' }}</td>
+                                    <td>{{ $inventory_of_school_building->on_going_contruction ?? 'N/A' }}</td>
+                                    <td>{{ $inventory_of_school_building->for_completion ?? 'N/A' }}</td>
+                                    <td>{{ $inventory_of_school_building->created_at->format('F j, Y g:i A') ?? 'N/A' }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">TLS (Temporary Learning Spaces)</div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>School</th>
+                                <th>No. of TLS</th>
+                                <th>No. of Classes in TLS</th>
+                                <th>Timestamps</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($tlsReports as $tls)
+                                <tr>
+                                    <td>{{ $tls->school->name ?? 'N/A' }}</td>
+                                    <td>{{ $tls->no_of_tls ?? 'N/A' }}</td>
+                                    <td>{{ $tls->no_of_classes_in_tls ?? 'N/A' }}</td>
+                                    <td>{{ $tls->created_at->format('F j, Y g:i A') ?? 'N/A' }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    MakeShift Rooms
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>School</th>
+                                <th>No. of MakeShift Rooms</th>
+                                <th>No. of Classes in MakeShift Rooms</th>
+                                <th>Timestamps</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($makeShiftReports as $makeShift)
+                                <tr>
+                                    <td>{{ $makeShift->school->name ?? 'N/A' }}</td>
+                                    <td>{{ $makeShift->no_of_makeshift_rooms ?? 'N/A' }}</td>
+                                    <td>{{ $makeShift->no_of_classes_in_makeshift_rooms ?? 'N/A' }}</td>
+                                    <td>{{ $makeShift->created_at->format('F j, Y g:i A') ?? 'N/A' }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Inventory of Classrooms</div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>School</th>
+                                <th>Good Condition</th>
+                                <th>Minor Repair</th>
+                                <th>Major Repair</th>
+                                <th>Condemnation/Demolition</th>
+                                <th>Ongoing Construction</th>
+                                <th>For Completion</th>
+                                <th>Timestamps</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($classroomReports as $classroom)
+                                <tr>
+                                    <td>{{ $classroom->school->name ?? 'N/A' }}</td>
+                                    <td>{{ $classroom->good_condition ?? 'N/A' }}</td>
+                                    <td>{{ $classroom->minor_repair ?? 'N/A' }}</td>
+                                    <td>{{ $classroom->major_repair ?? 'N/A' }}</td>
+                                    <td>{{ $classroom->comdemnation_demolition ?? 'N/A' }}</td>
+                                    <td>{{ $classroom->on_going_construction ?? 'N/A' }}</td>
+                                    <td>{{ $classroom->for_completion ?? 'N/A' }}</td>
+                                    <td>{{ $classroom->created_at->format('F j, Y g:i A') ?? 'N/A' }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
 
-            <h6>Reports for School Year: {{ $schoolYear->school_year }}</h6>
-
-            <h6>Inventory of School Buildings</h6>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>School</th>
-                        <th>Good Condition</th>
-                        <th>Minor Repair</th>
-                        <th>Major Repair</th>
-                        <th>Condemnation/Demolition</th>
-                        <th>Ongoing Construction</th>
-                        <th>For Completion</th>
-                        <th>Timestamps</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($inventory_of_school_buildings as $inventory_of_school_building)
-                        <tr>
-                            <td>{{ $inventory_of_school_building->school->name ?? ('N/A' ?? 'N/A') }}</td>
-                            <td>{{ $inventory_of_school_building->good_condition ?? 'N/A' }}</td>
-                            <td>{{ $inventory_of_school_building->minor_repair ?? 'N/A' }}</td>
-                            <td>{{ $inventory_of_school_building->major_repair ?? 'N/A' }}</td>
-                            <td>{{ $inventory_of_school_building->condemnation_demolition ?? 'N/A' }}</td>
-                            <td>{{ $inventory_of_school_building->on_going_contruction ?? 'N/A' }}</td>
-                            <td>{{ $inventory_of_school_building->for_completion ?? 'N/A' }}</td>
-                            <td>{{ $inventory_of_school_building->created_at ?? 'N/A' }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
-            <h6>TLS (Temporary Learning Spaces)</h6>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>School</th>
-                        <th>No. of TLS</th>
-                        <th>No. of Classes in TLS</th>
-                        <th>Timestamps</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($tlsReports as $tls)
-                        <tr>
-                            <td>{{ $tls->school->name ?? 'N/A' }}</td>
-                            <td>{{ $tls->no_of_tls ?? 'N/A' }}</td>
-                            <td>{{ $tls->no_of_classes_in_tls ?? 'N/A' }}</td>
-                            <td>{{ $tls->created_at ?? 'N/A' }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
-            <h6>MakeShift Rooms</h6>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>School</th>
-                        <th>No. of MakeShift Rooms</th>
-                        <th>No. of Classes in MakeShift Rooms</th>
-                        <th>Timestamps</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($makeShiftReports as $makeShift)
-                        <tr>
-                            <td>{{ $makeShift->school->name ?? 'N/A' }}</td>
-                            <td>{{ $makeShift->no_of_makeshift_rooms ?? 'N/A' }}</td>
-                            <td>{{ $makeShift->no_of_classes_in_makeshift_rooms ?? 'N/A' }}</td>
-                            <td>{{ $makeShift->created_at ?? 'N/A' }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
-            <h6>Inventory of Classrooms</h6>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>School</th>
-                        <th>Good Condition</th>
-                        <th>Minor Repair</th>
-                        <th>Major Repair</th>
-                        <th>Condemnation/Demolition</th>
-                        <th>Ongoing Construction</th>
-                        <th>For Completion</th>
-                        <th>Timestamps</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($classroomReports as $classroom)
-                        <tr>
-                            <td>{{ $classroom->school->name ?? 'N/A' }}</td>
-                            <td>{{ $classroom->good_condition ?? 'N/A' }}</td>
-                            <td>{{ $classroom->minor_repair ?? 'N/A' }}</td>
-                            <td>{{ $classroom->major_repair ?? 'N/A' }}</td>
-                            <td>{{ $classroom->comdemnation_demolition ?? 'N/A' }}</td>
-                            <td>{{ $classroom->on_going_construction ?? 'N/A' }}</td>
-                            <td>{{ $classroom->for_completion ?? 'N/A' }}</td>
-                            <td>{{ $classroom->created_at ?? 'N/A' }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
-            <h6>Inventory of Furniture</h6>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>School</th>
-                        <th>Kinder Modular Table</th>
-                        <th>Kinder Chair</th>
-                        <th>Arm Chair</th>
-                        <th>School Desk</th>
-                        <th>Other Classroom Table</th>
-                        <th>Other Classroom Chair</th>
-                        <th>Sets of Tables and Chairs</th>
-                        <th>Timestamps</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($furnitureReports as $furniture)
-                        <tr>
-                            <td>{{ $furniture->school->name ?? 'N/A' }}</td>
-                            <td>{{ $furniture->kinder_modular_table ?? 'N/A' }}</td>
-                            <td>{{ $furniture->kinder_chair ?? 'N/A' }}</td>
-                            <td>{{ $furniture->arm_chair ?? 'N/A' }}</td>
-                            <td>{{ $furniture->school_desk ?? 'N/A' }}</td>
-                            <td>{{ $furniture->other_classroom_table ?? 'N/A' }}</td>
-                            <td>{{ $furniture->other_classroom_chair ?? 'N/A' }}</td>
-                            <td>{{ $furniture->sets_of_tables_and_chairs ?? 'N/A' }}</td>
-                            <td>{{ $furniture->created_at ?? 'N/A' }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
+            <div class="card">
+                <div class="card-header">Inventory of Furniture</div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>School</th>
+                                <th>Kinder Modular Table</th>
+                                <th>Kinder Chair</th>
+                                <th>Arm Chair</th>
+                                <th>School Desk</th>
+                                <th>Other Classroom Table</th>
+                                <th>Other Classroom Chair</th>
+                                <th>Sets of Tables and Chairs</th>
+                                <th>Timestamps</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($furnitureReports as $furniture)
+                                <tr>
+                                    <td>{{ $furniture->school->name ?? 'N/A' }}</td>
+                                    <td>{{ $furniture->kinder_modular_table ?? 'N/A' }}</td>
+                                    <td>{{ $furniture->kinder_chair ?? 'N/A' }}</td>
+                                    <td>{{ $furniture->arm_chair ?? 'N/A' }}</td>
+                                    <td>{{ $furniture->school_desk ?? 'N/A' }}</td>
+                                    <td>{{ $furniture->other_classroom_table ?? 'N/A' }}</td>
+                                    <td>{{ $furniture->other_classroom_chair ?? 'N/A' }}</td>
+                                    <td>{{ $furniture->sets_of_tables_and_chairs ?? 'N/A' }}</td>
+                                    <td>{{ $furniture->created_at->format('F j, Y g:i A') ?? 'N/A' }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
         </div>
     </section>

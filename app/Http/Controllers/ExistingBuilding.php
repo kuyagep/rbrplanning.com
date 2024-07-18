@@ -22,7 +22,11 @@ class ExistingBuilding extends Controller
 
         // Retrieve search query from request
         $search = $request->input('search');
-
+        if ($search) {
+            $school_year = SchoolYear::where('id', $search)->get();
+        } else {
+            $school_year = SchoolYear::orderBy('id', 'desc')->get();
+        }
         $schoolYears = SchoolYear::all();
         $schoolID = Auth::user()->school_id;
         // if (!$search) {
@@ -30,16 +34,16 @@ class ExistingBuilding extends Controller
         //     $schoolYearId = SchoolYear::select('id')->first();
         // }
 
-        $inventory_of_school_buildings = InventoryOfSchoolBuilding::where('school_id', $schoolID)->where('school_year_id', 'like', '%' . $search . '%')->orderBy('created_at', 'desc');
-
+        $inventory_of_school_buildings = InventoryOfSchoolBuilding::where('school_year_id', 'like', '%' . $search . '%')->where('school_id', $schoolID)
+            ->orderBy('created_at', 'desc')->get();
         $tlsReports = TLS::where('school_year_id', 'like', '%' . $search . '%')->where('school_id', $schoolID)
-            ->with('school')->get();
+            ->orderBy('created_at', 'desc')->get();
         $makeShiftReports = MakeShift::where('school_year_id', 'like', '%' . $search . '%')->where('school_id', $schoolID)
-            ->with('school')->get();
+            ->orderBy('created_at', 'desc')->get();
         $classroomReports = InventoryOfClassroom::where('school_year_id', 'like', '%' . $search . '%')->where('school_id', $schoolID)
-            ->with('school')->get();
+            ->orderBy('created_at', 'desc')->get();
         $furnitureReports = InventoryOfFurniture::where('school_year_id', 'like', '%' . $search . '%')->where('school_id', $schoolID)
-            ->with('school')->get();
+            ->orderBy('created_at', 'desc')->get();
 
         return view('user-panel.existing-buildings.index', compact(
             'inventory_of_school_buildings',
@@ -47,7 +51,8 @@ class ExistingBuilding extends Controller
             'makeShiftReports',
             'classroomReports',
             'furnitureReports',
-            'schoolYears'
+            'schoolYears',
+            'school_year'
         ));
     }
 

@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{{ asset('assets/dist/css/theme.min.css') }}">
     <script src="{{ asset('assets/src/js/vendor/modernizr-2.8.3.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4048306512221579"
+        crossorigin="anonymous"></script>
     <style>
         html,
         body {
