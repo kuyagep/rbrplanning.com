@@ -17,6 +17,7 @@ class InventoryOfClassroom extends Model
         'comdemnation_demolition',
         'on_going_construction',
         'for_completion',
+        'school_year_id'
     ];
 
     public function school()

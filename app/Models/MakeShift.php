@@ -12,6 +12,7 @@ class MakeShift extends Model
         'school_id',
         'no_of_makeshift_rooms',
         'no_of_classes_in_makeshift_rooms',
+        'school_year_id',
     ];
 
     public function school()

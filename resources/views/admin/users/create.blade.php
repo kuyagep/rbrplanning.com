@@ -37,8 +37,7 @@
                                     <label for="region_id" class="col-sm-3 col-form-label text-lg-right">Region<span
                                             class="text-danger">* </label>
                                     <div class="col-sm-9">
-                                        <select class="form-control form-control-sm form-control form-control-sm-sm select2"
-                                            style="width: 100%;" id="region_id" name="region_id">
+                                        <select class="form-control  " style="width: 100%;" id="region_id" name="region_id">
                                             <option value="">Choose...</option>
                                             @foreach ($regions as $region)
                                                 <option value="{{ $region->id }}">{{ $region->name }}
@@ -51,8 +50,8 @@
                                     <label for="division_id" class="col-sm-3 col-form-label text-lg-right">Division<span
                                             class="text-danger">* </label>
                                     <div class="col-sm-9">
-                                        <select class="form-control form-control-sm select2" style="width: 100%;"
-                                            id="division_id" name="division_id">
+                                        <select class="form-control " style="width: 100%;" id="division_id"
+                                            name="division_id">
                                             <option value="">Choose...</option>
 
                                         </select>
@@ -67,8 +66,8 @@
                                     <label for="district_id" class="col-sm-3 col-form-label text-lg-right">District<span
                                             class="text-danger">* </label>
                                     <div class="col-sm-9">
-                                        <select class="form-control form-control-sm select2" style="width: 100%;"
-                                            id="district_id" name="district_id">
+                                        <select class="form-control " style="width: 100%;" id="district_id"
+                                            name="district_id">
                                             <option value="">Choose...</option>
 
                                         </select>
@@ -83,8 +82,7 @@
                                     <label for="school_id" class="col-sm-3 col-form-label text-lg-right">School<span
                                             class="text-danger">* </label>
                                     <div class="col-sm-9">
-                                        <select class="form-control form-control-sm select2" style="width: 100%;"
-                                            id="school_id" name="school_id">
+                                        <select class="form-control " style="width: 100%;" id="school_id" name="school_id">
                                             <option value="">Choose...</option>
 
                                         </select>
@@ -99,8 +97,7 @@
                                     <label for="first_name" class="col-sm-3 col-form-label text-lg-right">Firstname<span
                                             class="text-danger">* </label>
                                     <div class="col-sm-9">
-                                        <input type="text"
-                                            class="form-control form-control-sm @error('first_name') is-invalid @enderror"
+                                        <input type="text" class="form-control @error('first_name') is-invalid @enderror"
                                             id="first_name" name="first_name" value="{{ old('first_name') }}">
                                         @error('first_name')
                                             <span class="invalid-feedback" role="alert">
@@ -113,8 +110,7 @@
                                     <label for="last_name" class="col-sm-3 col-form-label text-lg-right">Lastname<span
                                             class="text-danger">* </label>
                                     <div class="col-sm-9">
-                                        <input type="text"
-                                            class="form-control form-control-sm @error('last_name') is-invalid @enderror"
+                                        <input type="text" class="form-control @error('last_name') is-invalid @enderror"
                                             id="last_name" name="last_name" value="{{ old('last_name') }}">
                                         @error('last_name')
                                             <span class="invalid-feedback" role="alert">
@@ -127,8 +123,7 @@
                                     <label for="email" class="col-sm-3 col-form-label text-lg-right">Email<span
                                             class="text-danger">* </label>
                                     <div class="col-sm-9">
-                                        <input type="email"
-                                            class="form-control form-control-sm  @error('email') is-invalid @enderror"
+                                        <input type="email" class="form-control  @error('email') is-invalid @enderror"
                                             id="email" name="email" value="{{ old('email') }}">
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">

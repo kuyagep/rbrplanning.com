@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InventoryOfClassroom;
+use App\Models\InventoryOfFurniture;
 use App\Models\InventoryOfSchoolBuilding;
 use App\Models\MakeShift;
 use App\Models\School;
@@ -20,24 +22,31 @@ class ReportController extends Controller
         return view('admin.reports.index', compact('title', 'data'));
     }
 
-    public function bySchoolYear(SchoolYear $schoolYear)
+    public function bySchoolYear(Request $request, SchoolYear $schoolYear)
     {
-        // Fetch all reports for the given school year
-        $reports = InventoryOfSchoolBuilding::where('school_year_id', $schoolYear->id)
-            ->with('school')
-            ->get();
 
-        // Example for fetching TLS data for the same school year
-        $tlsReports = TLS::where('school_year_id', $schoolYear->id)
-            ->with('school')
-            ->get();
+        $schoolYears = SchoolYear::all();
+        $schoolID = Auth::user()->school_id;
+        $schoolYearId = SchoolYear::latest();
 
-        // Example for fetching MakeShift data for the same school year
-        $makeShiftReports = MakeShift::where('school_year_id', $schoolYear->id)
-            ->with('school')
-            ->get();
+        $reports = InventoryOfSchoolBuilding::where('school_year_id', $schoolYearId)->where('school_id', $schoolId)
+            ->with('school')->get();
+        $tlsReports = TLS::where('school_year_id', $schoolYearId)->where('school_id', $schoolId)
+            ->with('school')->get();
+        $makeShiftReports = MakeShift::where('school_year_id', $schoolYearId)->where('school_id', $schoolId)
+            ->with('school')->get();
+        $classroomReports = InventoryOfClassroom::where('school_year_id', $schoolYearId)->where('school_id', $schoolId)
+            ->with('school')->get();
+        $furnitureReports = InventoryOfFurniture::where('school_year_id', $schoolYearId)->where('school_id', $schoolId)
+            ->with('school')->get();
 
-        return view('reports.by_school_year', compact('schoolYear', 'reports', 'tlsReports', 'makeShiftReports'));
+        return response()->json([
+            'reports' => $reports,
+            'tlsReports' => $tlsReports,
+            'makeShiftReports' => $makeShiftReports,
+            'classroomReports' => $classroomReports,
+            'furnitureReports' => $furnitureReports,
+        ]);
     }
 
     public function bySchool(School $school)

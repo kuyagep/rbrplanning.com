@@ -17,20 +17,7 @@
                         <span class="breadcrumb-item active">Inventory Report by School Year</span>
                     </div>
                 </div>
-                <div class="d-flex align-items-center">
 
-                    <a href=""
-                        class="btn btn-sm btn-default mr-2 d-none d-none d-lg-block pd-t-6-force pd-b-5-force">
-                        <i class="fa fa-regular fa-file-excel"></i>
-                        Export as Excel
-                    </a>
-                    <a href="" target="_blank"
-                        class="btn btn-sm btn-default mr-2 mb-2 mb-md-0 d-none d-lg-block pd-t-6-force pd-b-5-force"
-                        style="margin-right: 5px;">
-                        <i class="fa fa-download"></i>
-                        Generate PDF
-                    </a>
-                </div>
             </div>
         </div>
     </section>
@@ -38,10 +25,12 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <h1>Reports for School Year: {{ $schoolYear->school_year }}</h1>
 
-            <h2>Inventory of School Buildings</h2>
-            <table class="table">
+
+            <h4>Reports for School Year: {{ $schoolYear->school_year }}</h4>
+
+            <h4>Inventory of School Buildings</h4>
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>School</th>
@@ -70,8 +59,8 @@
                 </tbody>
             </table>
 
-            <h2>TLS (Temporary Learning Spaces)</h2>
-            <table class="table">
+            <h4>TLS (Temporary Learning Spaces)</h4>
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>School</th>
@@ -92,8 +81,8 @@
                 </tbody>
             </table>
 
-            <h2>MakeShift Rooms</h2>
-            <table class="table">
+            <h4>MakeShift Rooms</h4>
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>School</th>
@@ -114,8 +103,8 @@
                 </tbody>
             </table>
 
-            <h2>Inventory of Classrooms</h2>
-            <table class="table">
+            <h4>Inventory of Classrooms</h4>
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>School</th>
@@ -144,8 +133,8 @@
                 </tbody>
             </table>
 
-            <h2>Inventory of Furniture</h2>
-            <table class="table">
+            <h4>Inventory of Furniture</h4>
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>School</th>

@@ -76,6 +76,7 @@ class ExtensionSchoolController extends Controller
         $schools = School::where('district_id', $request->district_id)->get();
         return response()->json(['schools' => $schools]);
     }
+
     public function store(Request $request)
     {
         try {

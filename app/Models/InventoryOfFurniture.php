@@ -18,6 +18,7 @@ class InventoryOfFurniture extends Model
         'other_classroom_table',
         'other_classroom_chair',
         'sets_of_tables_and_chairs',
+        'school_year_id',
     ];
 
     public function school()

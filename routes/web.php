@@ -123,8 +123,8 @@ Route::prefix('user')->middleware(['auth:sanctum', 'role:user'])->group(function
     Route::post('/existing-buildings/store', [ExistingBuilding::class, 'store'])->name('user.existing-buildings.store');
 
     // Reports
-    Route::get('/reports/by-school-year/{schoolYear}', [ReportController::class, 'bySchoolYear'])->name('reports.bySchoolYear');
-// Inventory Management Routes
+    Route::post('/reports/by-school-year', [ReportController::class, 'bySchoolYear'])->name('reports.bySchoolYear');
+    // Inventory Management Routes
     Route::resource('inventory-of-classrooms', InventoryOfClassroomController::class);
     Route::resource('inventory-of-school-buildings', InventoryOfSchoolBuildingController::class);
     Route::resource('tls', TLSController::class);

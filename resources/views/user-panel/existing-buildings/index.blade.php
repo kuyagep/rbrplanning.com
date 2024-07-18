@@ -8,7 +8,7 @@
             <div class="d-flex justify-content-between">
                 <div class="clearfix">
                     <div class="pt-0 pb-0">
-                        <h4 class="pd-0 mg-0 text-10">Existing Building</h4>
+                        <h6 class="pd-0 mg-0 text-10">Existing Building</h6>
                     </div>
                     <div class="breadcrumb pd-0 mg-0 text-sm">
                         <a class="breadcrumb-item" href="{{ route('dashboard') }}"><i class="icon ion-ios-home-outline"></i>
@@ -38,144 +38,182 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="mb-4">Inventories</h1>
-                            <a href="{{ route('user.existing-buildings.create') }}" class="btn btn-primary">Add New Building
-                                Record</a>
-                            <section>
-                                <h2 class="h4">School Buildings</h2>
-                                <table class="table table-striped table-bordered">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th>School</th>
-                                            <th>Good Condition</th>
-                                            <th>Minor Repair</th>
-                                            <th>Major Repair</th>
-                                            <th>Condemnation/Demolition</th>
-                                            <th>Ongoing Construction</th>
-                                            <th>For Completion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{{ $inventory_of_school_building->school->name ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_school_building->good_condition ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_school_building->minor_repair ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_school_building->major_repair ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_school_building->condemnation_demolition ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_school_building->on_going_contruction ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_school_building->for_completion ?? 'N/A' }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </section>
+            <a href="{{ route('user.existing-buildings.create') }}" class="btn btn-primary">
+                Add Submission Report</a>
 
-                            <section class="mt-4">
-                                <h2 class="h4">TLS</h2>
-                                <table class="table table-striped table-bordered">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th>School</th>
-                                            <th>No. of TLS</th>
-                                            <th>No. of Classes in TLS</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{{ $tls->school->name ?? 'N/A' }}</td>
-                                            <td>{{ $tls->no_of_tls ?? 'N/A' }}</td>
-                                            <td>{{ $tls->no_of_classes_in_tls ?? 'N/A' }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </section>
+            <h6>Reports by School Year</h6>
 
-                            <section class="mt-4">
-                                <h2 class="h4">Make Shifts</h2>
-                                <table class="table table-striped table-bordered">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th>School</th>
-                                            <th>No. of Make Shift Rooms</th>
-                                            <th>No. of Classes in Make Shift Rooms</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{{ $makeshift->school->name ?? 'N/A' }}</td>
-                                            <td>{{ $makeshift->no_of_makeshift_rooms ?? 'N/A' }}</td>
-                                            <td>{{ $makeshift->no_of_classes_in_makeshift_rooms ?? 'N/A' }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </section>
-
-                            <section class="mt-4">
-                                <h2 class="h4">Classrooms</h2>
-                                <table class="table table-striped table-bordered">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th>School</th>
-                                            <th>Good Condition</th>
-                                            <th>Minor Repair</th>
-                                            <th>Major Repair</th>
-                                            <th>Condemnation/Demolition</th>
-                                            <th>Ongoing Construction</th>
-                                            <th>For Completion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{{ $inventory_of_classrooms->school->name ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_classrooms->good_condition ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_classrooms->minor_repair ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_classrooms->major_repair ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_classrooms->comdemnation_demolition ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_classrooms->on_going_construction ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_classrooms->for_completion ?? 'N/A' }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </section>
-
-                            <section class="mt-4">
-                                <h2 class="h4">Furniture</h2>
-                                <table class="table table-striped table-bordered">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th>School</th>
-                                            <th>Kinder Modular Table</th>
-                                            <th>Kinder Chair</th>
-                                            <th>Arm Chair</th>
-                                            <th>School Desk</th>
-                                            <th>Other Classroom Table</th>
-                                            <th>Other Classroom Chair</th>
-                                            <th>Sets of Tables and Chairs</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{{ $inventory_of_furniture->school->name ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_furniture->kinder_modular_table ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_furniture->kinder_chair ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_furniture->arm_chair ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_furniture->school_desk ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_furniture->other_classroom_table ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_furniture->other_classroom_chair ?? 'N/A' }}</td>
-                                            <td>{{ $inventory_of_furniture->sets_of_tables_and_chairs ?? 'N/A' }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </section>
-
+            <form action="{{ route('user.existing-buildings.index') }}" method="GET">
+                @csrf
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="input-group input-group-lg">
+                                        <select name="search" id="search" class="form-control">
+                                            <option value="">--Select School Year--</option>
+                                            @foreach ($schoolYears as $schoolYear)
+                                                <option value="{{ $schoolYear->id }}"
+                                                    {{ $schoolYear->id == request('school_year_id') ? 'selected' : '' }}>
+                                                    {{ $schoolYear->school_year }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-lg btn-default">
+                                                <i class="fa fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
+
                     </div>
                 </div>
-            </div>
+            </form>
+
+
+            <h6>Reports for School Year: {{ $schoolYear->school_year }}</h6>
+
+            <h6>Inventory of School Buildings</h6>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>School</th>
+                        <th>Good Condition</th>
+                        <th>Minor Repair</th>
+                        <th>Major Repair</th>
+                        <th>Condemnation/Demolition</th>
+                        <th>Ongoing Construction</th>
+                        <th>For Completion</th>
+                        <th>Timestamps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($inventory_of_school_buildings as $inventory_of_school_building)
+                        <tr>
+                            <td>{{ $inventory_of_school_building->school->name ?? ('N/A' ?? 'N/A') }}</td>
+                            <td>{{ $inventory_of_school_building->good_condition ?? 'N/A' }}</td>
+                            <td>{{ $inventory_of_school_building->minor_repair ?? 'N/A' }}</td>
+                            <td>{{ $inventory_of_school_building->major_repair ?? 'N/A' }}</td>
+                            <td>{{ $inventory_of_school_building->condemnation_demolition ?? 'N/A' }}</td>
+                            <td>{{ $inventory_of_school_building->on_going_contruction ?? 'N/A' }}</td>
+                            <td>{{ $inventory_of_school_building->for_completion ?? 'N/A' }}</td>
+                            <td>{{ $inventory_of_school_building->created_at ?? 'N/A' }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <h6>TLS (Temporary Learning Spaces)</h6>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>School</th>
+                        <th>No. of TLS</th>
+                        <th>No. of Classes in TLS</th>
+                        <th>Timestamps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tlsReports as $tls)
+                        <tr>
+                            <td>{{ $tls->school->name ?? 'N/A' }}</td>
+                            <td>{{ $tls->no_of_tls ?? 'N/A' }}</td>
+                            <td>{{ $tls->no_of_classes_in_tls ?? 'N/A' }}</td>
+                            <td>{{ $tls->created_at ?? 'N/A' }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <h6>MakeShift Rooms</h6>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>School</th>
+                        <th>No. of MakeShift Rooms</th>
+                        <th>No. of Classes in MakeShift Rooms</th>
+                        <th>Timestamps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($makeShiftReports as $makeShift)
+                        <tr>
+                            <td>{{ $makeShift->school->name ?? 'N/A' }}</td>
+                            <td>{{ $makeShift->no_of_makeshift_rooms ?? 'N/A' }}</td>
+                            <td>{{ $makeShift->no_of_classes_in_makeshift_rooms ?? 'N/A' }}</td>
+                            <td>{{ $makeShift->created_at ?? 'N/A' }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <h6>Inventory of Classrooms</h6>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>School</th>
+                        <th>Good Condition</th>
+                        <th>Minor Repair</th>
+                        <th>Major Repair</th>
+                        <th>Condemnation/Demolition</th>
+                        <th>Ongoing Construction</th>
+                        <th>For Completion</th>
+                        <th>Timestamps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($classroomReports as $classroom)
+                        <tr>
+                            <td>{{ $classroom->school->name ?? 'N/A' }}</td>
+                            <td>{{ $classroom->good_condition ?? 'N/A' }}</td>
+                            <td>{{ $classroom->minor_repair ?? 'N/A' }}</td>
+                            <td>{{ $classroom->major_repair ?? 'N/A' }}</td>
+                            <td>{{ $classroom->comdemnation_demolition ?? 'N/A' }}</td>
+                            <td>{{ $classroom->on_going_construction ?? 'N/A' }}</td>
+                            <td>{{ $classroom->for_completion ?? 'N/A' }}</td>
+                            <td>{{ $classroom->created_at ?? 'N/A' }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <h6>Inventory of Furniture</h6>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>School</th>
+                        <th>Kinder Modular Table</th>
+                        <th>Kinder Chair</th>
+                        <th>Arm Chair</th>
+                        <th>School Desk</th>
+                        <th>Other Classroom Table</th>
+                        <th>Other Classroom Chair</th>
+                        <th>Sets of Tables and Chairs</th>
+                        <th>Timestamps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($furnitureReports as $furniture)
+                        <tr>
+                            <td>{{ $furniture->school->name ?? 'N/A' }}</td>
+                            <td>{{ $furniture->kinder_modular_table ?? 'N/A' }}</td>
+                            <td>{{ $furniture->kinder_chair ?? 'N/A' }}</td>
+                            <td>{{ $furniture->arm_chair ?? 'N/A' }}</td>
+                            <td>{{ $furniture->school_desk ?? 'N/A' }}</td>
+                            <td>{{ $furniture->other_classroom_table ?? 'N/A' }}</td>
+                            <td>{{ $furniture->other_classroom_chair ?? 'N/A' }}</td>
+                            <td>{{ $furniture->sets_of_tables_and_chairs ?? 'N/A' }}</td>
+                            <td>{{ $furniture->created_at ?? 'N/A' }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+
         </div>
     </section>
 @endsection
@@ -189,129 +227,6 @@
                 }
             });
 
-            // Delete Function
-            $('table').on('click', '#deleteButton', function(e) {
-                e.preventDefault();
-
-                var personnelID = $(this).data('id');
-                var route = "{{ route('user.personnels.destroy', ':id') }}".replace(':id', personnelID);
-
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You want to delete this personnel?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Confirm!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            type: "DELETE",
-                            url: route,
-                            dataType: 'json',
-                            success: function(response) {
-                                $('.table').load(location.href + ' .table');
-
-                                Swal.fire({
-                                    icon: response.icon,
-                                    title: response.title,
-                                    text: response.message,
-                                    timer: 2000
-                                });
-                            },
-                            error: function(response) {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error',
-                                    text: 'An error occurred. Please try again.',
-                                    timer: 2000
-                                });
-                            }
-                        });
-                    }
-                });
-            });
-
-
-            // Fetch divisions based on selected region
-            $('#region_id').change(function() {
-                var regionId = $(this).val();
-                if (regionId) {
-                    $.ajax({
-                        url: '{{ route('fetch.divisions') }}', // Change this to your actual route
-                        type: 'POST',
-                        data: {
-                            region_id: regionId
-                        },
-                        success: function(data) {
-                            $('#division_id').empty();
-                            $('#division_id').append(
-                                '<option value="">Select Division</option>');
-                            $.each(data.divisions, function(key, value) {
-                                $('#division_id').append('<option value="' + value.id +
-                                    '">' + value.name + '</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('#division_id').empty();
-                }
-            });
-
-
-            // Fetch districts based on selected division
-            $('#division_id').change(function() {
-                var divisionId = $(this).val();
-                if (divisionId) {
-                    $.ajax({
-                        url: '{{ route('fetch.districts') }}', // Change this to your actual route
-                        type: 'POST',
-                        data: {
-                            division_id: divisionId
-                        },
-                        success: function(data) {
-                            console.log(data);
-                            $('#district_id').empty();
-                            $('#district_id').append(
-                                '<option value="">Select District</option>');
-                            $.each(data.districts, function(key, value) {
-                                $('#district_id').append('<option value="' + value.id +
-                                    '">' + value.name + '</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('#district_id').empty();
-                    $('#district_id').append('<option value="">Select District</option>');
-                }
-            });
-
-            // Fetch schools based on selected district
-            $('#district_id').change(function() {
-                var districtId = $(this).val();
-                if (districtId) {
-                    $.ajax({
-                        url: '{{ route('fetch.schools') }}',
-                        type: 'POST',
-                        data: {
-                            district_id: districtId
-                        },
-                        success: function(data) {
-                            console.log(data);
-                            $('#school_id').empty();
-                            $('#school_id').append('<option value="">Select School</option>');
-                            $.each(data.schools, function(key, value) {
-                                $('#school_id').append('<option value="' + value.id +
-                                    '">' + value.name + '</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('#school_id').empty();
-                    $('#school_id').append('<option value="">Select School</option>');
-                }
-            });
         });
     </script>
 @endsection

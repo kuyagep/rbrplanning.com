@@ -17,19 +17,37 @@ class ExistingBuilding extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $inventory_of_school_building = InventoryOfSchoolBuilding::where('school_id', Auth::user()->school->id)->first();
-        $tls = TLS::where('school_id', Auth::user()->school->id)->first();
-        $makeshift = MakeShift::where('school_id', Auth::user()->school->id)->first();
-        $inventory_of_classrooms = InventoryOfClassroom::where('school_id', Auth::user()->school->id)->first();
-        $inventory_of_furniture = InventoryOfFurniture::where('school_id', Auth::user()->school->id)->first();
+
+        // Retrieve search query from request
+        $search = $request->input('search');
+
+        $schoolYears = SchoolYear::all();
+        $schoolID = Auth::user()->school_id;
+        // if (!$search) {
+        //     notyf()->success('No selected year');
+        //     $schoolYearId = SchoolYear::select('id')->first();
+        // }
+
+        $inventory_of_school_buildings = InventoryOfSchoolBuilding::where('school_id', $schoolID)->where('school_year_id', 'like', '%' . $search . '%')->orderBy('created_at', 'desc');
+
+        $tlsReports = TLS::where('school_year_id', 'like', '%' . $search . '%')->where('school_id', $schoolID)
+            ->with('school')->get();
+        $makeShiftReports = MakeShift::where('school_year_id', 'like', '%' . $search . '%')->where('school_id', $schoolID)
+            ->with('school')->get();
+        $classroomReports = InventoryOfClassroom::where('school_year_id', 'like', '%' . $search . '%')->where('school_id', $schoolID)
+            ->with('school')->get();
+        $furnitureReports = InventoryOfFurniture::where('school_year_id', 'like', '%' . $search . '%')->where('school_id', $schoolID)
+            ->with('school')->get();
+
         return view('user-panel.existing-buildings.index', compact(
-            'inventory_of_school_building',
-            'tls',
-            'makeshift',
-            'inventory_of_classrooms',
-            'inventory_of_furniture',
+            'inventory_of_school_buildings',
+            'tlsReports',
+            'makeShiftReports',
+            'classroomReports',
+            'furnitureReports',
+            'schoolYears'
         ));
     }
 

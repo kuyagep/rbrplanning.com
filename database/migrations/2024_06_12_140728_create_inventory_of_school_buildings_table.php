@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('inventory_of_school_buildings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('school_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('school_year_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('school_year_id')->nullable()->constrained()->cascadeOnDelete();
             $table->integer('good_condition')->nullable();
             $table->integer('minor_repair')->nullable();
             $table->integer('major_repair')->nullable();

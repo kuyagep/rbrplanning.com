@@ -12,6 +12,7 @@ class TLS extends Model
         'school_id',
         'no_of_tls',
         'no_of_classes_in_tls',
+        'school_year_id',
     ];
 
     public function school()
