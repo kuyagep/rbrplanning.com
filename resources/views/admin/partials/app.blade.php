@@ -50,6 +50,7 @@
     @yield('style')
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4048306512221579"
         crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-4048306512221579">
 </head>
 
 <body class="layout-fixed sidebar-mini layout-navbar-fixed sidebar-closed accent-danger">

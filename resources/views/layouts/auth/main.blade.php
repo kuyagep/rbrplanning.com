@@ -30,6 +30,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4048306512221579"
         crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-4048306512221579">
     <style>
         html,
         body {
