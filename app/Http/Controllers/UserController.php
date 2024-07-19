@@ -41,8 +41,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $regions = Region::select('id', 'name')->get();
-        return view('admin.users.create', compact('regions'));
+        $users = User::select('id', 'name')->get();
+        return view('admin.users.create', compact('users'));
     }
 
     /**
@@ -50,7 +50,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
         $temp_password = Str::random(6);
 
         $request->validate([
@@ -59,7 +58,7 @@ class UserController extends Controller
             'email' => 'required|email|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/|max:255',
         ]);
         // dd($request->all());
-        $user = new User;
+        $user = new User();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
@@ -181,6 +180,5 @@ class UserController extends Controller
         $users = User::all();
         $pdf = Pdf::loadView('admin.users.export-users', ['users' => $users]);
         return $pdf->stream('user-details.pdf');
-
     }
 }

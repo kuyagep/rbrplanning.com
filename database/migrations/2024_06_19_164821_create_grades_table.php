@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('name'); // Grade name, e.g., "Grade 1", "Kindergarten"
             $table->string('grade_level'); // Grade level, e.g., "Elementary", "Junior High School", "Senior High School"
             $table->timestamps();
-
         });
     }
 

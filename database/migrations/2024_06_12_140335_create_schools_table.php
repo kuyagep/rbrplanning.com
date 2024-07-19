@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('mobile_number')->nullable();
             $table->string('school_email')->unique()->nullable();
             $table->string('logo')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

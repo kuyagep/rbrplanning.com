@@ -26,6 +26,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\SF4Controller;
 use App\Http\Controllers\SpecializationController;
 use App\Http\Controllers\SpecialProgramsController;
 use App\Http\Controllers\StrandController;
@@ -52,7 +53,6 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::resource('districts', DistrictController::class);
     Route::post('/fetch-districts', [SchoolController::class, 'fetchDistricts'])->name('fetch.districts');
     Route::resource('schools', SchoolController::class);
-    Route::resource('sections', SectionController::class);
     Route::post('/fetch-schools', [ExtensionSchoolController::class, 'fetchsSchool'])->name('fetch.schools');
     Route::resource('extension-schools', ExtensionSchoolController::class);
 
@@ -72,13 +72,13 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
     Route::resource('year-levels', YearLevelController::class);
 
-// Position and Personnel Management Routes
+    // Position and Personnel Management Routes
     Route::resource('positions', PositionController::class);
     Route::resource('position-categories', PositionCategoryController::class);
     Route::resource('personnel', PersonnelController::class);
     Route::resource('employment-statuses', EmploymentStatusController::class);
 
-// School Year and Programs Management Routes
+    // School Year and Programs Management Routes
     Route::resource('school-year', SchoolYearController::class);
     Route::post('/fetch-strands', [SpecializationController::class, 'fetchStrands'])->name('fetch.strands');
     Route::resource('specializations', SpecializationController::class);
@@ -95,7 +95,7 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::get('/export/users/pdf', [UserController::class, 'exportPdfUser'])->name('export.pdf.user');
     Route::resource('users', UserController::class);
 
-// Additional Routes
+    // Additional Routes
     Route::resource('reports', ReportController::class);
     Route::get('/backup', [DatabaseBackupController::class, 'index'])->name('backup.index');
     Route::post('/backup/create', [DatabaseBackupController::class, 'create'])->name('backup.create');
@@ -109,6 +109,10 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
 Route::prefix('user')->middleware(['auth:sanctum', 'role:user'])->group(function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard.index');
+
+    Route::resource('sections', SectionController::class);
+
+    Route::get('/school-form', [SF4Controller::class, 'index'])->name('user.school-form.index');
 
     Route::get('/personnels', [PersonnelController::class, 'personnelIndex'])->name('user.personnels.index');
     Route::get('/personnels/create', [PersonnelController::class, 'personnelCreate'])->name('user.personnels.create');

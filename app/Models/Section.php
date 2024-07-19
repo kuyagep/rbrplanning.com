@@ -9,15 +9,16 @@ class Section extends Model
 {
     use HasFactory;
 
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
+
     public function school()
     {
         return $this->belongsTo(School::class);
     }
 
-    public function gradeLevel()
-    {
-        return $this->belongsTo(GradeLevel::class);
-    }
     public function registeredLearner()
     {
         return $this->hasMany(RegisteredLearner::class);

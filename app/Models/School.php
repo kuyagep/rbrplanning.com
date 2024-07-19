@@ -42,6 +42,12 @@ class School extends Model
     {
         return $this->belongsToMany(Grade::class);
     }
+
+    public function sections()
+    {
+        return $this->hasManyThrough(Section::class, Grade::class);
+    }
+
     public function inventoryOfSchoolBuildings()
     {
         return $this->hasMany(InventoryOfSchoolBuilding::class);

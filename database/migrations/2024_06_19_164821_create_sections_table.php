@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('grade_level_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('school_id')->constrained()->cascadeOnDelete(); // Linking sections to a specific school
+            $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
             $table->string('section_name');
             $table->timestamps();
         });
