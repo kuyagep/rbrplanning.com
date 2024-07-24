@@ -37,6 +37,46 @@
                                 <div class="col-md-4 font-weight-bold">Section Name:</div>
                                 <div class="col-md-8">{{ $section->section_name }}</div>
                             </div>
+
+
+                            <h5>Assigned Teachers</h5>
+                            <ul>
+                                @foreach ($section->personnels as $personnel)
+                                    <li>{{ $personnel->full_name }} - {{ $personnel->position->name }}
+                                        <form action="{{ route('sections.removeTeacher', [$section->id, $personnel->id]) }}"
+                                            method="POST" style="display:inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                                        </form>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <h5>Assign Teacher</h5>
+                            <form action="{{ route('sections.assignTeacher', $section->id) }}" method="POST">
+                                @csrf
+                                <div>
+                                    <label for="personnel_id">Select Teacher:</label>
+                                    <select class="form-control" style="width: 10%"id="personnel_id" name="personnel_id">
+                                        @forelse ($personnels as $personnel)
+                                            <option value="{{ $personnel->id }}">
+                                                {{ $personnel->full_name }}
+                                            </option>
+                                        @empty
+                                            <option value="">
+                                                N/A
+                                            </option>
+                                        @endforelse
+                                    </select>
+                                    @error('personnel_id')
+                                        <div>{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <button type="submit" class="btn btn-sm btn-primary">Assign</button>
+                            </form>
+
+
+
                             <div class="d-flex justify-content-right mt-4">
                                 <a href="{{ route('sections.index') }}" class="btn btn-default mr-2">
                                     <i class="fas fa-arrow-left"></i> Back to List

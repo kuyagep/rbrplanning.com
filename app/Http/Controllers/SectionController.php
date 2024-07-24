@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grade;
+use App\Models\Personnel;
 use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,8 +65,8 @@ class SectionController extends Controller
      */
     public function show(Request $request, Section $section)
     {
-
-        return view('user-panel.sections.show', compact('section'));
+        $personnels = Personnel::all();
+        return view('user-panel.sections.show', compact('section', 'personnels'));
     }
 
     /**
@@ -105,6 +106,36 @@ class SectionController extends Controller
 
         notyf()->success('Section deleted successfully.');
         return redirect()->route('sections.index');
+    }
+
+    public function assignTeacher(Request $request, Section $section)
+    {
+        $request->validate([
+            'personnel_id' => 'required|exists:personnels,id',
+        ]);
+
+        try {
+            $section->personnels()->attach($request->personnel_id);
+
+            notyf()->success('Teacher assigned successfully.');
+        } catch (\Exception $e) {
+            notyf()->error('Failed to assign teacher: ' . $e->getMessage());
+        }
+
+        return redirect()->route('sections.show', $section->id);
+    }
+
+    public function removeTeacher(Request $request, Section $section, Personnel $personnel)
+    {
+        try {
+            $section->personnels()->detach($personnel->id);
+
+            notyf()->success('Teacher removed successfully.');
+        } catch (\Exception $e) {
+            notyf()->error('Failed to remove teacher: ' . $e->getMessage());
+        }
+
+        return redirect()->route('sections.show', $section->id);
     }
 
 }

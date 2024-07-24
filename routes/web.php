@@ -122,6 +122,9 @@ Route::prefix('user')->middleware(['auth:sanctum', 'role:user'])->group(function
     Route::put('/personnels/{id}/update', [PersonnelController::class, 'personnelUpdate'])->name('user.personnels.update');
     Route::delete('/personnels/{id}/delete', [PersonnelController::class, 'personnelDestroy'])->name('user.personnels.destroy');
 
+    Route::post('sections/{section}/assignTeacher', [SectionController::class, 'assignTeacher'])->name('sections.assignTeacher');
+    Route::delete('sections/{section}/removeTeacher/{personnel}', [SectionController::class, 'removeTeacher'])->name('sections.removeTeacher');
+
     Route::get('/existing-buildings', [ExistingBuilding::class, 'index'])->name('user.existing-buildings.index');
     Route::get('/existing-buildings/create', [ExistingBuilding::class, 'create'])->name('user.existing-buildings.create');
     Route::post('/existing-buildings/store', [ExistingBuilding::class, 'store'])->name('user.existing-buildings.store');

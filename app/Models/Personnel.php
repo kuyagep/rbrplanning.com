@@ -50,4 +50,9 @@ class Personnel extends Model
     {
         return $this->belongsTo(FundingSource::class);
     }
+
+    public function sections()
+    {
+        return $this->belongsTo(Section::class);
+    }
 }

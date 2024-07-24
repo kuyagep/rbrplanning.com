@@ -9,6 +9,17 @@ class Section extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'section_name',
+        'grade_id',
+        'school_id',
+    ];
+
+    public function personnels()
+    {
+        return $this->belongsToMany(Personnel::class);
+    }
+
     public function grade()
     {
         return $this->belongsTo(Grade::class);
