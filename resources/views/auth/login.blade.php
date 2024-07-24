@@ -15,7 +15,7 @@
                             <a href="#"><img src="assets/src/img/deped-logo.svg" width="60px" height="60px"
                                     alt=""></a>
                         </div>
-                        <h3>Log In to Admin Dashboard</h3>
+                        <h3>Log In to Dashboard</h3>
                         <p>Happy to see you again!</p>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf

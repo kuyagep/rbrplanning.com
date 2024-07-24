@@ -70,7 +70,7 @@
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-9">
                                         <button type="submit" class="btn btn-primary">Create Section</button>
-                                        <a href="{{ route('sections.index') }}" class="btn btn-light">Back</a>
+                                        <a href="{{ route('sections.index') }}" class="btn btn-default">Back</a>
                                     </div>
                                 </div>
                             </form>

@@ -67,6 +67,7 @@
                                     <table id="dataTableajax" class="table table-striped table-bordered nowrap">
                                         <thead class="bg-danger">
                                             <tr>
+                                                <th>Grade Level</th>
                                                 <th>Section Name</th>
                                                 <th class="nosort">Action</th>
                                             </tr>
@@ -74,10 +75,11 @@
                                         <tbody>
                                             @forelse ($sections as  $section)
                                                 <tr>
+                                                    <td>{{ $section->grade->name }}</td>
                                                     <td>{{ $section->section_name }}</td>
                                                     <td class="text-center">
                                                         <div class="btn-group">
-                                                            <a href="{{ url('/user/sections', $section->id) }}"
+                                                            <a href="{{ route('sections.show', $section->id) }}"
                                                                 class="btn btn-sm btn-info" title="View">
                                                                 <i class="fas fa-search"></i>
                                                             </a>

@@ -75,7 +75,6 @@
                                         @csrf
                                         <input type="text" name="search" value="{{ request('search') }}" id="search"
                                             class="form-control form-control-sm mb-2 mr-sm-1" placeholder="Search here...">
-
                                         <button type="submit" class="btn btn-sm btn-primary mb-2">
                                             <i class="ik ik-search"></i> Search</button>
                                     </form>

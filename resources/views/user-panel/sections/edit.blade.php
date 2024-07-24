@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h4>Edit Personnel</h4>
+                    <h4>Edit Sections</h4>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Edit Personnel</li>
+                        <li class="breadcrumb-item active">Edit Sections</li>
                     </ol>
                 </div>
             </div>
@@ -26,118 +26,53 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Edit Personnel</h3>
+                            <h3>Edit Sections</h3>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('user.personnels.update', $personnel->id) }}">
+                            <form method="POST" action="{{ route('user.personnels.update', $section->id) }}">
                                 @csrf
                                 @method('PUT')
+                                <input type="hidden" name="id" value="{{ $section->id }}">
 
-                                <div class="form-group">
-                                    <label for="employee_number">Employee Number:</label>
-                                    <input type="text" class="form-control" id="employee_number" name="employee_number"
-                                        value="{{ $personnel->employee_number }}">
+                                <div class="form-group row">
+                                    <label for="grade" class="col-sm-3 col-form-label text-lg-right">Grade
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control  @error('grade') is-invalid @enderror"
+                                            style="width: 100%;" id="grade" name="grade">
+                                            <option value="">Choose...</option>
+                                            @foreach ($grades as $grade)
+                                                <option value="{{ $grade->id }}"
+                                                    {{ $grade->id == $section->grade_id ? 'selected' : '' }}>
+                                                    {{ $grade->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @error('grade')
+                                        <span class="invalid-feedback"
+                                            role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="item_number">Item Number:</label>
-                                    <input type="text" class="form-control" id="item_number" name="item_number"
-                                        value="{{ $personnel->item_number }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="first_name">First Name:</label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name"
-                                        value="{{ $personnel->first_name }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="middle_name">Middle Name:</label>
-                                    <input type="text" class="form-control" id="middle_name" name="middle_name"
-                                        value="{{ $personnel->middle_name }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="last_name">Last Name:</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name"
-                                        value="{{ $personnel->last_name }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="birth_date">Birth Date:</label>
-                                    <input type="date" class="form-control" id="birth_date" name="birth_date"
-                                        value="{{ $personnel->birth_date }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="mobile_number">Mobile Number:</label>
-                                    <input type="text" class="form-control" id="mobile_number" name="mobile_number"
-                                        value="{{ $personnel->mobile_number }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="deped_email">DepEd Email:</label>
-                                    <input type="email" class="form-control" id="deped_email" name="deped_email"
-                                        value="{{ $personnel->deped_email }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="sex">Sex:</label>
-                                    <select class="form-control" id="sex" name="sex">
-                                        <option value="Male" @if ($personnel->sex == 'Male') selected @endif>Male
-                                        </option>
-                                        <option value="Female" @if ($personnel->sex == 'Female') selected @endif>Female
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="employment_status_id">Employment Status:</label>
-                                    <select class="form-control" id="employment_status_id" name="employment_status_id">
-                                        @foreach ($employmentStatuses as $employmentStatus)
-                                            <option value="{{ $employmentStatus->id }}"
-                                                @if ($personnel->employment_status_id == $employmentStatus->id) selected @endif>
-                                                {{ $employmentStatus->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="position_id">Position:</label>
-                                    <select class="form-control" id="position_id" name="position_id">
-                                        @foreach ($positions as $position)
-                                            <option value="{{ $position->id }}"
-                                                @if ($personnel->position_id == $position->id) selected @endif>{{ $position->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="school_id">School:</label>
-                                    <select class="form-control" id="school_id" name="school_id">
-                                        @foreach ($schools as $school)
-                                            <option value="{{ $school->id }}"
-                                                @if ($personnel->school_id == $school->id) selected @endif>{{ $school->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="funding_source_id">Funding Source:</label>
-                                    <select class="form-control" id="funding_source_id" name="funding_source_id">
-                                        @foreach ($fundingSources as $fundingSource)
-                                            <option value="{{ $fundingSource->id }}"
-                                                @if ($personnel->funding_source_id == $fundingSource->id) selected @endif>
-                                                {{ $fundingSource->fund_source }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                <div class="form-group row">
+                                    <label for="section_name" class="col-sm-3 col-form-label text-lg-right">
+                                        Section Name <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text"
+                                            class="form-control @error('section_name') is-invalid @enderror"
+                                            id="section_name" name="section_name" value="{{ $section->section_name }}">
+                                        @error('section_name')
+                                            <span class="invalid-feedback"
+                                                role="alert"><strong>{{ $message }}</strong></span>
+                                        @enderror
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Update</button>
+                                    <a href="{{ route('sections.index') }}" class="btn btn-default">Back</a>
                                 </div>
                             </form>
                         </div>

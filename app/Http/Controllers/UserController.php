@@ -41,8 +41,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $users = User::select('id', 'name')->get();
-        return view('admin.users.create', compact('users'));
+        $regions = Region::select('id', 'name')->get();
+        return view('admin.users.create', compact('regions'));
     }
 
     /**
