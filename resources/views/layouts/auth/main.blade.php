@@ -46,6 +46,7 @@
             z-index: 0;
         }
     </style>
+    @yield('style')
 </head>
 
 <body>
@@ -100,6 +101,8 @@
             });
         };
     </script>
+
+    @yield('scipt')
 </body>
 
 </html>
