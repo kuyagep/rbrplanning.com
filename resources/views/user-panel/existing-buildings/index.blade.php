@@ -53,7 +53,7 @@
                                         <div class="form-group">
                                             <label for="search"> Reports by School Year</label>
                                             <div class="input-group">
-                                                <select name="search" id="search" class="form-control">
+                                                <select name="search" id="search" class="form-control custom-select">
                                                     <option value="">--Select School Year--</option>
                                                     @foreach ($schoolYears as $schoolYear)
                                                         <option value="{{ $schoolYear->id }}"

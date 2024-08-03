@@ -269,7 +269,7 @@
                 </ul>
             </li>
 
-            <li class="nav-item {{ Request::is('settings*') ? 'menu-open' : '' }}">
+            <li class="nav-item {{ Request::is('settings*', 'profile-settings*') ? 'menu-open' : '' }}">
                 <a href="javascript:void(0)" class="nav-link {{ Request::is('settings*') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-cogs"></i>
                     <p>

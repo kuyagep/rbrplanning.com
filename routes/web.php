@@ -111,8 +111,7 @@ Route::prefix('user')->middleware(['auth:sanctum', 'role:user'])->group(function
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard.index');
 
     Route::resource('sections', SectionController::class);
-
-    Route::get('/school-form', [SF4Controller::class, 'index'])->name('user.school-form.index');
+    Route::resource('school-form', SF4Controller::class);
 
     Route::get('/personnels', [PersonnelController::class, 'personnelIndex'])->name('user.personnels.index');
     Route::get('/personnels/create', [PersonnelController::class, 'personnelCreate'])->name('user.personnels.create');

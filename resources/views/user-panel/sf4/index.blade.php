@@ -65,7 +65,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="" class="btn btn-danger mb-3">Submit New SF4</a>
+                            <a href="{{ route('school-form.create') }}" class="btn btn-danger mb-3">
+                                Submit New SF4</a>
                             <div class="table-data">
                                 <div class="table-responsive">
                                     <table id="dataTableajax" class="table table-striped table-bordered nowrap">

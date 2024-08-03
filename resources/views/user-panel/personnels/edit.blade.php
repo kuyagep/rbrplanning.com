@@ -83,7 +83,7 @@
 
                                 <div class="form-group">
                                     <label for="sex">Sex:</label>
-                                    <select class="form-control" id="sex" name="sex">
+                                    <select class="form-control custom-select" id="sex" name="sex">
                                         <option value="Male" @if ($personnel->sex == 'Male') selected @endif>Male
                                         </option>
                                         <option value="Female" @if ($personnel->sex == 'Female') selected @endif>Female
@@ -92,7 +92,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="employment_status_id">Employment Status:</label>
-                                    <select class="form-control" id="employment_status_id" name="employment_status_id">
+                                    <select class="form-control custom-select" id="employment_status_id"
+                                        name="employment_status_id">
                                         @foreach ($employmentStatuses as $employmentStatus)
                                             <option value="{{ $employmentStatus->id }}"
                                                 @if ($personnel->employment_status_id == $employmentStatus->id) selected @endif>
@@ -104,7 +105,7 @@
 
                                 <div class="form-group">
                                     <label for="position_id">Position:</label>
-                                    <select class="form-control" id="position_id" name="position_id">
+                                    <select class="form-control custom-select" id="position_id" name="position_id">
                                         @foreach ($positions as $position)
                                             <option value="{{ $position->id }}"
                                                 @if ($personnel->position_id == $position->id) selected @endif>{{ $position->name }}
@@ -115,7 +116,7 @@
 
                                 <div class="form-group">
                                     <label for="school_id">School:</label>
-                                    <select class="form-control" id="school_id" name="school_id">
+                                    <select class="form-control custom-select" id="school_id" name="school_id">
                                         @foreach ($schools as $school)
                                             <option value="{{ $school->id }}"
                                                 @if ($personnel->school_id == $school->id) selected @endif>{{ $school->name }}
@@ -126,7 +127,8 @@
 
                                 <div class="form-group">
                                     <label for="funding_source_id">Funding Source:</label>
-                                    <select class="form-control" id="funding_source_id" name="funding_source_id">
+                                    <select class="form-control custom-select" id="funding_source_id"
+                                        name="funding_source_id">
                                         @foreach ($fundingSources as $fundingSource)
                                             <option value="{{ $fundingSource->id }}"
                                                 @if ($personnel->funding_source_id == $fundingSource->id) selected @endif>

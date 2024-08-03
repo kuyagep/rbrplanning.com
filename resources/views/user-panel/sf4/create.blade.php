@@ -40,33 +40,12 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <form method="POST" action="{{ route('user.existing-buildings.store') }}">
+                    <form method="POST" action="{{ route('school-form.store') }}">
                         @csrf
                         <div class="card">
-                            <div class="card-header">{{ __('Submit Inventory Report') }}</div>
+                            <div class="card-header">{{ __('Submit Report') }}</div>
 
                             <div class="card-body">
-                                <div class="form-group row">
-                                    <label for="school_id"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('School') }}</label>
-
-                                    <div class="col-md-6">
-                                        <select id="school_id"
-                                            class="form-control custom-select @error('school_id') is-invalid @enderror"
-                                            name="school_id" required>
-                                            <option value="">Select School</option>
-                                            @foreach ($schools as $school)
-                                                <option value="{{ $school->id }}">{{ $school->name }}</option>
-                                            @endforeach
-                                        </select>
-
-                                        @error('school_id')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
 
                                 <div class="form-group row">
                                     <label for="school_year_id"
@@ -74,7 +53,7 @@
 
                                     <div class="col-md-6">
                                         <select id="school_year_id"
-                                            class="form-control custom-select @error('school_year_id') is-invalid @enderror"
+                                            class="form-control @error('school_year_id') is-invalid @enderror"
                                             name="school_year_id" required>
                                             <option value="">Select School Year</option>
                                             @foreach ($schoolYears as $year)
@@ -158,8 +137,7 @@
                                     <div class="col-md-6">
                                         <input id="on_going_contruction" type="number"
                                             class="form-control @error('on_going_contruction') is-invalid @enderror"
-                                            name="on_going_contruction" value="{{ old('on_going_contruction') }}"
-                                            required>
+                                            name="on_going_contruction" value="{{ old('on_going_contruction') }}" required>
                                         @error('on_going_contruction')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -468,7 +446,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Submit') }}
                                 </button>
-                                <a href="{{ route('user.existing-buildings.store') }}" class="btn btn-secondary">
+                                <a href="{{ route('user.existing-buildings.index') }}" class="btn btn-secondary">
                                     {{ __('Cancel') }}
                                 </a>
                             </div>

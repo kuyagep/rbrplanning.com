@@ -46,7 +46,8 @@
                             <div class="col-3">
                                 <div class="form-group">
                                     <label>Region:</label>
-                                    <select name="region_id" id="region_id" class="form-control" style="width: 100%;">
+                                    <select name="region_id" id="region_id" class="form-control custom-select"
+                                        style="width: 100%;">
                                         <option value="">--Select Region--</option>
                                         @foreach ($regions as $region)
                                             <option value="{{ $region->id }}"
@@ -59,7 +60,7 @@
                             <div class="col-3">
                                 <div class="form-group">
                                     <label>Division:</label>
-                                    <select name="division_id" id="division_id" class="form-control">
+                                    <select name="division_id" id="division_id" class="form-control custom-select">
                                         <option value="">Select Division</option>
                                         @foreach ($divisions as $division)
                                             <option value="{{ $division->id }}"
@@ -72,7 +73,7 @@
                             <div class="col-3">
                                 <div class="form-group">
                                     <label>District:</label>
-                                    <select name="district_id" id="district_id" class="form-control">
+                                    <select name="district_id" id="district_id" class="form-control custom-select">
                                         <option value="">Select District</option>
                                         @foreach ($districts as $district)
                                             <option value="{{ $district->id }}"
@@ -85,7 +86,7 @@
                             <div class="col-3">
                                 <div class="form-group">
                                     <label>School:</label>
-                                    <select name="school_id" id="school_id" class="form-control">
+                                    <select name="school_id" id="school_id" class="form-control custom-select">
                                         <option value="">Select School</option>
                                         @foreach ($schools as $school)
                                             <option value="{{ $school->id }}"
@@ -122,9 +123,7 @@
                                             <tr>
                                                 <th>Item Number</th>
                                                 <th>Name</th>
-                                                <th>Position</th>
                                                 <th>School</th>
-                                                <th>District</th>
                                                 <th>Employment Status</th>
                                                 <th>Remarks</th>
                                                 <th class="nosort">Action</th>
@@ -135,12 +134,13 @@
                                                 <tr>
                                                     <td>{{ $personnel->item_number }}</td>
                                                     <td>{{ $personnel->full_name }} <br>
-                                                        <span
-                                                            class="text-muted text-sm">{{ $personnel->position->name }}</span>
+                                                        <span class="text-muted text-sm">
+                                                            {{ $personnel->position->name }}</span>
                                                     </td>
-                                                    <td>{{ $personnel->position->name }}</td>
-                                                    <td>{{ $personnel->school->name }}</td>
-                                                    <td>{{ $personnel->school->district->name }}</td>
+                                                    <td>{{ $personnel->school->name }} <br>
+                                                        <span class="text-muted text-sm">
+                                                            {{ $personnel->school->district->name }}</span>
+                                                    </td>
                                                     <td>{{ $personnel->employmentStatus->name }}</td>
                                                     <td>{{ $personnel->remarks }}</td>
                                                     <td class="text-center">

@@ -129,8 +129,8 @@
                                 <div class="form-group row">
                                     <label for="sex" class="col-sm-3 col-form-label">Sex</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control @error('sex') is-invalid @enderror" id="sex"
-                                            name="sex">
+                                        <select class="form-control custom-select @error('sex') is-invalid @enderror"
+                                            id="sex" name="sex">
                                             <option value="Male" {{ old('sex') == 'Male' ? 'selected' : '' }}>Male
                                             </option>
                                             <option value="Female" {{ old('sex') == 'Female' ? 'selected' : '' }}>Female
@@ -146,7 +146,8 @@
                                     <label for="employment_status_id" class="col-sm-3 col-form-label">Employment
                                         Status</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control @error('employment_status_id') is-invalid @enderror"
+                                        <select
+                                            class="form-control custom-select @error('employment_status_id') is-invalid @enderror"
                                             id="employment_status_id" name="employment_status_id">
                                             <option value="">Choose...</option>
                                             @foreach ($employment_statuses as $employment_status)
@@ -164,7 +165,8 @@
                                 <div class="form-group row">
                                     <label for="position_id" class="col-sm-3 col-form-label">Position</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control @error('position_id') is-invalid @enderror"
+                                        <select
+                                            class="form-control custom-select @error('position_id') is-invalid @enderror"
                                             id="position_id" name="position_id">
                                             <option value="">Choose...</option>
                                             @foreach ($positions as $position)
@@ -182,7 +184,8 @@
                                 <div class="form-group row">
                                     <label for="school_id" class="col-sm-3 col-form-label">School</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control @error('school_id') is-invalid @enderror"
+                                        <select
+                                            class="form-control custom-select @error('school_id') is-invalid @enderror"
                                             id="school_id" name="school_id">
                                             <option value="">Choose...</option>
                                             @foreach ($schools as $school)
@@ -200,7 +203,8 @@
                                 <div class="form-group row">
                                     <label for="funding_source_id" class="col-sm-3 col-form-label">Funding Source</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control @error('funding_source_id') is-invalid @enderror"
+                                        <select
+                                            class="form-control custom-select @error('funding_source_id') is-invalid @enderror"
                                             id="funding_source_id" name="funding_source_id">
                                             <option value="">Choose...</option>
                                             @foreach ($funding_sources as $funding_source)

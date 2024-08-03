@@ -41,8 +41,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('user.school-form.index') }}"
-                    class="nav-link {{ Request::routeIs('user.school-form.index') ? 'active' : '' }}">
+                <a href="{{ route('school-form.index') }}"
+                    class="nav-link {{ Request::routeIs('school-form.index') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         School Form 4

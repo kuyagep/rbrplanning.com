@@ -37,7 +37,7 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-sm-9">
-                                        <select class="form-control  @error('grade') is-invalid @enderror"
+                                        <select class="form-control custom-select @error('grade') is-invalid @enderror"
                                             style="width: 100%;" id="grade" name="grade">
                                             <option value="">Choose...</option>
                                             @foreach ($grades as $grade)
@@ -65,7 +65,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-9">
