@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->integer('daily_ave_male');
             $table->integer('daily_ave_female');
             $table->integer('percentage_for_the_month_male');

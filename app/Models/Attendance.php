@@ -9,6 +9,9 @@ class Attendance extends Model
 {
     use HasFactory;
 
+
+    protected $fillable = ['daily_ave_male', 'daily_ave_female', 'percentage_for_the_month_male', 'percentage_for_the_month_female'];
+
     public function schoolyear()
     {
         return $this->belongsTo(SchoolYear::class);

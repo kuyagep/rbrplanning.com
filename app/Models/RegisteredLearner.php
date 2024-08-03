@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class RegisteredLearner extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['section_id', 'no_of_male', 'no_of_female'];
 }
