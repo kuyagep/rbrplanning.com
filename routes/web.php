@@ -104,14 +104,18 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::get('/profile-settings', [ProfileSettingsController::class, 'index'])->name('profile-settings.index');
     Route::put('/profile-settings', [ProfileSettingsController::class, 'update'])->name('profile-settings.update');
     Route::post('/profile-settings/check-password', [ProfileSettingsController::class, 'checkCurrentPassword'])->name('profile-settings.check-current-password');
-
 });
 
 Route::prefix('user')->middleware(['auth:sanctum', 'role:user'])->group(function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard.index');
 
     Route::resource('sections', SectionController::class);
-    Route::resource('school-form', SF4Controller::class);
+    Route::get('sf4', [SF4Controller::class, 'index'])->name('user.sf4.index');
+    Route::get('sf4/form', [SF4Controller::class, 'form'])->name('user.sf4.form');
+    Route::post('sf4/form', [SF4Controller::class, 'submitForm'])->name('user.sf4.submitForm');
+    Route::get('sf4/show-details', [SF4Controller::class, 'showDetails'])->name('user.sf4.showDetails');
+    Route::get('sf4/edit/{id}', [SF4Controller::class, 'edit'])->name('user.sf4.edit');
+    Route::delete('sf4/destroy/{id}', [SF4Controller::class, 'destroy'])->name('user.sf4.destroy');
 
     Route::get('/personnels', [PersonnelController::class, 'personnelIndex'])->name('user.personnels.index');
     Route::get('/personnels/create', [PersonnelController::class, 'personnelCreate'])->name('user.personnels.create');
@@ -130,11 +134,13 @@ Route::prefix('user')->middleware(['auth:sanctum', 'role:user'])->group(function
 
     // Reports
     Route::post('/reports/by-school-year', [ReportController::class, 'bySchoolYear'])->name('reports.bySchoolYear');
+
     // Inventory Management Routes
     Route::resource('inventory-of-classrooms', InventoryOfClassroomController::class);
     Route::resource('inventory-of-school-buildings', InventoryOfSchoolBuildingController::class);
     Route::resource('tls', TLSController::class);
     Route::resource('inventory-of-furniture', InventoryOfFurniture::class);
+
     // Learner and Attendance Management Routes
     Route::resource('registered-learners', RegisteredLearnerController::class);
     Route::resource('attendances', AttendanceController::class);

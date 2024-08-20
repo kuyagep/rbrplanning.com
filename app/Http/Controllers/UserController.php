@@ -50,7 +50,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $temp_password = Str::random(6);
+        // $temp_password = Str::random(6);
 
         $request->validate([
             'first_name' => 'required|string|max:255',
@@ -63,18 +63,19 @@ class UserController extends Controller
         $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->school_id = $request->school_id ?? null;
-        $user->password = Hash::make($temp_password);
+        $user->password = Hash::make($request->email);
         $user->save();
 
         notyf()->success('User created successfully.');
 
-        return redirect('users')->with([
-            'status' => 'Success',
-            'message' => 'User created successfully!',
-            'email' => $user->email,
-            'temp_password' => $temp_password],
+        return redirect('users')->with(
+            [
+                'status' => 'Success',
+                'message' => 'User created successfully!',
+                'email' => $user->email,
+                'temp_password' => $request->email
+            ],
         );
-
     }
 
     /**
@@ -110,7 +111,7 @@ class UserController extends Controller
             'email' => 'required|email|max:255',
         ]);
 
-        // Update the region with validated data
+
         $user->update($request->all());
 
         notyf()->success('User updated successfully.');
@@ -156,17 +157,19 @@ class UserController extends Controller
     {
         // dd($request->id);
 
-        $temp_password = Str::random(6);
+        // $temp_password = Str::random(6);
 
         $user = User::findOrFail($request->id);
-        $user->password = Hash::make($temp_password);
+        $user->password = Hash::make($user->email);
         $user->save();
         notyf()->info('User password resetted successfully.');
-        return redirect()->back()->with([
-            'status' => 'Info',
-            'message' => 'User password resetted successfully!',
-            'email' => $user->email,
-            'temp_password' => $temp_password],
+        return redirect()->back()->with(
+            [
+                'status' => 'Info',
+                'message' => 'User password resetted successfully!',
+                'email' => $user->email,
+                'temp_password' => $user->email
+            ],
         );
     }
 

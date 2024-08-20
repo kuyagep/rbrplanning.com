@@ -68,39 +68,7 @@
     <script src="{{ asset('assets/node_modules/screenfull/dist/screenfull.js') }}"></script>
     <script src="{{ asset('assets/dist/js/theme.js') }}"></script>
 
-    <script>
-        window.onload = function() {
-            Particles.init({
-                selector: '.background',
-                color: '#fff',
-                maxParticles: 200,
-                speed: 0.5,
 
-                // options for breakpoints
-                responsive: [{
-                    breakpoint: 768,
-                    options: {
-                        maxParticles: 200,
-                        color: '#48F2E3',
-                        connectParticles: false
-                    }
-                }, {
-                    breakpoint: 425,
-                    options: {
-                        maxParticles: 100,
-                        connectParticles: true
-                    }
-                }, {
-                    breakpoint: 320,
-                    options: {
-                        maxParticles: 0
-
-                        // disables particles.js
-                    }
-                }]
-            });
-        };
-    </script>
 
     @yield('scipt')
 </body>

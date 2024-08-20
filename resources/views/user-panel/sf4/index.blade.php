@@ -65,30 +65,51 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('school-form.create') }}" class="btn btn-danger mb-3">
+                            <a href="{{ route('user.sf4.form') }}" class="btn btn-danger mb-3">
                                 Submit New SF4</a>
                             <div class="table-data">
                                 <div class="table-responsive">
                                     <table id="dataTableajax" class="table table-striped table-bordered nowrap">
                                         <thead class="bg-danger">
                                             <tr>
-                                                <th>Name of Adviser</th>
-                                                <th>Position Title</th>
-                                                <th>Grade Level</th>
+                                                <th>School Year</th>
                                                 <th>Section</th>
-                                                <th class="nosort">Action</th>
+                                                <th>Month</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>name of teacher</td>
-                                                <td>teacher 1</td>
-                                                <td>Grade 1</td>
-                                                <td>Bonifacio</td>
-                                                <td><button class="btn btn-danger btn-sm">Remove</button></td>
-                                            </tr>
+                                            @forelse ($reports as $report)
+                                                <tr>
+                                                    <td>{{ $report->school_year->school_year ?? 'N/A' }}</td>
+                                                    <td>{{ $report->section->section_name }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($report->month)->format('F Y') }}</td>
+                                                    <td>
+                                                        <a href="{{ route('user.sf4.showDetails', $report->id) }}"
+                                                            class="btn btn-info btn-sm">View</a>
+                                                        <a href="{{ route('user.sf4.edit', $report->id) }}"
+                                                            class="btn btn-warning btn-sm">Edit</a>
+                                                        <form action="{{ route('user.sf4.destroy', $report->id) }}"
+                                                            method="POST" class="d-inline-block"
+                                                            onsubmit="return confirm('Are you sure you want to delete this report?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="btn btn-danger btn-sm">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="5">No reports found.</td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
+                                    <!-- Pagination Links -->
+                                    <div class="mt-3">
+                                        {{ $reports->links() }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
