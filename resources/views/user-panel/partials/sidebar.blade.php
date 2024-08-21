@@ -68,6 +68,7 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-header">SCHOOL BLDG MANAGEMENT</li>
             <li class="nav-item">
                 <a href="{{ route('user.existing-buildings.index') }}"
                     class="nav-link {{ Request::routeIs('user.existing-buildings*') ? 'active' : '' }}">
@@ -83,6 +84,38 @@
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         Registered Learners
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link ">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Attendace
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link ">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Dropped Out
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link ">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Transferred Out
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link ">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Transferred In
                     </p>
                 </a>
             </li>

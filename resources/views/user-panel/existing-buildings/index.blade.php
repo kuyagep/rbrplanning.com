@@ -85,7 +85,7 @@
                 <div class="card-header">Inventory of School Buildings</div>
                 <div class="card-body">
                     <table class="table table-bordered">
-                        <thead>
+                        <thead class="bg-danger">
                             <tr>
                                 <th>School</th>
                                 <th>Good Condition</th>
@@ -120,7 +120,7 @@
                 <div class="card-header">TLS (Temporary Learning Spaces)</div>
                 <div class="card-body">
                     <table class="table table-bordered">
-                        <thead>
+                        <thead class="bg-danger">
                             <tr>
                                 <th>School</th>
                                 <th>No. of TLS</th>
@@ -148,7 +148,7 @@
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
-                        <thead>
+                        <thead class="bg-danger">
                             <tr>
                                 <th>School</th>
                                 <th>No. of MakeShift Rooms</th>
@@ -174,7 +174,7 @@
                 <div class="card-header">Inventory of Classrooms</div>
                 <div class="card-body">
                     <table class="table table-bordered">
-                        <thead>
+                        <thead class="bg-danger">
                             <tr>
                                 <th>School</th>
                                 <th>Good Condition</th>
@@ -209,7 +209,7 @@
                 <div class="card-header">Inventory of Furniture</div>
                 <div class="card-body">
                     <table class="table table-bordered">
-                        <thead>
+                        <thead class="bg-danger">
                             <tr>
                                 <th>School</th>
                                 <th>Kinder Modular Table</th>

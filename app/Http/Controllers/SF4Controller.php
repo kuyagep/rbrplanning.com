@@ -31,6 +31,7 @@ class SF4Controller extends Controller
     {
         $request->validate([
             'section_id' => 'required|exists:sections,id',
+            // 'school_year' => 'required',
             'report_month' => 'required|date_format:Y-m', // Validate the month
             'registered_learners_male' => 'required|integer',
             'registered_learners_female' => 'required|integer',
@@ -54,14 +55,16 @@ class SF4Controller extends Controller
 
         $sectionId = $request->section_id;
         $reportMonth = $request->report_month . '-01'; // Convert to date format
-
+        // dd($reportMonth);
         // Check if a report for the section and month already exists
         if (SF4::where('section_id', $sectionId)->where('report_month', $reportMonth)->exists()) {
-            return redirect()->back()->withErrors(['report_month' => 'A report for this section and month already exists.']);
+            notyf()->success('A report for this section and month already exists.');
+            return redirect()->back();
         }
 
         $report = new SF4;
         $report->section_id = $sectionId;
+        // $report->school_year = $request->school_year;
         $report->report_month = $reportMonth;
         $report->registered_learners_male = $request->registered_learners_male;
         $report->registered_learners_female = $request->registered_learners_female;
@@ -86,5 +89,15 @@ class SF4Controller extends Controller
         notyf()->success('Monthly report submitted successfully.');
 
         return redirect('user/sf4/form');
+    }
+
+    public function destroy(Request $request, $id)
+    {
+
+        $data = SF4::findOrFail($id);
+        $data->delete();
+        // return response()->json(['icon' => 'success', 'title' => 'Success!', 'message' => 'User deleted successfully!']);
+        notyf()->success('Monthly report deleted successfully.');
+        return redirect()->back();
     }
 }

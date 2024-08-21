@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="report_month"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Section') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Month') }}</label>
                                     <div class="col-md-6">
 
                                         <input type="month"
